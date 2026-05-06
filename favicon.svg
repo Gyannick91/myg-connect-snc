@@ -1,0 +1,91 @@
+<!--
+  ============================================================
+  FAVICON OFFICIEL — MYG CONNECT SNC
+  Fichier : favicon.svg
+  À placer : à la RACINE du projet (même niveau que index.html)
+  ============================================================
+-->
+
+<!--
+  viewBox="0 0 32 32" = espace de dessin carré de 32x32 unités
+  C'est la taille standard d'un favicon
+  role="img" = dit aux lecteurs d'écran que c'est une image
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="MYG Connect SNC favicon">
+
+  <!-- Titre lisible par les lecteurs d'écran pour l'accessibilité -->
+  <title>MYG Connect SNC</title>
+
+  <!--
+    BLOC 1 : LE FOND CARRÉ ARRONDI
+    x="0" y="0"       = commence en haut à gauche
+    width="32"        = largeur totale du carré
+    height="32"       = hauteur totale du carré
+    rx="7"            = arrondit les coins (comme les icônes d'apps)
+    fill="#0A1628"    = couleur de remplissage = notre bleu nuit
+  -->
+  <rect x="0" y="0" width="32" height="32" rx="7" fill="#0A1628"/>
+
+  <!--
+    BLOC 2 : LE CADRE HEXAGONE
+    points = les 6 coins du polygone (x,y pour chaque coin)
+    fill="none"       = l'intérieur est transparent (juste le contour)
+    stroke="#1E4D8C"  = couleur du contour = notre bleu royal
+    stroke-width="1.5" = épaisseur du contour
+  -->
+  <polygon
+    points="16,3 27,9.5 27,22.5 16,29 5,22.5 5,9.5"
+    fill="none"
+    stroke="#1E4D8C"
+    stroke-width="1.5"
+  />
+
+  <!--
+    BLOC 3 : L'ÉCLAIR DORÉ (élément principal)
+    C'est une forme dessinée point par point avec "path"
+
+    Comment lire le tracé d="..." :
+    M 18,5      = Move to : point de départ en haut
+    L 11,17     = Line to : trace une ligne vers ce point
+    L 15.5,17   = Line to : trace une ligne vers ce point
+    L 14,27     = Line to : descend vers le bas de l'éclair
+    L 21,15     = Line to : remonte vers la droite
+    L 16.5,15   = Line to : rentre vers la gauche
+    Z           = ferme le tracé (retour au point de départ)
+
+    fill="#C9A84C" = rempli en or — c'est notre couleur accent
+  -->
+  <path
+    d="M 18,5 L 11,17 L 15.5,17 L 14,27 L 21,15 L 16.5,15 Z"
+    fill="#C9A84C"
+  />
+
+  <!--
+    BLOC 4 : REFLET BLANC SUR L'ÉCLAIR
+    Un petit triangle sur la partie haute de l'éclair
+    fill="#FFFFFF"   = blanc
+    opacity="0.15"   = très transparent (15%) — juste un effet subtil
+    Donne une impression de lumière et de relief
+  -->
+  <path
+    d="M 18,5 L 14,13 L 16.5,13 L 18,5 Z"
+    fill="#FFFFFF"
+    opacity="0.15"
+  />
+
+  <!--
+    BLOC 5 : ADAPTATION AU MODE SOMBRE
+    Si l'utilisateur a son Windows/Mac en mode sombre,
+    ces règles CSS s'appliquent automatiquement.
+    Le fond devient encore plus sombre pour s'adapter.
+  -->
+  <style>
+    @media (prefers-color-scheme: dark) {
+      /* Mode sombre : fond encore plus foncé */
+      rect { fill: #060D1A; }
+      /* Mode sombre : hexagone légèrement plus visible */
+      polygon { stroke: #2A5FA8; }
+    }
+  </style>
+
+</svg>

@@ -1,0 +1,1128 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <!-- ============================================================
+       INFORMATIONS TECHNIQUES DE LA PAGE (invisibles pour l'utilisateur)
+       ============================================================ -->
+
+    <!-- UTF-8 = permet les accents français : é, è, à, ç... -->
+    <meta charset="UTF-8" />
+
+    <!-- Responsive = la page s'adapte automatiquement à toute taille d'écran -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Titre affiché dans l'onglet du navigateur et sur Google -->
+    <title>MYG Connect SNC</title>
+
+    <!-- Description affichée par Google sous le titre dans les résultats de recherche -->
+    <meta
+      name="description"
+      content="MYG Connect SNC — Vente de téléphones, accessoires, cybercafé, services informatiques, transfert d'argent et point relais en Belgique."
+    />
+
+    <!-- Favicon = l'éclair doré dans l'onglet -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+    <!-- Google Fonts = on charge 2 polices élégantes depuis internet
+       Cinzel     = police majuscule romaine, pour les titres (effet luxe)
+       Raleway    = police moderne et fine, pour le texte courant -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Raleway:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* ============================================================
+       VARIABLES CSS — Notre palette de couleurs centralisée
+       On définit les couleurs UNE SEULE FOIS ici
+       et on les réutilise partout avec var(--nom)
+       ============================================================ */
+      :root {
+        --bleu-nuit: #0a1628; /* Fond principal */
+        --bleu-royal: #1e4d8c; /* Boutons, accents */
+        --or: #c9a84c; /* Titres, bordures dorées */
+        --bleu-clair: #b8cce4; /* Textes secondaires */
+        --blanc: #ffffff; /* Texte principal sur fond sombre */
+        --gris-clair: #f5f5f5; /* Fond des sections claires */
+      }
+
+      /* ============================================================
+       RESET — Supprime les marges/paddings par défaut du navigateur
+       Tous les navigateurs ont des styles différents par défaut
+       Ce reset les uniformise
+       ============================================================ */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box; /* Le padding ne gonfle pas la taille des éléments */
+      }
+
+      /* ============================================================
+       STYLE GÉNÉRAL DU BODY
+       ============================================================ */
+      body {
+        font-family: "Raleway", sans-serif; /* Police principale du site */
+        background-color: var(--bleu-nuit); /* Fond bleu nuit */
+        color: var(--blanc); /* Texte blanc par défaut */
+        overflow-x: hidden; /* Empêche le scroll horizontal */
+      }
+
+      /* ============================================================
+       HEADER — La barre de navigation en haut de page
+       position: fixed   = reste collé en haut même quand on scrolle
+       top: 0            = tout en haut de la page
+       width: 100%       = prend toute la largeur
+       z-index: 1000     = passe au-dessus de tous les autres éléments
+       ============================================================ */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        background-color: rgba(
+          10,
+          22,
+          40,
+          0.95
+        ); /* Bleu nuit légèrement transparent */
+        border-bottom: 1px solid var(--or); /* Ligne dorée en bas du header */
+        padding: 0 40px; /* Espace intérieur gauche/droite */
+        height: 80px; /* Hauteur fixe du header */
+
+        /* Flexbox = aligne les éléments en ligne horizontalement */
+        display: flex;
+        align-items: center; /* Centre verticalement */
+        justify-content: space-between; /* Logo à gauche, menu à droite */
+      }
+
+      /* ============================================================
+       LOGO DANS LE HEADER
+       ============================================================ */
+      .header-logo img {
+        height: 55px; /* Hauteur du logo dans le header */
+        width: auto; /* La largeur s'adapte automatiquement */
+      }
+
+      /* ============================================================
+       NAVIGATION — La liste des liens du menu
+       ============================================================ */
+      nav ul {
+        list-style: none; /* Supprime les puces de la liste */
+        display: flex; /* Aligne les liens en ligne */
+        gap: 35px; /* Espace entre chaque lien */
+      }
+
+      /* Style de chaque lien du menu */
+      nav ul li a {
+        color: var(--blanc); /* Texte blanc */
+        text-decoration: none; /* Supprime le soulignement */
+        font-family: "Raleway", sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 2px; /* Espacement entre les lettres */
+        text-transform: uppercase; /* Tout en majuscules */
+        padding-bottom: 4px; /* Espace sous le texte */
+        border-bottom: 2px solid transparent; /* Bordure invisible par défaut */
+
+        /* transition = animation fluide quand on survole le lien */
+        transition:
+          color 0.3s ease,
+          border-bottom-color 0.3s ease;
+      }
+
+      /* Quand on survole un lien avec la souris */
+      nav ul li a:hover {
+        color: var(--or); /* Texte devient doré */
+        border-bottom-color: var(--or); /* Bordure dorée apparaît en dessous */
+      }
+
+      /* ============================================================
+       BOUTON "COMMANDER" DANS LE MENU
+       C'est le lien spécial avec un fond doré
+       ============================================================ */
+      .btn-commander {
+        background-color: var(--or); /* Fond doré */
+        color: var(
+          --bleu-nuit
+        ) !important; /* Texte bleu nuit (le !important force la couleur) */
+        padding: 10px 20px !important; /* Espace intérieur */
+        border-radius: 4px; /* Coins légèrement arrondis */
+        border-bottom: none !important; /* Pas de bordure en dessous */
+      }
+
+      /* Survol du bouton commander */
+      .btn-commander:hover {
+        background-color: var(--blanc); /* Fond devient blanc */
+        color: var(--bleu-nuit) !important;
+      }
+
+      /* ============================================================
+       MENU HAMBURGER — Visible uniquement sur mobile
+       Sur grand écran il est caché (display:none)
+       ============================================================ */
+      .hamburger {
+        display: none; /* Caché sur desktop */
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer; /* Curseur main au survol */
+        background: none;
+        border: none;
+        padding: 5px;
+      }
+
+      /* Les 3 barres du hamburger */
+      .hamburger span {
+        display: block;
+        width: 25px;
+        height: 2px;
+        background-color: var(--or); /* Barres dorées */
+        transition: all 0.3s ease; /* Animation fluide */
+        border-radius: 2px;
+      }
+
+      /* ============================================================
+       RESPONSIVE — Adaptation au mobile
+       @media = règles qui s'appliquent SEULEMENT si l'écran
+       est plus petit que 768px (tablettes et téléphones)
+       ============================================================ */
+      @media (max-width: 768px) {
+        /* Header moins de padding sur mobile */
+        header {
+          padding: 0 20px;
+        }
+
+        /* Le menu hamburger apparaît sur mobile */
+        .hamburger {
+          display: flex;
+        }
+
+        /* Le menu navigation se cache sur mobile par défaut */
+        nav {
+          display: none; /* Caché par défaut */
+          position: fixed; /* Fixé à l'écran */
+          top: 80px; /* Juste sous le header */
+          left: 0;
+          width: 100%;
+          background-color: var(--bleu-nuit);
+          border-top: 1px solid var(--or);
+          padding: 20px 0;
+          z-index: 999;
+        }
+
+        /* Quand le menu est ouvert (classe ajoutée par JavaScript) */
+        nav.ouvert {
+          display: block;
+        }
+
+        /* Les liens du menu s'empilent verticalement sur mobile */
+        nav ul {
+          flex-direction: column;
+          align-items: center;
+          gap: 20px;
+        }
+      }
+      /* ============================================================
+       HERO SECTION
+       min-height: 100vh = la section fait au minimum toute la hauteur
+       de l'écran (vh = viewport height = hauteur de l'écran)
+       padding-top: 80px = compense la hauteur du header fixe
+       ============================================================ */
+      .hero {
+        min-height: 100vh;
+        padding-top: 80px;
+        display: flex; /* Aligne le contenu en ligne */
+        align-items: center; /* Centre verticalement */
+        justify-content: space-between; /* Contenu à gauche, déco à droite */
+        padding-left: 80px;
+        padding-right: 80px;
+        position: relative;
+      }
+
+      /* Petit texte doré au dessus du titre */
+      .hero-surtitre {
+        font-size: 13px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--or);
+        margin-bottom: 20px;
+        white-space: nowrap; /* Empêche le retour à la ligne */
+        font-size: clamp(
+          9px,
+          2.5vw,
+          13px
+        ); /* Réduit automatiquement la taille sur mobile */
+      }
+
+      /* Titre principal H1
+       font-size: clamp() = taille flexible
+       clamp(min, préféré, max) = jamais moins de 36px, idéalement 5vw,
+       jamais plus de 72px — s'adapte automatiquement à l'écran */
+
+      .hero-titre {
+        font-family: "Cinzel", serif;
+        font-size: clamp(36px, 5vw, 72px);
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 25px;
+        color: var(--blanc);
+      }
+
+      /* Le mot "multi-services" en doré */
+      .hero-titre-or {
+        color: var(--or);
+      }
+
+      /* Description sous le titre */
+      .hero-description {
+        font-size: 16px;
+        line-height: 1.8;
+        color: var(--bleu-clair);
+        max-width: 500px;
+        margin-bottom: 40px;
+      }
+
+      /* Conteneur des 2 boutons */
+      .hero-boutons {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap; /* Les boutons passent à la ligne sur petit écran */
+      }
+
+      /* Bouton principal — fond doré */
+      .bouton-principal {
+        background-color: var(--or);
+        color: var(--bleu-nuit);
+        padding: 15px 35px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition:
+          background-color 0.3s ease,
+          transform 0.2s ease;
+      }
+
+      /* Survol bouton principal */
+      .bouton-principal:hover {
+        background-color: var(--blanc);
+        transform: translateY(-2px); /* Monte légèrement au survol */
+      }
+
+      /* Bouton secondaire — contour doré, fond transparent */
+      .bouton-secondaire {
+        border: 2px solid var(--or);
+        color: var(--or);
+        padding: 15px 35px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition:
+          background-color 0.3s ease,
+          color 0.3s ease;
+      }
+
+      /* Survol bouton secondaire */
+      .bouton-secondaire:hover {
+        background-color: var(--or);
+        color: var(--bleu-nuit);
+      }
+
+      /* Logo grand format à droite */
+      .hero-decoration {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .hero-logo-grand {
+        width: clamp(250px, 35vw, 450px); /* Taille flexible selon l'écran */
+        opacity: 0.9;
+      }
+
+      /* ============================================================
+       RESPONSIVE HERO — Adaptation mobile
+       ============================================================ */
+      @media (max-width: 768px) {
+        /* Sur mobile tout s'empile verticalement */
+        .hero {
+          flex-direction: column;
+          text-align: center;
+          padding: 120px 25px 60px;
+          justify-content: center;
+          gap: 40px;
+        }
+
+        /* Description centrée sur mobile */
+        .hero-description {
+          margin: 0 auto 40px;
+        }
+
+        /* Boutons centrés sur mobile */
+        .hero-boutons {
+          justify-content: center;
+        }
+
+        /* Logo plus petit sur mobile */
+        .hero-logo-grand {
+          width: 200px;
+        }
+      }
+
+      /* ============================================================
+       SECTION NOS SERVICES
+       padding = espace intérieur haut/bas et gauche/droite
+       ============================================================ */
+      .services {
+        padding: 100px 80px;
+        background-color: var(--bleu-nuit);
+      }
+
+      /* En-tête de la section — titre + sous-titre centrés */
+      .section-entete {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      /* Petit texte doré au dessus du titre de section */
+      .section-surtitre {
+        font-size: 12px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--or);
+        margin-bottom: 15px;
+      }
+
+      /* Titre de la section */
+      .section-titre {
+        font-family: "Cinzel", serif;
+        font-size: clamp(28px, 4vw, 48px);
+        font-weight: 700;
+        color: var(--blanc);
+        margin-bottom: 15px;
+      }
+
+      /* Ligne dorée décorative sous le titre
+       margin: 0 auto = centré horizontalement */
+      .section-ligne {
+        width: 60px;
+        height: 2px;
+        background-color: var(--or);
+        margin: 0 auto;
+      }
+
+      /* ============================================================
+       GRILLE DES CARTES DE SERVICES
+       grid = disposition en grille automatique
+       repeat(auto-fit, minmax(280px, 1fr)) = crée automatiquement
+       le bon nombre de colonnes selon la largeur de l'écran
+       Sur grand écran = 3 colonnes
+       Sur tablette = 2 colonnes
+       Sur mobile = 1 colonne
+       ============================================================ */
+      .services-grille {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px; /* Espace entre les cartes */
+      }
+
+      /* ============================================================
+       CARTE DE SERVICE INDIVIDUELLE
+       ============================================================ */
+      .carte-service {
+        background-color: rgba(
+          30,
+          77,
+          140,
+          0.15
+        ); /* Bleu royal très transparent */
+        border: 1px solid rgba(201, 168, 76, 0.2); /* Bordure dorée très discrète */
+        border-radius: 12px;
+        padding: 40px 30px;
+        text-align: center;
+
+        /* transition = animation fluide au survol */
+        transition:
+          transform 0.3s ease,
+          border-color 0.3s ease,
+          background-color 0.3s ease;
+
+        cursor: pointer; /* Curseur main au survol */
+      }
+
+      /* Survol de la carte — elle monte et s'illumine */
+      .carte-service:hover {
+        transform: translateY(-8px); /* Monte de 8px */
+        border-color: var(--or); /* Bordure dorée visible */
+        background-color: rgba(30, 77, 140, 0.3);
+      }
+
+      /* Icône de la carte — le grand emoji/symbole en haut */
+      .carte-icone {
+        font-size: 48px;
+        margin-bottom: 20px;
+        display: block;
+      }
+
+      /* Titre de la carte */
+      .carte-titre {
+        font-family: "Cinzel", serif;
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--blanc);
+        margin-bottom: 15px;
+      }
+
+      /* Description de la carte */
+      .carte-description {
+        font-size: 14px;
+        line-height: 1.8;
+        color: var(--bleu-clair);
+        margin-bottom: 25px;
+      }
+
+      /* Lien "En savoir plus" en bas de la carte */
+      .carte-lien {
+        color: var(--or);
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        border-bottom: 1px solid transparent;
+        transition: border-bottom-color 0.3s ease;
+      }
+
+      /* Survol du lien */
+      .carte-lien:hover {
+        border-bottom-color: var(--or);
+      }
+
+      /* Responsive mobile */
+      @media (max-width: 768px) {
+        .services {
+          padding: 60px 25px;
+        }
+      }
+
+      /* ============================================================
+       SECTION POURQUOI NOUS CHOISIR
+       background légèrement différent pour créer une alternance
+       visuelle entre les sections
+       ============================================================ */
+      .pourquoi {
+        padding: 100px 80px;
+        background-color: rgba(30, 77, 140, 0.08); /* Bleu royal très léger */
+      }
+
+      /* Grille des 4 arguments
+       On force 2 colonnes sur desktop */
+      .pourquoi-grille {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 40px;
+        margin-top: 60px;
+      }
+
+      /* Carte argument individuelle */
+      .argument {
+        display: flex; /* Aligne icône et texte en ligne */
+        gap: 25px; /* Espace entre l'icône et le texte */
+        align-items: flex-start; /* Aligne en haut */
+      }
+
+      /* Cercle contenant l'icône de l'argument
+       flex-shrink: 0 = le cercle ne rétrécit jamais */
+      .argument-icone {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%; /* Forme ronde */
+        background-color: rgba(201, 168, 76, 0.15); /* Fond doré transparent */
+        border: 1px solid var(--or);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        flex-shrink: 0; /* Ne rétrécit pas */
+      }
+
+      /* Texte à côté de l'icône */
+      .argument-texte h3 {
+        font-family: "Cinzel", serif;
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--blanc);
+        margin-bottom: 10px;
+      }
+
+      .argument-texte p {
+        font-size: 14px;
+        line-height: 1.8;
+        color: var(--bleu-clair);
+      }
+
+      /* Responsive mobile */
+      @media (max-width: 768px) {
+        .pourquoi {
+          padding: 60px 25px;
+        }
+      }
+      /* ============================================================
+       FOOTER — Pied de page
+       ============================================================ */
+      footer {
+        background-color: #060d1a; /* Bleu encore plus foncé que le reste */
+        border-top: 1px solid var(--or); /* Ligne dorée en haut du footer */
+        padding: 60px 80px 30px;
+      }
+
+      /* Grille du footer — 4 colonnes sur desktop */
+      .footer-grille {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        margin-bottom: 50px;
+      }
+
+      /* Logo et description dans la 1ère colonne */
+      .footer-logo img {
+        height: 50px;
+        margin-bottom: 20px;
+      }
+
+      .footer-description {
+        font-size: 15px;
+        line-height: 1.8;
+        color: var(--bleu-clair);
+        max-width: 220px;
+      }
+
+      /* Titre de chaque colonne du footer */
+      .footer-titre {
+        font-family: "Cinzel", serif;
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--or);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+      }
+
+      /* Liens du footer */
+      .footer-liens {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .footer-liens a {
+        color: var(--bleu-clair);
+        text-decoration: none;
+        font-size: 15px;
+        transition: color 0.3s ease;
+      }
+
+      /* Survol des liens footer */
+      .footer-liens a:hover {
+        color: var(--or);
+      }
+
+      /* Informations de contact */
+      .footer-contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 15px;
+        font-size: 15px;
+        color: var(--bleu-clair);
+        line-height: 1.6;
+      }
+
+      /* Icône contact (emoji) */
+      .footer-contact-icone {
+        font-size: 16px;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+
+      /* Réseaux sociaux */
+      .footer-reseaux {
+        display: flex;
+        gap: 12px;
+        margin-top: 5px;
+      }
+
+      /* Bouton réseau social */
+      .footer-reseau-btn {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        border: 1px solid rgba(201, 168, 76, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        text-decoration: none;
+        transition:
+          border-color 0.3s ease,
+          background-color 0.3s ease;
+      }
+
+      .footer-reseau-btn:hover {
+        border-color: var(--or);
+        background-color: rgba(201, 168, 76, 0.15);
+      }
+
+      /* Ligne de séparation avant le copyright */
+      .footer-separateur {
+        border: none;
+        border-top: 1px solid rgba(201, 168, 76, 0.2);
+        margin-bottom: 25px;
+      }
+
+      /* Barre du bas — copyright et mentions légales */
+      .footer-bas {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      .footer-copyright {
+        font-size: 14px;
+        color: var(--bleu-clair);
+        letter-spacing: 1px;
+      }
+
+      /* Liens légaux */
+      .footer-legal {
+        display: flex;
+        gap: 20px;
+      }
+
+      .footer-legal a {
+        font-size: 14px;
+        color: var(--bleu-clair);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-legal a:hover {
+        color: var(--or);
+      }
+
+      /* Responsive mobile */
+      @media (max-width: 768px) {
+        footer {
+          padding: 50px 25px 25px;
+        }
+
+        .footer-bas {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ============================================================
+       HEADER — Barre de navigation fixe en haut de page
+       ============================================================ -->
+    <header>
+      <!-- LOGO cliquable — ramène à l'accueil -->
+      <a href="index.html" class="header-logo">
+        <img src="images/logo/logo-myg-connect.svg" alt="MYG Connect SNC" />
+      </a>
+
+      <!-- BOUTON HAMBURGER — visible uniquement sur mobile
+         aria-label = description pour les lecteurs d'écran
+         onclick    = appelle la fonction JavaScript ouvrirMenu() -->
+      <button
+        class="hamburger"
+        onclick="ouvrirMenu()"
+        aria-label="Ouvrir le menu"
+      >
+        <span></span>
+        <!-- Barre 1 -->
+        <span></span>
+        <!-- Barre 2 -->
+        <span></span>
+        <!-- Barre 3 -->
+      </button>
+
+      <!-- MENU DE NAVIGATION
+         id="menu-nav" = identifiant utilisé par JavaScript -->
+      <nav id="menu-nav">
+        <ul>
+          <!-- Chaque <li> est un élément de la liste -->
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="services.html">Nos Services</a></li>
+          <li><a href="boutique.html">Boutique</a></li>
+          <li><a href="reservation.html">Réserver</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <!-- Bouton spécial avec fond doré -->
+          <li><a href="commande.html" class="btn-commander">Commander</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- ============================================================
+       JAVASCRIPT — Fonction pour ouvrir/fermer le menu mobile
+       ============================================================ -->
+    <script>
+      /*
+      Cette fonction est appelée quand on clique sur le hamburger
+      Elle ajoute ou enlève la classe "ouvert" sur le menu
+      Si le menu a la classe "ouvert" → il s'affiche
+      Si non → il reste caché
+    */
+      function ouvrirMenu() {
+        const menu = document.getElementById("menu-nav");
+        /*
+        toggle('ouvert') = si la classe existe → on l'enlève
+                           si elle n'existe pas → on l'ajoute
+      */
+        menu.classList.toggle("ouvert");
+      }
+    </script>
+
+    <!-- ============================================================
+       HERO SECTION — La grande section d'accueil
+       C'est la première chose que le visiteur voit
+       Elle doit accrocher l'attention immédiatement
+       ============================================================ -->
+    <section class="hero">
+      <!-- Contenu centré de la hero section -->
+      <div class="hero-contenu">
+        <!-- Petit texte doré au dessus du titre principal -->
+        <p class="hero-surtitre">Bienvenue chez MYG Connect SNC</p>
+
+        <!-- Titre principal — le plus grand texte de la page
+           <br> = retour à la ligne
+           <span> = permet de colorer uniquement "multi-services" en doré -->
+        <h1 class="hero-titre">
+          Votre espace<br />
+          <span class="hero-titre-or">multi-services</span><br />
+          en Belgique
+        </h1>
+
+        <!-- Description courte sous le titre -->
+        <p class="hero-description">
+          Téléphones, accessoires, cybercafé, impression, transfert d'argent et
+          point relais — tout ce dont vous avez besoin, au même endroit.
+        </p>
+
+        <!-- Les 2 boutons d'action -->
+        <div class="hero-boutons">
+          <!-- Bouton principal fond doré -->
+          <a href="services.html" class="bouton-principal">
+            Découvrir nos services
+          </a>
+
+          <!-- Bouton secondaire contour doré -->
+          <a href="contact.html" class="bouton-secondaire"> Nous contacter </a>
+        </div>
+      </div>
+
+      <!-- Décoration visuelle à droite — logo grand format -->
+      <div class="hero-decoration">
+        <img
+          src="images/logo/logo-myg-connect.svg"
+          alt="MYG Connect SNC"
+          class="hero-logo-grand"
+        />
+      </div>
+    </section>
+    <!-- ============================================================
+       SECTION NOS SERVICES
+       Les 6 cartes présentant tous les services de MYG Connect
+       ============================================================ -->
+    <section class="services" id="services">
+      <!-- En-tête de la section -->
+      <div class="section-entete">
+        <!-- Petit texte doré au dessus -->
+        <p class="section-surtitre">Ce que nous proposons</p>
+
+        <!-- Titre principal de la section -->
+        <h2 class="section-titre">Nos Services</h2>
+
+        <!-- Ligne décorative dorée -->
+        <div class="section-ligne"></div>
+      </div>
+
+      <!-- Grille des 6 cartes de services -->
+      <div class="services-grille">
+        <!-- ── CARTE 1 : Vente de téléphones ── -->
+        <div class="carte-service">
+          <!-- Icône représentant le service -->
+          <span class="carte-icone">📱</span>
+          <!-- Titre du service -->
+          <h3 class="carte-titre">Téléphones</h3>
+          <!-- Description courte -->
+          <p class="carte-description">
+            Large sélection de smartphones neufs et reconditionnés. Toutes les
+            marques disponibles à des prix compétitifs.
+          </p>
+          <!-- Lien vers la page du service -->
+          <a href="boutique.html" class="carte-lien">Voir la boutique →</a>
+        </div>
+
+        <!-- ── CARTE 2 : Accessoires ── -->
+        <div class="carte-service">
+          <span class="carte-icone">🎧</span>
+          <h3 class="carte-titre">Accessoires</h3>
+          <p class="carte-description">
+            Coques, chargeurs, écouteurs, câbles et bien plus. Tout ce qu'il
+            faut pour protéger et équiper votre téléphone.
+          </p>
+          <a href="boutique.html" class="carte-lien">Voir les accessoires →</a>
+        </div>
+
+        <!-- ── CARTE 3 : CyberCafé ── -->
+        <div class="carte-service">
+          <span class="carte-icone">🖥️</span>
+          <h3 class="carte-titre">CyberCafé</h3>
+          <p class="carte-description">
+            Accédez à nos ordinateurs connectés à internet. Tarif : 4€ par
+            heure. Idéal pour vos démarches en ligne.
+          </p>
+          <!-- Lien vers la page de réservation -->
+          <a href="reservation.html" class="carte-lien"
+            >Réserver une session →</a
+          >
+        </div>
+
+        <!-- ── CARTE 4 : Services informatiques ── -->
+        <div class="carte-service">
+          <span class="carte-icone">🖨️</span>
+          <h3 class="carte-titre">Services Informatiques</h3>
+          <p class="carte-description">
+            Impression, photocopie, scan de documents. Rapide, simple et
+            accessible à tous.
+          </p>
+          <a href="reservation.html" class="carte-lien">Réserver →</a>
+        </div>
+
+        <!-- ── CARTE 5 : Transfert d'argent ── -->
+        <div class="carte-service">
+          <span class="carte-icone">💸</span>
+          <h3 class="carte-titre">Transfert d'Argent</h3>
+          <p class="carte-description">
+            Envoi et réception d'argent via Ria, Western Union, Orange Money et
+            d'autres prestataires partenaires.
+          </p>
+          <a href="contact.html" class="carte-lien">En savoir plus →</a>
+        </div>
+
+        <!-- ── CARTE 6 : Point Relais ── -->
+        <div class="carte-service">
+          <span class="carte-icone">📦</span>
+          <h3 class="carte-titre">Point Relais</h3>
+          <p class="carte-description">
+            Retrait de colis simple et rapide. Votre point relais de confiance
+            en Belgique.
+          </p>
+          <a href="contact.html" class="carte-lien">En savoir plus →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+       SECTION POURQUOI NOUS CHOISIR
+       4 arguments forts pour convaincre les clients
+       ============================================================ -->
+
+    <section class="pourquoi" id="pourquoi">
+      <!-- En-tête de la section -->
+      <div class="section-entete">
+        <p class="section-surtitre">Nos engagements</p>
+        <h2 class="section-titre">Pourquoi nous choisir ?</h2>
+        <div class="section-ligne"></div>
+      </div>
+
+      <!-- Grille des 4 arguments -->
+      <div class="pourquoi-grille">
+        <!-- ── ARGUMENT 1 : Proximité ── -->
+        <div class="argument">
+          <!-- Cercle avec icône -->
+          <div class="argument-icone">📍</div>
+
+          <!-- Texte de l'argument -->
+          <div class="argument-texte">
+            <h3>Proximité & Accessibilité</h3>
+            <p>
+              Situés en Belgique en région wallonne, nous sommes votre voisin de
+              confiance. Facile d'accès, accueil chaleureux garanti pour chaque
+              client.
+            </p>
+          </div>
+        </div>
+
+        <!-- ── ARGUMENT 2 : Multi-services ── -->
+        <div class="argument">
+          <div class="argument-icone">⚡</div>
+          <div class="argument-texte">
+            <h3>Tout en un seul endroit</h3>
+            <p>
+              Téléphones, cybercafé, impression, transfert d'argent, point
+              relais — plus besoin de vous déplacer partout. On s'occupe de
+              tout.
+            </p>
+          </div>
+        </div>
+
+        <!-- ── ARGUMENT 3 : Prix compétitifs ── -->
+        <div class="argument">
+          <div class="argument-icone">💰</div>
+          <div class="argument-texte">
+            <h3>Prix Compétitifs</h3>
+            <p>
+              Des tarifs transparents et honnêtes. Cybercafé à seulement
+              4€/heure. Accessoires et téléphones aux meilleurs prix du marché.
+            </p>
+          </div>
+        </div>
+
+        <!-- ── ARGUMENT 4 : Service de qualité ── -->
+        <div class="argument">
+          <div class="argument-icone">⭐</div>
+          <div class="argument-texte">
+            <h3>Service de Qualité</h3>
+            <p>
+              Une équipe disponible, à l'écoute et professionnelle. Votre
+              satisfaction est notre priorité absolue.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ============================================================
+       FOOTER — Pied de page
+       Contient : logo, liens, contact, réseaux sociaux, copyright
+       ============================================================ -->
+    <footer>
+      <!-- Grille des 4 colonnes du footer -->
+      <div class="footer-grille">
+        <!-- ── COLONNE 1 : Logo + Description ── -->
+        <div class="footer-logo">
+          <!-- Logo cliquable -->
+          <a href="index.html">
+            <img src="images/logo/logo-myg-connect.svg" alt="MYG Connect SNC" />
+          </a>
+
+          <!-- Courte description de la société -->
+          <p class="footer-description">
+            Votre espace multi-services en Belgique. Téléphones, cybercafé,
+            transfert d'argent et bien plus.
+          </p>
+        </div>
+
+        <!-- ── COLONNE 2 : Liens rapides ── -->
+        <div>
+          <!-- Titre de la colonne -->
+          <h4 class="footer-titre">Liens Rapides</h4>
+
+          <!-- Liste des liens de navigation -->
+          <ul class="footer-liens">
+            <li><a href="index.html">🏠 Accueil</a></li>
+            <li><a href="services.html">⚡ Nos Services</a></li>
+            <li><a href="boutique.html">📱 Boutique</a></li>
+            <li><a href="reservation.html">📅 Réserver</a></li>
+            <li><a href="contact.html">✉️ Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- ── COLONNE 3 : Nos services ── -->
+        <div>
+          <h4 class="footer-titre">Nos Services</h4>
+
+          <ul class="footer-liens">
+            <li><a href="boutique.html">📱 Téléphones & Accessoires</a></li>
+            <li><a href="reservation.html">🖥️ CyberCafé — 4€/heure</a></li>
+            <li><a href="reservation.html">🖨️ Impression & Scan</a></li>
+            <li><a href="contact.html">💸 Transfert d'Argent</a></li>
+            <li><a href="contact.html">📦 Point Relais</a></li>
+          </ul>
+        </div>
+
+        <!-- ── COLONNE 4 : Contact ── -->
+        <div>
+          <h4 class="footer-titre">Contact</h4>
+
+          <!-- Adresse -->
+          <div class="footer-contact-item">
+            <span class="footer-contact-icone">📍</span>
+            <span>Belgique — Région Wallonne<br />Adresse à confirmer</span>
+          </div>
+
+          <!-- Téléphone -->
+          <div class="footer-contact-item">
+            <span class="footer-contact-icone">📞</span>
+            <!-- href="tel:" = ouvre l'appel directement sur mobile -->
+            <a
+              href="tel:+32000000000"
+              style="color: var(--bleu-clair); text-decoration: none"
+            >
+              +32 (0) 00 00 00 00
+            </a>
+          </div>
+
+          <!-- Email -->
+          <div class="footer-contact-item">
+            <span class="footer-contact-icone">✉️</span>
+            <!-- href="mailto:" = ouvre le client mail directement -->
+            <a
+              href="mailto:contact@mygconnect.be"
+              style="color: var(--bleu-clair); text-decoration: none"
+            >
+              contact@mygconnect.be
+            </a>
+          </div>
+
+          <!-- Réseaux sociaux -->
+          <div class="footer-reseaux">
+            <!-- Facebook -->
+            <a href="#" class="footer-reseau-btn" aria-label="Facebook"> 📘 </a>
+
+            <!-- Instagram -->
+            <a href="#" class="footer-reseau-btn" aria-label="Instagram">
+              📸
+            </a>
+
+            <!-- WhatsApp -->
+            <a href="#" class="footer-reseau-btn" aria-label="WhatsApp"> 💬 </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ligne de séparation -->
+      <hr class="footer-separateur" />
+
+      <!-- Barre du bas — copyright et liens légaux -->
+      <div class="footer-bas">
+        <!-- Copyright
+           &copy; = symbole © en HTML -->
+        <p class="footer-copyright">
+          &copy; 2026 MYG Connect SNC — Tous droits réservés
+        </p>
+
+        <!-- Liens légaux obligatoires en Belgique -->
+        <div class="footer-legal">
+          <a href="mentions-legales.html">Mentions légales</a>
+          <a href="cgv.html">CGV</a>
+          <a href="confidentialite.html">Confidentialité</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

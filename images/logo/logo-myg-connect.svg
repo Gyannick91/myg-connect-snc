@@ -1,0 +1,213 @@
+<!--
+  ============================================================
+  LOGO OFFICIEL — MYG CONNECT SNC
+  Fichier : logo-myg-connect.svg
+  À placer : dans le dossier images/logo/
+  ============================================================
+-->
+
+<!--
+  viewBox="0 0 320 160" = espace de dessin
+  320 unités de large, 160 de haut
+-->
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 320 160"
+  role="img"
+  aria-label="MYG Connect SNC — Logo officiel"
+>
+  <title>MYG Connect SNC</title>
+  <desc>Logo officiel de MYG Connect SNC, société belge multi-services</desc>
+
+  <!--
+    BLOC 1 : FOND DU LOGO
+    rx="20"        = coins arrondis
+    fill="#0A1628" = bleu nuit
+  -->
+  <rect
+    x="0" y="0"
+    width="320" height="160"
+    rx="20"
+    fill="#0A1628"
+  />
+
+  <!--
+    BLOC 2 : BORDURE DORÉE AUTOUR DU LOGO
+    stroke="#C9A84C"   = contour en or
+    fill="none"        = pas de remplissage
+    stroke-width="1.5" = épaisseur du contour
+  -->
+  <rect
+    x="1.5" y="1.5"
+    width="317" height="157"
+    rx="19"
+    fill="none"
+    stroke="#C9A84C"
+    stroke-width="1.5"
+  />
+
+  <!--
+    BLOC 3 : CERCLE EXTÉRIEUR (grand)
+    cx="100" cy="80" = centre du cercle (x=100, y=80)
+    r="45"           = rayon de 45 unités = grand cercle
+    fill="none"      = cercle creux
+    stroke="#C9A84C" = contour en or
+    stroke-width="2" = épaisseur du contour
+  -->
+  <circle
+    cx="100" cy="80"
+    r="45"
+    fill="none"
+    stroke="#C9A84C"
+    stroke-width="2"
+  />
+
+  <!--
+    BLOC 4 : CERCLE MOYEN
+    r="30" = rayon plus petit = cercle du milieu
+    stroke="#1E4D8C" = contour en bleu royal
+    Crée l'effet de profondeur entre les cercles
+  -->
+  <circle
+    cx="100" cy="80"
+    r="30"
+    fill="none"
+    stroke="#1E4D8C"
+    stroke-width="2"
+  />
+
+  <!--
+    BLOC 5 : CERCLE INTÉRIEUR
+    r="15"           = petit rayon = cercle intérieur
+    stroke="#C9A84C" = contour en or
+    Concentrique avec les deux autres cercles
+  -->
+  <circle
+    cx="100" cy="80"
+    r="15"
+    fill="none"
+    stroke="#C9A84C"
+    stroke-width="2"
+  />
+
+  <!--
+    BLOC 6 : POINT CENTRAL DORÉ
+    r="6"            = tout petit cercle plein
+    fill="#C9A84C"   = rempli en or
+    C'est le point focal de toute l'icône
+  -->
+  <circle
+    cx="100" cy="80"
+    r="6"
+    fill="#C9A84C"
+  />
+
+  <!--
+    BLOC 7 : LIGNES DE CONNEXION GAUCHE ET DROITE
+    Partent du cercle extérieur vers des petits nœuds
+    Représentent des appareils connectés au réseau
+    stroke-linecap="round" = extrémités arrondies
+  -->
+  <!-- Ligne vers le nœud gauche -->
+  <line
+    x1="58" y1="58"
+    x2="38" y2="42"
+    stroke="#C9A84C"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+  <!-- Ligne vers le nœud droit -->
+  <line
+    x1="142" y1="58"
+    x2="162" y2="42"
+    stroke="#C9A84C"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+
+  <!--
+    BLOC 8 : NŒUDS DE CONNEXION
+    Petits cercles aux extrémités des lignes
+    fill="#1E4D8C"   = rempli en bleu royal
+    stroke="#C9A84C" = contour en or
+    Représentent des appareils connectés
+  -->
+  <!-- Nœud gauche -->
+  <circle
+    cx="38" cy="42"
+    r="5"
+    fill="#1E4D8C"
+    stroke="#C9A84C"
+    stroke-width="1.5"
+  />
+  <!-- Nœud droit -->
+  <circle
+    cx="162" cy="42"
+    r="5"
+    fill="#1E4D8C"
+    stroke="#C9A84C"
+    stroke-width="1.5"
+  />
+
+  <!--
+    BLOC 9 : TEXTE PRINCIPAL "MYG"
+    font-family="Georgia, serif" = police élégante
+    font-size="52"    = grande taille dominante
+    font-weight="700" = gras
+    fill="#FFFFFF"    = blanc
+    letter-spacing="4" = espacement entre les lettres
+    text-anchor="middle" = centré sur x=210
+  -->
+  <text
+    x="210" y="85"
+    text-anchor="middle"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="42"
+    font-weight="700"
+    fill="#FFFFFF"
+    letter-spacing="4"
+  >MYG</text>
+
+  <!--
+    BLOC 10 : SOUS-TITRE "CONNECT"
+    Plus petit, en or, grand espacement = effet luxe
+  -->
+  <text
+    x="210" y="108"
+    text-anchor="middle"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="13"
+    font-weight="400"
+    fill="#C9A84C"
+    letter-spacing="6"
+  >CONNECT</text>
+
+  <!--
+    BLOC 11 : LIGNE SÉPARATRICE DORÉE
+    Sépare "CONNECT" de "SNC"
+    Effet premium / luxe
+  -->
+  <line
+    x1="160" y1="118"
+    x2="260" y2="118"
+    stroke="#C9A84C"
+    stroke-width="0.8"
+    opacity="0.6"
+  />
+
+  <!--
+    BLOC 12 : MENTION "SNC"
+    fill="#8BA3C7" = bleu clair discret
+    Mention légale de la forme juridique
+  -->
+  <text
+    x="210" y="133"
+    text-anchor="middle"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="9"
+    font-weight="400"
+    fill="#8BA3C7"
+    letter-spacing="4"
+  >SNC</text>
+
+</svg>
