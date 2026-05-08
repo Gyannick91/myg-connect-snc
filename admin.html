@@ -1,0 +1,1557 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Titre discret pour ne pas attirer l'attention -->
+    <title>Administration — MYG Connect SNC</title>
+
+    <!--
+    PAS de meta description ici
+    On ne veut pas que Google indexe cette page admin !
+  -->
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Raleway:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* ============================================================
+       VARIABLES CSS
+       ============================================================ */
+      :root {
+        --bleu-nuit: #0a1628;
+        --bleu-royal: #1e4d8c;
+        --or: #c9a84c;
+        --bleu-clair: #b8cce4;
+        --blanc: #ffffff;
+        --vert: #2ecc71;
+        --orange: #e67e22;
+        --rouge: #e24b4a;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Raleway", sans-serif;
+        background-color: var(--bleu-nuit);
+        color: var(--blanc);
+        min-height: 100vh;
+      }
+
+      /* ============================================================
+       ÉCRAN DE CONNEXION
+       Affiché par défaut — caché après connexion réussie
+       ============================================================ */
+      #ecran-connexion {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #0a1628 0%, #1e4d8c 100%);
+      }
+
+      .connexion-carte {
+        background-color: rgba(10, 22, 40, 0.9);
+        border: 1px solid var(--or);
+        border-radius: 20px;
+        padding: 50px 40px;
+        width: 90%;
+        max-width: 420px;
+        text-align: center;
+      }
+
+      /* Logo dans l'écran de connexion */
+      .connexion-logo {
+        width: 180px;
+        margin: 0 auto 30px;
+        display: block;
+      }
+
+      .connexion-titre {
+        font-family: "Cinzel", serif;
+        font-size: 20px;
+        color: var(--or);
+        margin-bottom: 8px;
+      }
+
+      .connexion-sous-titre {
+        font-size: 13px;
+        color: var(--bleu-clair);
+        margin-bottom: 35px;
+        letter-spacing: 1px;
+      }
+
+      /* Champ mot de passe */
+      .connexion-champ {
+        margin-bottom: 20px;
+        text-align: left;
+      }
+
+      .connexion-champ label {
+        display: block;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--or);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+
+      .connexion-champ input {
+        width: 100%;
+        padding: 14px 16px;
+        background-color: rgba(30, 77, 140, 0.3);
+        border: 1px solid rgba(201, 168, 76, 0.4);
+        border-radius: 8px;
+        color: var(--blanc);
+        font-family: "Raleway", sans-serif;
+        font-size: 16px;
+        letter-spacing: 4px;
+        transition: border-color 0.3s ease;
+      }
+
+      .connexion-champ input:focus {
+        outline: none;
+        border-color: var(--or);
+      }
+
+      /* Bouton de connexion */
+      .connexion-btn {
+        width: 100%;
+        padding: 15px;
+        background-color: var(--or);
+        color: var(--bleu-nuit);
+        border: none;
+        border-radius: 8px;
+        font-family: "Raleway", sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-top: 10px;
+      }
+
+      .connexion-btn:hover {
+        background-color: var(--blanc);
+      }
+
+      /* Message d'erreur */
+      .connexion-erreur {
+        display: none;
+        background-color: rgba(226, 75, 74, 0.2);
+        border: 1px solid var(--rouge);
+        border-radius: 8px;
+        padding: 12px;
+        color: var(--rouge);
+        font-size: 13px;
+        margin-top: 15px;
+      }
+
+      /* ============================================================
+       PANNEAU ADMIN
+       Caché par défaut — affiché après connexion réussie
+       ============================================================ */
+      #panneau-admin {
+        display: none;
+      }
+
+      /* ── HEADER ADMIN ── */
+      .admin-header {
+        background-color: #060d1a;
+        border-bottom: 2px solid var(--or);
+        padding: 15px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .admin-header-gauche {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .admin-header img {
+        height: 45px;
+      }
+
+      .admin-header-titre {
+        font-family: "Cinzel", serif;
+        font-size: 18px;
+        color: var(--or);
+      }
+
+      .admin-header-sous {
+        font-size: 12px;
+        color: var(--bleu-clair);
+        letter-spacing: 1px;
+      }
+
+      /* Badge admin */
+      .admin-badge {
+        background-color: rgba(201, 168, 76, 0.2);
+        border: 1px solid var(--or);
+        color: var(--or);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        padding: 4px 12px;
+        border-radius: 20px;
+      }
+
+      /* Bouton déconnexion */
+      .btn-deconnexion {
+        background: none;
+        border: 1px solid rgba(226, 75, 74, 0.5);
+        color: var(--rouge);
+        border-radius: 6px;
+        padding: 8px 16px;
+        font-family: "Raleway", sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .btn-deconnexion:hover {
+        background-color: var(--rouge);
+        color: var(--blanc);
+      }
+
+      /* ── CONTENU ADMIN ── */
+      .admin-contenu {
+        padding: 40px;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      /* Statistiques rapides en haut */
+      .admin-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-bottom: 40px;
+      }
+
+      .stat-carte {
+        background-color: rgba(30, 77, 140, 0.2);
+        border: 1px solid rgba(201, 168, 76, 0.2);
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .stat-nombre {
+        font-family: "Cinzel", serif;
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+
+      .stat-nombre.vert {
+        color: var(--vert);
+      }
+      .stat-nombre.orange {
+        color: var(--orange);
+      }
+      .stat-nombre.rouge {
+        color: var(--rouge);
+      }
+      .stat-nombre.or {
+        color: var(--or);
+      }
+
+      .stat-label {
+        font-size: 13px;
+        color: var(--bleu-clair);
+        letter-spacing: 1px;
+      }
+
+      /* ── SECTION PRODUITS ── */
+      .admin-section {
+        margin-bottom: 40px;
+      }
+
+      /* En-tête de section */
+      .admin-section-titre {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+      }
+
+      .admin-section-titre h2 {
+        font-family: "Cinzel", serif;
+        font-size: 20px;
+        color: var(--blanc);
+      }
+
+      .admin-section-icone {
+        font-size: 24px;
+      }
+
+      /* Tableau des produits */
+      .produits-tableau {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .produits-tableau th {
+        background-color: rgba(10, 22, 40, 0.8);
+        color: var(--or);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding: 12px 16px;
+        text-align: left;
+        border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+      }
+
+      .produits-tableau td {
+        padding: 14px 16px;
+        border-bottom: 1px solid rgba(30, 77, 140, 0.3);
+        font-size: 14px;
+        vertical-align: middle;
+      }
+
+      /* Alternance de couleur des lignes */
+      .produits-tableau tr:nth-child(even) td {
+        background-color: rgba(30, 77, 140, 0.08);
+      }
+
+      .produits-tableau tr:hover td {
+        background-color: rgba(201, 168, 76, 0.05);
+      }
+
+      /* Nom du produit */
+      .produit-nom-admin {
+        font-weight: 600;
+        color: var(--blanc);
+      }
+
+      .produit-serie-admin {
+        font-size: 11px;
+        color: var(--bleu-clair);
+        margin-top: 3px;
+      }
+
+      /* Prix */
+      .produit-prix-admin {
+        font-family: "Cinzel", serif;
+        font-size: 16px;
+        color: var(--or);
+        font-weight: 700;
+      }
+
+      /* ============================================================
+       SWITCH DE STOCK
+       Le bouton principal de l'admin — change le statut en 1 clic
+       ============================================================ */
+      .stock-switch {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      /* Bouton de statut individuel */
+      .stock-btn {
+        border: none;
+        border-radius: 20px;
+        padding: 6px 14px;
+        font-family: "Raleway", sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        opacity: 0.4; /* Non actif = transparent */
+      }
+
+      /* Bouton actif = opaque */
+      .stock-btn.actif {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+
+      /* Couleurs des boutons */
+      .stock-btn.en-stock {
+        background-color: rgba(46, 204, 113, 0.2);
+        border: 1px solid var(--vert);
+        color: var(--vert);
+      }
+
+      .stock-btn.sur-commande {
+        background-color: rgba(230, 126, 34, 0.2);
+        border: 1px solid var(--orange);
+        color: var(--orange);
+      }
+
+      .stock-btn.rupture {
+        background-color: rgba(226, 75, 74, 0.2);
+        border: 1px solid var(--rouge);
+        color: var(--rouge);
+      }
+
+      /* Message de sauvegarde */
+      .msg-sauvegarde {
+        display: none;
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background-color: rgba(46, 204, 113, 0.9);
+        color: var(--blanc);
+        padding: 15px 25px;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        z-index: 1000;
+        animation: fadeIn 0.3s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ── SECTION POPUP PROMO ── */
+      .promo-carte {
+        background-color: rgba(30, 77, 140, 0.2);
+        border: 1px solid rgba(201, 168, 76, 0.3);
+        border-radius: 16px;
+        padding: 30px;
+        margin-bottom: 40px;
+      }
+
+      .promo-grille {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+      }
+
+      .promo-champ label {
+        display: block;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--or);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+
+      .promo-champ input {
+        width: 100%;
+        padding: 12px 14px;
+        background-color: rgba(10, 22, 40, 0.6);
+        border: 1px solid rgba(201, 168, 76, 0.3);
+        border-radius: 8px;
+        color: var(--blanc);
+        font-family: "Raleway", sans-serif;
+        font-size: 15px;
+        transition: border-color 0.3s ease;
+      }
+
+      .promo-champ input:focus {
+        outline: none;
+        border-color: var(--or);
+      }
+
+      /* Switch activer/désactiver la popup */
+      .promo-toggle {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .toggle-label {
+        font-size: 14px;
+        color: var(--bleu-clair);
+      }
+
+      /* Le vrai switch CSS */
+      .switch {
+        position: relative;
+        width: 52px;
+        height: 28px;
+      }
+
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(30, 77, 140, 0.5);
+        border: 1px solid rgba(201, 168, 76, 0.3);
+        border-radius: 28px;
+        transition: 0.3s;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 20px;
+        width: 20px;
+        left: 3px;
+        bottom: 3px;
+        background-color: var(--bleu-clair);
+        border-radius: 50%;
+        transition: 0.3s;
+      }
+
+      input:checked + .slider {
+        background-color: rgba(46, 204, 113, 0.3);
+        border-color: var(--vert);
+      }
+      input:checked + .slider:before {
+        transform: translateX(24px);
+        background-color: var(--vert);
+      }
+
+      /* Bouton appliquer les changements promo */
+      .btn-appliquer {
+        background-color: var(--or);
+        color: var(--bleu-nuit);
+        border: none;
+        border-radius: 8px;
+        padding: 12px 25px;
+        font-family: "Raleway", sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn-appliquer:hover {
+        background-color: var(--blanc);
+      }
+
+      /* Responsive mobile */
+      @media (max-width: 768px) {
+        .admin-header {
+          padding: 15px 20px;
+          flex-wrap: wrap;
+          gap: 15px;
+        }
+        .admin-contenu {
+          padding: 20px;
+        }
+        .produits-tableau {
+          font-size: 12px;
+        }
+        .produits-tableau th,
+        .produits-tableau td {
+          padding: 10px 8px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ============================================================
+       ÉCRAN DE CONNEXION
+       Affiché en premier — protège l'accès à l'admin
+       ============================================================ -->
+    <div id="ecran-connexion">
+      <div class="connexion-carte">
+        <!-- Logo -->
+        <img
+          src="images/logo/logo-myg-connect.svg"
+          alt="MYG Connect SNC"
+          class="connexion-logo"
+        />
+
+        <h1 class="connexion-titre">Espace Administration</h1>
+        <p class="connexion-sous-titre">Accès réservé — MYG Connect SNC</p>
+
+        <!-- Formulaire de connexion -->
+        <div class="connexion-champ">
+          <label for="mot-de-passe">Mot de passe</label>
+          <!--
+          type="password" = le texte est masqué avec des points
+          onkeypress = permet de valider avec la touche Entrée
+        -->
+          <input
+            type="password"
+            id="mot-de-passe"
+            placeholder="••••••••"
+            onkeypress="if (event.key === 'Enter') seConnecter();"
+            autocomplete="off"
+          />
+        </div>
+
+        <button class="connexion-btn" onclick="seConnecter()">
+          🔐 Accéder au panneau
+        </button>
+
+        <!-- Message d'erreur — caché par défaut -->
+        <div class="connexion-erreur" id="erreur-connexion">
+          ❌ Mot de passe incorrect. Réessayez.
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+       PANNEAU ADMIN
+       Caché par défaut — affiché après connexion
+       ============================================================ -->
+    <div id="panneau-admin">
+      <!-- Header admin -->
+      <div class="admin-header">
+        <div class="admin-header-gauche">
+          <img src="images/logo/logo-myg-connect.svg" alt="MYG Connect SNC" />
+          <div>
+            <div class="admin-header-titre">Panneau d'Administration</div>
+            <div class="admin-header-sous">
+              MYG Connect SNC — Gestion du stock
+            </div>
+          </div>
+          <span class="admin-badge">ADMIN</span>
+        </div>
+        <button class="btn-deconnexion" onclick="seDeconnecter()">
+          🚪 Déconnexion
+        </button>
+      </div>
+
+      <!-- Contenu principal -->
+      <div class="admin-contenu">
+        <!-- ── STATISTIQUES RAPIDES ── -->
+        <div class="admin-stats">
+          <div class="stat-carte">
+            <div class="stat-nombre or" id="stat-total">18</div>
+            <div class="stat-label">Produits total</div>
+          </div>
+
+          <div class="stat-carte">
+            <div class="stat-nombre vert" id="stat-stock">0</div>
+            <div class="stat-label">En stock</div>
+          </div>
+
+          <div class="stat-carte">
+            <div class="stat-nombre orange" id="stat-commande">0</div>
+            <div class="stat-label">Sur commande</div>
+          </div>
+
+          <div class="stat-carte">
+            <div class="stat-nombre rouge" id="stat-rupture">0</div>
+            <div class="stat-label">En rupture</div>
+          </div>
+        </div>
+
+        <!-- ── GESTION DE LA POPUP PROMO ── -->
+        <div class="promo-carte">
+          <div class="admin-section-titre">
+            <span class="admin-section-icone">🎁</span>
+            <h2>Gestion de la Popup Promo</h2>
+          </div>
+
+          <div class="promo-grille">
+            <div class="promo-champ">
+              <label>Pourcentage de réduction</label>
+              <!--
+              id="promo-pourcent" = utilisé par JavaScript
+              pour mettre à jour la popup sur boutique.html
+            -->
+              <input
+                type="number"
+                id="promo-pourcent"
+                value="10"
+                min="1"
+                max="99"
+              />
+            </div>
+
+            <div class="promo-champ">
+              <label>Code promo</label>
+              <input type="text" id="promo-code" value="MYG10" />
+            </div>
+
+            <div class="promo-champ">
+              <label>Date de fin</label>
+              <input type="text" id="promo-date" value="31 Mai 2026" />
+            </div>
+
+            <div class="promo-champ">
+              <label>Description</label>
+              <input
+                type="text"
+                id="promo-desc"
+                value="Sur tous nos téléphones et accessoires !"
+              />
+            </div>
+          </div>
+
+          <!-- Switch activer/désactiver la popup -->
+          <div class="promo-toggle">
+            <span class="toggle-label">Popup promo active :</span>
+            <label class="switch">
+              <input type="checkbox" id="promo-active" checked />
+              <span class="slider"></span>
+            </label>
+            <span
+              id="promo-statut"
+              style="color: var(--vert); font-weight: 600; font-size: 13px"
+            >
+              Activée
+            </span>
+          </div>
+
+          <button class="btn-appliquer" onclick="appliquerPromo()">
+            💾 Sauvegarder la promo
+          </button>
+        </div>
+
+        <!-- ── GESTION DES STOCKS IPHONE ── -->
+        <div class="admin-section">
+          <div class="admin-section-titre">
+            <span class="admin-section-icone">🍎</span>
+            <h2>Stocks — Apple iPhone</h2>
+          </div>
+
+          <table class="produits-tableau">
+            <thead>
+              <tr>
+                <th>Modèle</th>
+                <th>Prix</th>
+                <th>Statut du stock</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!--
+              Chaque ligne = un produit
+              data-produit = identifiant unique du produit
+              Doit correspondre exactement au data-produit dans iphone.html
+              Les boutons permettent de changer le statut en 1 clic
+            -->
+
+              <tr>
+                <td>
+                  <div class="produit-nom-admin">iPhone XR — 64Go</div>
+                  <div class="produit-serie-admin">Reconditionné Grade A</div>
+                </td>
+                <td><span class="produit-prix-admin">189€</span></td>
+                <td>
+                  <div class="stock-switch">
+                    <button
+                      class="stock-btn en-stock actif"
+                      onclick="changerStock('iphone-xr', 'en-stock', this)"
+                    >
+                      ✅ En stock
+                    </button>
+                    <button
+                      class="stock-btn sur-commande"
+                      onclick="changerStock('iphone-xr', 'sur-commande', this)"
+                    >
+                      ⏳ Sur commande
+                    </button>
+                    <button
+                      class="stock-btn rupture"
+                      onclick="changerStock('iphone-xr', 'rupture', this)"
+                    >
+                      ❌ Rupture
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="produit-nom-admin">iPhone 11 — 64Go</div>
+                  <div class="produit-serie-admin">Reconditionné Grade A</div>
+                </td>
+                <td><span class="produit-prix-admin">229€</span></td>
+                <td>
+                  <div class="stock-switch">
+                    <button
+                      class="stock-btn en-stock actif"
+                      onclick="changerStock('iphone-11', 'en-stock', this)"
+                    >
+                      ✅ En stock
+                    </button>
+                    <button
+                      class="stock-btn sur-commande"
+                      onclick="changerStock('iphone-11', 'sur-commande', this)"
+                    >
+                      ⏳ Sur commande
+                    </button>
+                    <button
+                      class="stock-btn rupture"
+                      onclick="changerStock('iphone-11', 'rupture', this)"
+                    >
+                      ❌ Rupture
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="produit-nom-admin">iPhone 11 Pro — 256Go</div>
+                  <div class="produit-serie-admin">Reconditionné Grade A</div>
+                </td>
+                <td><span class="produit-prix-admin">299€</span></td>
+                <td>
+                  <div class="stock-switch">
+                    <button
+                      class="stock-btn en-stock"
+                      onclick="changerStock('iphone-11-pro', 'en-stock', this)"
+                    >
+                      ✅ En stock
+                    </button>
+                    <button
+                      class="stock-btn sur-commande actif"
+                      onclick="
+                        changerStock('iphone-11-pro', 'sur-commande', this)
+                      "
+                    >
+                      ⏳ Sur commande
+                    </button>
+                    <button
+                      class="stock-btn rupture"
+                      onclick="changerStock('iphone-11-pro', 'rupture', this)"
+                    >
+                      ❌ Rupture
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="produit-nom-admin">iPhone 12 — 128Go</div>
+                  <div class="produit-serie-admin">Reconditionné Grade A</div>
+                </td>
+                <td><span class="produit-prix-admin">319€</span></td>
+                <td>
+                  <div class="stock-switch">
+                    <button
+                      class="stock-btn en-stock actif"
+                      onclick="changerStock('iphone-12', 'en-stock', this)"
+                    >
+                      ✅ En stock
+                    </button>
+                    <button
+                      class="stock-btn sur-commande"
+                      onclick="changerStock('iphone-12', 'sur-commande', this)"
+                    >
+                      ⏳ Sur commande
+                    </button>
+                    <button
+                      class="stock-btn rupture"
+                      onclick="changerStock('iphone-12', 'rupture', this)"
+                    >
+                      ❌ Rupture
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="produit-nom-admin">iPhone 12 Pro — 256Go</div>
+                  <div class="produit-serie-admin">Reconditionné Grade A</div>
+                </td>
+                <td><span class="produit-prix-admin">389€</span></td>
+                <td>
+                  <div class="stock-switch">
+                    <button
+                      class="stock-btn en-stock actif"
+                      onclick="changerStock('iphone-12-pro', 'en-stock', this)"
+                    >
+                      ✅ En stock
+                    </button>
+                    <button
+                      class="stock-btn sur-commande"
+                      onclick="
+                        changerStock('iphone-12-pro', 'sur-commande', this)
+                      "
+                    >
+                      ⏳ Sur commande
+                    </button>
+                    <button
+                      class="stock-btn rupture"
+                      onclick="changerStock('iphone-12-pro', 'rupture', this)"
+                    >
+                      ❌ Rupture
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="produit-nom-admin">iPhone 13 — 128Go</div>
+                  <div class="produit-serie-admin">Reconditionné Grade A</div>
+                </td>
+                <td><span class="produit-prix-admin">429€</span></td>
+                <td>
+                  <div class="stock-switch">
+                    <button
+                      class="stock-btn en-stock actif"
+                      onclick="changerStock('iphone-13', 'en-stock', this)"
+                    >
+                      ✅ En stock
+                    </button>
+                    <button
+                      class="stock-btn sur-commande"
+                      onclick="changerStock('iphone-13', 'sur-commande', this)"
+                    >
+                      ⏳ Sur commande
+                    </button>
+                    <button
+                      class="stock-btn rupture"
+                      onclick="changerStock('iphone-13', 'rupture', this)"
+                    >
+                      ❌ Rupture
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="produit-nom-admin">iPhone 13 Pro Max — 256Go</div>
+                  <div class="produit-serie-admin">Reconditionné Grade A</div>
+                </td>
+                <td><span class="produit-prix-admin">549€</span></td>
+                <td>
+                  <div class="stock-switch">
+                    <button
+                      class="stock-btn en-stock"
+                      onclick="
+                        changerStock('iphone-13-pro-max', 'en-stock', this)
+                      "
+                    >
+                      ✅ En stock
+                    </button>
+                    <button
+                      class="stock-btn sur-commande actif"
+                      onclick="
+                        changerStock('iphone-13-pro-max', 'sur-commande', this)
+                      "
+                    >
+                      ⏳ Sur commande
+                    </button>
+                    <button
+                      class="stock-btn rupture"
+                      onclick="
+                        changerStock('iphone-13-pro-max', 'rupture', this)
+                      "
+                    >
+                      ❌ Rupture
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="produit-nom-admin">iPhone 14 — 128Go</div>
+                  <div class="produit-serie-admin">Neuf</div>
+                </td>
+                <td><span class="produit-prix-admin">599€</span></td>
+                <td>
+                  <div class="stock-switch">
+                    <button
+                      class="stock-btn en-stock actif"
+                      onclick="changerStock('iphone-14', 'en-stock', this)"
+                    >
+                      ✅ En stock
+                    </button>
+                    <button
+                      class="stock-btn sur-commande"
+                      onclick="changerStock('iphone-14', 'sur-commande', this)"
+                    >
+                      ⏳ Sur commande
+                    </button>
+                    <button
+                      class="stock-btn rupture"
+                      onclick="changerStock('iphone-14', 'rupture', this)"
+                    >
+                      ❌ Rupture
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="produit-nom-admin">iPhone 14 Pro — 256Go</div>
+                  <div class="produit-serie-admin">Neuf</div>
+                </td>
+                <td><span class="produit-prix-admin">799€</span></td>
+                <td>
+                  <div class="stock-switch">
+                    <button
+                      class="stock-btn en-stock actif"
+                      onclick="changerStock('iphone-14-pro', 'en-stock', this)"
+                    >
+                      ✅ En stock
+                    </button>
+                    <button
+                      class="stock-btn sur-commande"
+                      onclick="
+                        changerStock('iphone-14-pro', 'sur-commande', this)
+                      "
+                    >
+                      ⏳ Sur commande
+                    </button>
+                    <button
+                      class="stock-btn rupture"
+                      onclick="changerStock('iphone-14-pro', 'rupture', this)"
+                    >
+                      ❌ Rupture
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="produit-nom-admin">iPhone 14 Pro Max — 256Go</div>
+                  <div class="produit-serie-admin">Neuf</div>
+                </td>
+                <td><span class="produit-prix-admin">899€</span></td>
+                <td>
+                  <div class="stock-switch">
+                    <button
+                      class="stock-btn en-stock"
+                      onclick="
+                        changerStock('iphone-14-pro-max', 'en-stock', this)
+                      "
+                    >
+                      ✅ En stock
+                    </button>
+                    <button
+                      class="stock-btn sur-commande actif"
+                      onclick="
+                        changerStock('iphone-14-pro-max', 'sur-commande', this)
+                      "
+                    >
+                      ⏳ Sur commande
+                    </button>
+                    <button
+                      class="stock-btn rupture"
+                      onclick="
+                        changerStock('iphone-14-pro-max', 'rupture', this)
+                      "
+                    >
+                      ❌ Rupture
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="produit-nom-admin">iPhone 15 — 128Go</div>
+                  <div class="produit-serie-admin">Neuf</div>
+                </td>
+                <td><span class="produit-prix-admin">699€</span></td>
+                <td>
+                  <div class="stock-switch">
+                    <button
+                      class="stock-btn en-stock actif"
+                      onclick="changerStock('iphone-15', 'en-stock', this)"
+                    >
+                      ✅ En stock
+                    </button>
+                    <button
+                      class="stock-btn sur-commande"
+                      onclick="changerStock('iphone-15', 'sur-commande', this)"
+                    >
+                      ⏳ Sur commande
+                    </button>
+                    <button
+                      class="stock-btn rupture"
+                      onclick="changerStock('iphone-15', 'rupture', this)"
+                    >
+                      ❌ Rupture
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="produit-nom-admin">iPhone 15 Pro — 256Go</div>
+                  <div class="produit-serie-admin">Neuf</div>
+                </td>
+                <td><span class="produit-prix-admin">999€</span></td>
+                <td>
+                  <div class="stock-switch">
+                    <button
+                      class="stock-btn en-stock actif"
+                      onclick="changerStock('iphone-15-pro', 'en-stock', this)"
+                    >
+                      ✅ En stock
+                    </button>
+                    <button
+                      class="stock-btn sur-commande"
+                      onclick="
+                        changerStock('iphone-15-pro', 'sur-commande', this)
+                      "
+                    >
+                      ⏳ Sur commande
+                    </button>
+                    <button
+                      class="stock-btn rupture"
+                      onclick="changerStock('iphone-15-pro', 'rupture', this)"
+                    >
+                      ❌ Rupture
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="produit-nom-admin">iPhone 15 Pro Max — 256Go</div>
+                  <div class="produit-serie-admin">Neuf</div>
+                </td>
+                <td><span class="produit-prix-admin">1199€</span></td>
+                <td>
+                  <div class="stock-switch">
+                    <button
+                      class="stock-btn en-stock"
+                      onclick="
+                        changerStock('iphone-15-pro-max', 'en-stock', this)
+                      "
+                    >
+                      ✅ En stock
+                    </button>
+                    <button
+                      class="stock-btn sur-commande actif"
+                      onclick="
+                        changerStock('iphone-15-pro-max', 'sur-commande', this)
+                      "
+                    >
+                      ⏳ Sur commande
+                    </button>
+                    <button
+                      class="stock-btn rupture"
+                      onclick="
+                        changerStock('iphone-15-pro-max', 'rupture', this)
+                      "
+                    >
+                      ❌ Rupture
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="produit-nom-admin">iPhone 16 — 128Go</div>
+                  <div class="produit-serie-admin">Neuf</div>
+                </td>
+                <td><span class="produit-prix-admin">849€</span></td>
+                <td>
+                  <div class="stock-switch">
+                    <button
+                      class="stock-btn en-stock actif"
+                      onclick="changerStock('iphone-16', 'en-stock', this)"
+                    >
+                      ✅ En stock
+                    </button>
+                    <button
+                      class="stock-btn sur-commande"
+                      onclick="changerStock('iphone-16', 'sur-commande', this)"
+                    >
+                      ⏳ Sur commande
+                    </button>
+                    <button
+                      class="stock-btn rupture"
+                      onclick="changerStock('iphone-16', 'rupture', this)"
+                    >
+                      ❌ Rupture
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="produit-nom-admin">iPhone 16 Pro — 256Go</div>
+                  <div class="produit-serie-admin">Neuf</div>
+                </td>
+                <td><span class="produit-prix-admin">1149€</span></td>
+                <td>
+                  <div class="stock-switch">
+                    <button
+                      class="stock-btn en-stock actif"
+                      onclick="changerStock('iphone-16-pro', 'en-stock', this)"
+                    >
+                      ✅ En stock
+                    </button>
+                    <button
+                      class="stock-btn sur-commande"
+                      onclick="
+                        changerStock('iphone-16-pro', 'sur-commande', this)
+                      "
+                    >
+                      ⏳ Sur commande
+                    </button>
+                    <button
+                      class="stock-btn rupture"
+                      onclick="changerStock('iphone-16-pro', 'rupture', this)"
+                    >
+                      ❌ Rupture
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="produit-nom-admin">iPhone 16 Pro Max — 256Go</div>
+                  <div class="produit-serie-admin">Neuf</div>
+                </td>
+                <td><span class="produit-prix-admin">1349€</span></td>
+                <td>
+                  <div class="stock-switch">
+                    <button
+                      class="stock-btn en-stock"
+                      onclick="
+                        changerStock('iphone-16-pro-max', 'en-stock', this)
+                      "
+                    >
+                      ✅ En stock
+                    </button>
+                    <button
+                      class="stock-btn sur-commande actif"
+                      onclick="
+                        changerStock('iphone-16-pro-max', 'sur-commande', this)
+                      "
+                    >
+                      ⏳ Sur commande
+                    </button>
+                    <button
+                      class="stock-btn rupture"
+                      onclick="
+                        changerStock('iphone-16-pro-max', 'rupture', this)
+                      "
+                    >
+                      ❌ Rupture
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="produit-nom-admin">iPhone 17 — 128Go</div>
+                  <div class="produit-serie-admin">Neuf</div>
+                </td>
+                <td><span class="produit-prix-admin">949€</span></td>
+                <td>
+                  <div class="stock-switch">
+                    <button
+                      class="stock-btn en-stock"
+                      onclick="changerStock('iphone-17', 'en-stock', this)"
+                    >
+                      ✅ En stock
+                    </button>
+                    <button
+                      class="stock-btn sur-commande actif"
+                      onclick="changerStock('iphone-17', 'sur-commande', this)"
+                    >
+                      ⏳ Sur commande
+                    </button>
+                    <button
+                      class="stock-btn rupture"
+                      onclick="changerStock('iphone-17', 'rupture', this)"
+                    >
+                      ❌ Rupture
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="produit-nom-admin">iPhone 17 Pro Max — 256Go</div>
+                  <div class="produit-serie-admin">Neuf</div>
+                </td>
+                <td><span class="produit-prix-admin">1499€</span></td>
+                <td>
+                  <div class="stock-switch">
+                    <button
+                      class="stock-btn en-stock"
+                      onclick="
+                        changerStock('iphone-17-pro-max', 'en-stock', this)
+                      "
+                    >
+                      ✅ En stock
+                    </button>
+                    <button
+                      class="stock-btn sur-commande actif"
+                      onclick="
+                        changerStock('iphone-17-pro-max', 'sur-commande', this)
+                      "
+                    >
+                      ⏳ Sur commande
+                    </button>
+                    <button
+                      class="stock-btn rupture"
+                      onclick="
+                        changerStock('iphone-17-pro-max', 'rupture', this)
+                      "
+                    >
+                      ❌ Rupture
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- Fin section iPhone -->
+      </div>
+      <!-- Fin contenu admin -->
+    </div>
+    <!-- Fin panneau admin -->
+
+    <!-- Message de sauvegarde -->
+    <div class="msg-sauvegarde" id="msg-sauvegarde">
+      ✅ Modifications sauvegardées !
+    </div>
+
+    <!-- ============================================================
+       JAVASCRIPT ADMIN
+       ============================================================ -->
+    <script>
+      /* ============================================================
+       MOT DE PASSE ADMIN
+      "MOT DE PASSE" et remplace "MygConnectAdmin2026"
+       
+       ============================================================ */
+      const MOT_DE_PASSE_ADMIN = "MygConnectAdmin2026";
+
+      /* Fonction de connexion */
+      function seConnecter() {
+        const motDePasse = document.getElementById("mot-de-passe").value;
+
+        if (motDePasse === MOT_DE_PASSE_ADMIN) {
+          /* Mot de passe correct — affiche l'admin */
+          document.getElementById("ecran-connexion").style.display = "none";
+          document.getElementById("panneau-admin").style.display = "block";
+
+          /* Charge les données sauvegardées */
+          chargerDonnees();
+        } else {
+          /* Mauvais mot de passe — affiche l'erreur */
+          document.getElementById("erreur-connexion").style.display = "block";
+
+          /* Vide le champ */
+          document.getElementById("mot-de-passe").value = "";
+        }
+      }
+
+      /* Fonction de déconnexion */
+      function seDeconnecter() {
+        document.getElementById("panneau-admin").style.display = "none";
+        document.getElementById("ecran-connexion").style.display = "flex";
+        document.getElementById("mot-de-passe").value = "";
+        document.getElementById("erreur-connexion").style.display = "none";
+      }
+
+      /* ============================================================
+       GESTION DES STOCKS
+       Les changements sont sauvegardés dans localStorage
+       localStorage = stockage permanent dans le navigateur
+       ============================================================ */
+
+      /*
+      stocks = objet qui contient le statut de chaque produit
+      Exemple : { "iphone-xr": "en-stock", "iphone-11": "sur-commande" }
+    */
+      let stocks = {};
+
+      /*
+      Changer le stock d'un produit
+      Paramètres :
+      - produit = identifiant du produit (ex: "iphone-xr")
+      - statut  = "en-stock", "sur-commande" ou "rupture"
+      - btnClique = le bouton sur lequel on a cliqué
+    */
+      function changerStock(produit, statut, btnClique) {
+        /* Sauvegarde le nouveau statut */
+        stocks[produit] = statut;
+
+        /* Met à jour l'apparence des boutons de cette ligne */
+        const tousLesBoutons =
+          btnClique.parentElement.querySelectorAll(".stock-btn");
+        tousLesBoutons.forEach((btn) => btn.classList.remove("actif"));
+        btnClique.classList.add("actif");
+
+        /* Sauvegarde dans localStorage */
+        localStorage.setItem("stocks-myg", JSON.stringify(stocks));
+
+        /* Affiche le message de confirmation */
+        afficherMessage();
+
+        /* Met à jour les statistiques */
+        mettreAJourStats();
+      }
+
+      /* Charge les données sauvegardées au démarrage */
+      function chargerDonnees() {
+        const stocksSauvegardes = localStorage.getItem("stocks-myg");
+
+        if (stocksSauvegardes) {
+          stocks = JSON.parse(stocksSauvegardes);
+
+          /*
+          Remet les boutons dans le bon état
+          pour chaque produit sauvegardé
+        */
+          Object.keys(stocks).forEach((produit) => {
+            const statut = stocks[produit];
+
+            /* Trouve tous les boutons de ce produit */
+            const boutons = document.querySelectorAll(
+              `[onclick*="'${produit}'"]`,
+            );
+
+            boutons.forEach((btn) => {
+              btn.classList.remove("actif");
+              /* Active le bon bouton */
+              if (btn.classList.contains(statut)) {
+                btn.classList.add("actif");
+              }
+            });
+          });
+        }
+
+        /* Charge les données promo */
+        chargerPromo();
+
+        /* Met à jour les stats */
+        mettreAJourStats();
+      }
+
+      /* Met à jour les statistiques en haut */
+      function mettreAJourStats() {
+        let enStock = 0;
+        let surCommande = 0;
+        let rupture = 0;
+
+        /* Compte les boutons actifs de chaque type */
+        document
+          .querySelectorAll(".stock-btn.en-stock.actif")
+          .forEach(() => enStock++);
+        document
+          .querySelectorAll(".stock-btn.sur-commande.actif")
+          .forEach(() => surCommande++);
+        document
+          .querySelectorAll(".stock-btn.rupture.actif")
+          .forEach(() => rupture++);
+
+        document.getElementById("stat-stock").textContent = enStock;
+        document.getElementById("stat-commande").textContent = surCommande;
+        document.getElementById("stat-rupture").textContent = rupture;
+      }
+
+      /* Affiche le message de sauvegarde pendant 2 secondes */
+      function afficherMessage() {
+        const msg = document.getElementById("msg-sauvegarde");
+        msg.style.display = "block";
+        setTimeout(() => {
+          msg.style.display = "none";
+        }, 2000);
+      }
+
+      /* ============================================================
+       GESTION DE LA POPUP PROMO
+       ============================================================ -->
+
+    /* Switch activer/désactiver la popup */
+      document
+        .getElementById("promo-active")
+        .addEventListener("change", function () {
+          const statut = document.getElementById("promo-statut");
+          if (this.checked) {
+            statut.textContent = "Activée";
+            statut.style.color = "var(--vert)";
+          } else {
+            statut.textContent = "Désactivée";
+            statut.style.color = "var(--rouge)";
+          }
+        });
+
+      /* Sauvegarder les paramètres de la promo */
+      function appliquerPromo() {
+        const promoData = {
+          pourcent: document.getElementById("promo-pourcent").value,
+          code: document.getElementById("promo-code").value,
+          date: document.getElementById("promo-date").value,
+          desc: document.getElementById("promo-desc").value,
+          active: document.getElementById("promo-active").checked,
+        };
+
+        /*
+        Sauvegarde dans localStorage
+        Ces données sont lues par boutique.html
+        pour afficher la bonne promo
+      */
+        localStorage.setItem("promo-myg", JSON.stringify(promoData));
+        afficherMessage();
+      }
+
+      /* Charge les données promo sauvegardées */
+      function chargerPromo() {
+        const promoSauvegardee = localStorage.getItem("promo-myg");
+
+        if (promoSauvegardee) {
+          const promo = JSON.parse(promoSauvegardee);
+          document.getElementById("promo-pourcent").value = promo.pourcent;
+          document.getElementById("promo-code").value = promo.code;
+          document.getElementById("promo-date").value = promo.date;
+          document.getElementById("promo-desc").value = promo.desc;
+          document.getElementById("promo-active").checked = promo.active;
+
+          /* Met à jour le texte du statut */
+          const statut = document.getElementById("promo-statut");
+          if (promo.active) {
+            statut.textContent = "Activée";
+            statut.style.color = "var(--vert)";
+          } else {
+            statut.textContent = "Désactivée";
+            statut.style.color = "var(--rouge)";
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
