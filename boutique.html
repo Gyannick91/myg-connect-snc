@@ -1,0 +1,1278 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Boutique — MYG Connect SNC</title>
+    <meta
+      name="description"
+      content="Boutique MYG Connect SNC — Téléphones, ordinateurs, accessoires, power banks, clés USB et plus en Belgique."
+    />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Raleway:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ============================================================
+       GOOGLE TRANSLATE — Traduction automatique
+       ============================================================ -->
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: "fr",
+            includedLanguages: "fr,nl,en,de,ar",
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false,
+          },
+          "google_translate_element",
+        );
+      }
+    </script>
+    <script
+      type="text/javascript"
+      src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+    ></script>
+
+    <style>
+      /* ============================================================
+       VARIABLES CSS — Palette de couleurs MYG CONNECT SNC
+       Modifier ces valeurs change les couleurs sur toute la page
+       ============================================================ */
+      :root {
+        --bleu-nuit: #0a1628; /* Fond principal */
+        --bleu-royal: #1e4d8c; /* Accents bleus */
+        --or: #c9a84c; /* Couleur dorée — accents principaux */
+        --bleu-clair: #b8cce4; /* Textes secondaires */
+        --blanc: #ffffff; /* Texte principal */
+      }
+
+      /* Reset — supprime les marges par défaut du navigateur */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Raleway", sans-serif;
+        background-color: var(--bleu-nuit);
+        color: var(--blanc);
+        overflow-x: hidden; /* Empêche le scroll horizontal */
+      }
+
+      /* ============================================================
+       BARRE DE TRADUCTION — Fixée tout en haut
+       ============================================================ */
+      #barre-traduction {
+        background-color: #060d1a;
+        border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+        padding: 5px 40px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 12px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1001; /* Au dessus de tout */
+        height: 35px;
+      }
+
+      .traduction-texte {
+        font-size: 11px;
+        color: var(--bleu-clair);
+        letter-spacing: 1px;
+      }
+
+      .langue-boutons {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+      }
+
+      /* Bouton de langue individuel */
+      .langue-btn {
+        background: transparent;
+        border: 1px solid rgba(201, 168, 76, 0.3);
+        border-radius: 4px;
+        color: var(--bleu-clair);
+        font-family: "Raleway", sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        padding: 2px 8px;
+        cursor: pointer;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+      }
+
+      .langue-btn:hover {
+        border-color: var(--or);
+        color: var(--or);
+      }
+
+      /* Langue actuellement sélectionnée */
+      .langue-btn.actif {
+        background-color: var(--or);
+        border-color: var(--or);
+        color: var(--bleu-nuit);
+        font-weight: 700;
+      }
+
+      /* Cache les éléments par défaut de Google Translate */
+      .goog-te-banner-frame {
+        display: none !important;
+      }
+      .goog-logo-link {
+        display: none !important;
+      }
+      .goog-te-gadget {
+        display: none !important;
+      }
+      body {
+        top: 0 !important;
+      }
+
+      /* ============================================================
+       HEADER — Navigation fixe
+       top: 35px = juste sous la barre de traduction
+       ============================================================ */
+      header {
+        position: fixed;
+        top: 35px;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        background-color: rgba(10, 22, 40, 0.95);
+        border-bottom: 1px solid var(--or);
+        padding: 0 40px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .header-logo img {
+        height: 55px;
+        width: auto;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 35px;
+      }
+
+      nav ul li a {
+        color: var(--blanc);
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding-bottom: 4px;
+        border-bottom: 2px solid transparent;
+        transition:
+          color 0.3s ease,
+          border-bottom-color 0.3s ease;
+      }
+
+      nav ul li a:hover {
+        color: var(--or);
+        border-bottom-color: var(--or);
+      }
+
+      /* Lien actif = page actuelle surlignée dans le menu */
+      nav ul li a.actif {
+        color: var(--or);
+        border-bottom-color: var(--or);
+      }
+
+      /* Bouton Commander — fond doré */
+      .btn-commander {
+        background-color: var(--or);
+        color: var(--bleu-nuit) !important;
+        padding: 10px 20px !important;
+        border-radius: 4px;
+        border-bottom: none !important;
+      }
+
+      .btn-commander:hover {
+        background-color: var(--blanc);
+      }
+
+      /* Hamburger — visible uniquement sur mobile */
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 5px;
+      }
+
+      .hamburger span {
+        display: block;
+        width: 25px;
+        height: 2px;
+        background-color: var(--or);
+        border-radius: 2px;
+      }
+
+      /* ============================================================
+       POPUP PROMO
+       Apparaît automatiquement après 2 secondes
+       Pour modifier la promo : cherche "MODIFIER PROMO" dans le HTML
+       ============================================================ */
+      .popup-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.75);
+        z-index: 3000;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* Classe ajoutée par JavaScript pour afficher la popup */
+      .popup-overlay.active {
+        display: flex;
+      }
+
+      .popup-contenu {
+        background: linear-gradient(135deg, #0a1628 0%, #1e4d8c 100%);
+        border: 2px solid var(--or);
+        border-radius: 20px;
+        padding: 50px 40px;
+        max-width: 500px;
+        width: 90%;
+        text-align: center;
+        position: relative;
+        animation: popupEntree 0.4s ease; /* Animation d'apparition */
+      }
+
+      /* Animation d'entrée de la popup */
+      @keyframes popupEntree {
+        from {
+          transform: scale(0.8);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      .popup-fermer {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: none;
+        border: 1px solid rgba(201, 168, 76, 0.4);
+        color: var(--bleu-clair);
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+      }
+
+      .popup-fermer:hover {
+        border-color: var(--or);
+        color: var(--or);
+      }
+
+      .popup-etoile {
+        font-size: 40px;
+        margin-bottom: 15px;
+        display: block;
+      }
+
+      .popup-titre {
+        font-family: "Cinzel", serif;
+        font-size: 28px;
+        color: var(--or);
+        margin-bottom: 10px;
+      }
+
+      /* Grand pourcentage de réduction */
+      .popup-pourcent {
+        font-family: "Cinzel", serif;
+        font-size: 72px;
+        font-weight: 700;
+        color: var(--blanc);
+        line-height: 1;
+        margin: 10px 0;
+      }
+
+      .popup-pourcent span {
+        color: var(--or);
+      }
+
+      .popup-description {
+        font-size: 15px;
+        color: var(--bleu-clair);
+        line-height: 1.8;
+        margin: 15px 0 25px;
+      }
+
+      /* Encadré du code promo */
+      .popup-code {
+        background-color: rgba(201, 168, 76, 0.15);
+        border: 2px dashed var(--or);
+        border-radius: 10px;
+        padding: 15px 25px;
+        margin-bottom: 25px;
+      }
+
+      .popup-code-label {
+        font-size: 12px;
+        color: var(--bleu-clair);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+
+      .popup-code-texte {
+        font-family: "Cinzel", serif;
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--or);
+        letter-spacing: 4px;
+      }
+
+      .popup-btn {
+        background-color: var(--or);
+        color: var(--bleu-nuit);
+        border: none;
+        border-radius: 8px;
+        padding: 15px 35px;
+        font-family: "Raleway", sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition:
+          background-color 0.3s ease,
+          transform 0.2s ease;
+        width: 100%;
+      }
+
+      .popup-btn:hover {
+        background-color: var(--blanc);
+        transform: translateY(-2px);
+      }
+
+      .popup-non-merci {
+        margin-top: 15px;
+        font-size: 13px;
+        color: var(--bleu-clair);
+        cursor: pointer;
+        text-decoration: underline;
+        transition: color 0.3s ease;
+      }
+
+      .popup-non-merci:hover {
+        color: var(--blanc);
+      }
+
+      /* ============================================================
+       BANNIÈRE BOUTIQUE — En haut de la page
+       padding-top: 115px = compense barre traduction + header
+       ============================================================ */
+      .boutique-hero {
+        padding-top: 115px;
+        padding-bottom: 50px;
+        text-align: center;
+        background-color: var(--bleu-nuit);
+        border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+      }
+
+      .boutique-hero-inner {
+        padding-top: 40px;
+      }
+
+      .boutique-surtitre {
+        font-size: 12px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--or);
+        margin-bottom: 15px;
+      }
+
+      .boutique-titre {
+        font-family: "Cinzel", serif;
+        font-size: clamp(32px, 5vw, 60px);
+        font-weight: 700;
+        color: var(--blanc);
+        margin-bottom: 15px;
+      }
+
+      /* Ligne dorée décorative */
+      .boutique-ligne {
+        width: 60px;
+        height: 2px;
+        background-color: var(--or);
+        margin: 0 auto 20px;
+      }
+
+      .boutique-sous-titre {
+        font-size: 16px;
+        color: var(--bleu-clair);
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.8;
+      }
+
+      /* ============================================================
+       NAVIGATION RAPIDE — Liens vers chaque catégorie
+       Permet de sauter directement à une section
+       ============================================================ */
+      .nav-rapide {
+        padding: 25px 80px;
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        background-color: rgba(30, 77, 140, 0.1);
+        border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+        position: sticky; /* Reste visible quand on scrolle */
+        top: 115px; /* Juste sous le header */
+        z-index: 100;
+      }
+
+      /* Bouton de navigation rapide */
+      .nav-rapide-btn {
+        background: transparent;
+        border: 1px solid rgba(201, 168, 76, 0.3);
+        border-radius: 25px;
+        color: var(--bleu-clair);
+        font-family: "Raleway", sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 8px 18px;
+        cursor: pointer;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-block;
+      }
+
+      .nav-rapide-btn:hover {
+        border-color: var(--or);
+        color: var(--or);
+        background-color: rgba(201, 168, 76, 0.1);
+      }
+
+      /* ============================================================
+       SECTION CATÉGORIE — Chaque grande catégorie
+       ============================================================ */
+      .categorie-section {
+        padding: 60px 80px;
+        border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+      }
+
+      /* Alternance légère de fond entre les sections */
+      .categorie-section:nth-child(even) {
+        background-color: rgba(30, 77, 140, 0.05);
+      }
+
+      /* En-tête de la catégorie */
+      .categorie-entete {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 40px;
+      }
+
+      .categorie-icone {
+        font-size: 36px;
+      }
+
+      .categorie-titre {
+        font-family: "Cinzel", serif;
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--blanc);
+      }
+
+      /* Ligne dorée qui s'étend à droite du titre */
+      .categorie-ligne {
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(to right, var(--or), transparent);
+        opacity: 0.4;
+      }
+
+      /* ============================================================
+       GRILLE DES MARQUES / SOUS-CATÉGORIES
+       auto-fill = nombre de colonnes automatique selon la largeur
+       ============================================================ */
+      .marques-grille {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+      }
+
+      /* ============================================================
+       CARTE MARQUE — Cliquable, redirige vers la page produits
+       ============================================================ */
+      .carte-marque {
+        background-color: rgba(30, 77, 140, 0.15);
+        border: 1px solid rgba(201, 168, 76, 0.2);
+        border-radius: 16px;
+        padding: 30px 20px;
+        text-align: center;
+        cursor: pointer;
+        text-decoration: none;
+        display: block;
+        transition:
+          transform 0.3s ease,
+          border-color 0.3s ease,
+          background-color 0.3s ease;
+      }
+
+      .carte-marque:hover {
+        transform: translateY(-8px); /* Monte au survol */
+        border-color: var(--or);
+        background-color: rgba(30, 77, 140, 0.3);
+      }
+
+      /* Icône/Emoji de la marque */
+      .marque-icone {
+        font-size: 56px;
+        margin-bottom: 15px;
+        display: block;
+      }
+
+      .marque-nom {
+        font-family: "Cinzel", serif;
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--blanc);
+        margin-bottom: 8px;
+      }
+
+      .marque-desc {
+        font-size: 12px;
+        color: var(--bleu-clair);
+        line-height: 1.6;
+        margin-bottom: 15px;
+      }
+
+      /* Badge "Voir les modèles" en bas de la carte */
+      .marque-badge {
+        display: inline-block;
+        background-color: transparent;
+        border: 1px solid var(--or);
+        color: var(--or);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        padding: 5px 15px;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+      }
+
+      /* Au survol le badge se remplit */
+      .carte-marque:hover .marque-badge {
+        background-color: var(--or);
+        color: var(--bleu-nuit);
+      }
+
+      /* ============================================================
+       FOOTER
+       ============================================================ */
+      footer {
+        background-color: #060d1a;
+        border-top: 1px solid var(--or);
+        padding: 30px 80px;
+      }
+
+      .footer-bas {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      .footer-copyright {
+        font-size: 14px;
+        color: var(--bleu-clair);
+      }
+
+      .footer-legal {
+        display: flex;
+        gap: 20px;
+      }
+
+      .footer-legal a {
+        font-size: 14px;
+        color: var(--bleu-clair);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-legal a:hover {
+        color: var(--or);
+      }
+
+      /* ============================================================
+       RESPONSIVE MOBILE
+       @media = règles appliquées uniquement sur petits écrans
+       ============================================================ */
+      @media (max-width: 768px) {
+        header {
+          padding: 0 20px;
+        }
+
+        /* Hamburger visible sur mobile */
+        .hamburger {
+          display: flex;
+        }
+
+        nav {
+          display: none;
+          position: fixed;
+          top: 115px;
+          left: 0;
+          width: 100%;
+          background-color: var(--bleu-nuit);
+          border-top: 1px solid var(--or);
+          padding: 20px 0;
+          z-index: 999;
+        }
+
+        nav.ouvert {
+          display: block;
+        }
+
+        nav ul {
+          flex-direction: column;
+          align-items: center;
+          gap: 20px;
+        }
+
+        .boutique-hero {
+          padding-top: 135px;
+        }
+
+        /* Navigation rapide plus compacte sur mobile */
+        .nav-rapide {
+          padding: 15px 15px;
+          top: 115px;
+          gap: 8px;
+        }
+
+        .nav-rapide-btn {
+          font-size: 10px;
+          padding: 6px 12px;
+        }
+
+        /* Sections moins espacées sur mobile */
+        .categorie-section {
+          padding: 40px 20px;
+        }
+
+        /* 2 colonnes sur mobile au lieu de 4 */
+        .marques-grille {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 15px;
+        }
+
+        /* Cartes plus compactes sur mobile */
+        .carte-marque {
+          padding: 20px 15px;
+        }
+        .marque-icone {
+          font-size: 40px;
+        }
+
+        footer {
+          padding: 30px 25px;
+        }
+        .footer-bas {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ============================================================
+       POPUP PROMO
+       ⚠️ POUR MODIFIER LA PROMO — cherche les commentaires
+       "MODIFIER PROMO" ci-dessous et change les valeurs
+       ============================================================ -->
+    <div class="popup-overlay" id="popup-promo">
+      <div class="popup-contenu">
+        <button class="popup-fermer" onclick="fermerPopup()">✕</button>
+        <span class="popup-etoile">⭐</span>
+
+        <!-- MODIFIER PROMO : Titre -->
+        <h2 class="popup-titre">Offre Spéciale !</h2>
+
+        <!-- MODIFIER PROMO : Pourcentage — change le chiffre entre les balises <span> -->
+        <div class="popup-pourcent">-<span>10</span>%</div>
+
+        <!-- MODIFIER PROMO : Description et date de fin -->
+        <p class="popup-description">
+          Sur tous nos téléphones et accessoires !<br />
+          Offre valable jusqu'au <strong>31 Mai 2026</strong>
+        </p>
+
+        <!-- MODIFIER PROMO : Code promo -->
+        <div class="popup-code">
+          <p class="popup-code-label">Votre code promo</p>
+          <p class="popup-code-texte">MYG10</p>
+        </div>
+
+        <button class="popup-btn" onclick="fermerPopup()">
+          J'en profite maintenant ! 🎉
+        </button>
+
+        <p class="popup-non-merci" onclick="fermerPopup()">
+          Non merci, je préfère payer plein tarif
+        </p>
+      </div>
+    </div>
+
+    <!-- ============================================================
+       BARRE DE TRADUCTION
+       ============================================================ -->
+    <div id="barre-traduction">
+      <span class="traduction-texte">🌍 Langue :</span>
+      <div class="langue-boutons">
+        <button onclick="traduire('fr')" class="langue-btn actif" id="btn-fr">
+          🇫🇷 FR
+        </button>
+        <button onclick="traduire('nl')" class="langue-btn" id="btn-nl">
+          🇳🇱 NL
+        </button>
+        <button onclick="traduire('en')" class="langue-btn" id="btn-en">
+          🇬🇧 EN
+        </button>
+        <button onclick="traduire('de')" class="langue-btn" id="btn-de">
+          🇩🇪 DE
+        </button>
+        <button onclick="traduire('ar')" class="langue-btn" id="btn-ar">
+          🇲🇦 AR
+        </button>
+      </div>
+      <div id="google_translate_element" style="display: none"></div>
+    </div>
+
+    <!-- ============================================================
+       HEADER — Navigation principale
+       ============================================================ -->
+    <header>
+      <a href="index.html" class="header-logo">
+        <img src="images/logo/logo-myg-connect.svg" alt="MYG Connect SNC" />
+      </a>
+      <button
+        class="hamburger"
+        onclick="ouvrirMenu()"
+        aria-label="Ouvrir le menu"
+      >
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="menu-nav">
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="services.html">Nos Services</a></li>
+          <li><a href="boutique.html" class="actif">Boutique</a></li>
+          <li><a href="reservation.html">Réserver</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="commande.html" class="btn-commander">Commander</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- ============================================================
+       BANNIÈRE BOUTIQUE
+       ============================================================ -->
+    <div class="boutique-hero">
+      <div class="boutique-hero-inner">
+        <p class="boutique-surtitre">Nos produits</p>
+        <h1 class="boutique-titre">La Boutique</h1>
+        <div class="boutique-ligne"></div>
+        <p class="boutique-sous-titre">
+          Choisissez votre catégorie et découvrez tous nos produits. Livraison
+          disponible ou retrait en magasin.
+        </p>
+      </div>
+    </div>
+
+    <!-- ============================================================
+       NAVIGATION RAPIDE — Sauter directement à une catégorie
+       href="#id-section" = scroll vers la section correspondante
+       ============================================================ -->
+    <div class="nav-rapide">
+      <a href="#telephones" class="nav-rapide-btn">📱 Téléphones</a>
+      <a href="#ordinateurs" class="nav-rapide-btn">💻 Ordinateurs</a>
+      <a href="#accessoires-info" class="nav-rapide-btn">⌨️ Accessoires PC</a>
+      <a href="#coques" class="nav-rapide-btn">🛡️ Coques</a>
+      <a href="#chargeurs" class="nav-rapide-btn">🔌 Chargeurs</a>
+      <a href="#powerbanks" class="nav-rapide-btn">🔋 Power Banks</a>
+      <a href="#cles-usb" class="nav-rapide-btn">💾 Clés USB</a>
+      <a href="#ecouteurs" class="nav-rapide-btn">🎧 Écouteurs</a>
+      <a href="#cables" class="nav-rapide-btn">🔗 Câbles</a>
+    </div>
+
+    <!-- ============================================================
+       SECTION 1 : TÉLÉPHONES
+       id="telephones" = cible de la navigation rapide
+       ============================================================ -->
+    <div class="categorie-section" id="telephones">
+      <div class="categorie-entete">
+        <span class="categorie-icone">📱</span>
+        <h2 class="categorie-titre">Téléphones</h2>
+        <div class="categorie-ligne"></div>
+      </div>
+
+      <div class="marques-grille">
+        <!-- Apple iPhone — redirige vers iphone.html -->
+        <a href="iphone.html" class="carte-marque">
+          <span class="marque-icone">🍎</span>
+          <h3 class="marque-nom">Apple iPhone</h3>
+          <p class="marque-desc">iPhone XR → iPhone 17 Pro Max</p>
+          <span class="marque-badge">Voir les modèles →</span>
+        </a>
+
+        <!-- Samsung -->
+        <a href="samsung.html" class="carte-marque">
+          <span class="marque-icone">🔵</span>
+          <h3 class="marque-nom">Samsung</h3>
+          <p class="marque-desc">Galaxy A, S, Z Series et plus</p>
+          <span class="marque-badge">Voir les modèles →</span>
+        </a>
+
+        <!-- Xiaomi -->
+        <a href="xiaomi.html" class="carte-marque">
+          <span class="marque-icone">🟠</span>
+          <h3 class="marque-nom">Xiaomi</h3>
+          <p class="marque-desc">Redmi, Note, Pro Series</p>
+          <span class="marque-badge">Voir les modèles →</span>
+        </a>
+
+        <!-- Huawei -->
+        <a href="huawei.html" class="carte-marque">
+          <span class="marque-icone">🌸</span>
+          <h3 class="marque-nom">Huawei</h3>
+          <p class="marque-desc">P Series, Mate Series</p>
+          <span class="marque-badge">Voir les modèles →</span>
+        </a>
+
+        <!-- Multimarques — Nokia, Philips, Oppo, Realme... -->
+        <a href="multimarques.html" class="carte-marque">
+          <span class="marque-icone">🌍</span>
+          <h3 class="marque-nom">Multimarques</h3>
+          <p class="marque-desc">Nokia, Philips, Oppo, Realme et plus</p>
+          <span class="marque-badge">Voir les modèles →</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ============================================================
+       SECTION 2 : ORDINATEURS D'OCCASION
+       ============================================================ -->
+    <div class="categorie-section" id="ordinateurs">
+      <div class="categorie-entete">
+        <span class="categorie-icone">💻</span>
+        <h2 class="categorie-titre">Ordinateurs d'Occasion</h2>
+        <div class="categorie-ligne"></div>
+      </div>
+
+      <div class="marques-grille">
+        <!-- MacBook Apple -->
+        <a href="macbook.html" class="carte-marque">
+          <span class="marque-icone">🍎</span>
+          <h3 class="marque-nom">Apple MacBook</h3>
+          <p class="marque-desc">MacBook Air, MacBook Pro reconditionnés</p>
+          <span class="marque-badge">Voir les modèles →</span>
+        </a>
+
+        <!-- PC Windows — Dell, HP, Lenovo... -->
+        <a href="pc-windows.html" class="carte-marque">
+          <span class="marque-icone">🪟</span>
+          <h3 class="marque-nom">PC Windows</h3>
+          <p class="marque-desc">Dell, HP, Lenovo, Asus reconditionnés</p>
+          <span class="marque-badge">Voir les modèles →</span>
+        </a>
+
+        <!-- PC Gaming -->
+        <a href="pc-gaming.html" class="carte-marque">
+          <span class="marque-icone">🎮</span>
+          <h3 class="marque-nom">PC Gaming</h3>
+          <p class="marque-desc">Ordinateurs gaming reconditionnés</p>
+          <span class="marque-badge">Voir les modèles →</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ============================================================
+       SECTION 3 : ACCESSOIRES INFORMATIQUES
+       ============================================================ -->
+    <div class="categorie-section" id="accessoires-info">
+      <div class="categorie-entete">
+        <span class="categorie-icone">⌨️</span>
+        <h2 class="categorie-titre">Accessoires Informatiques</h2>
+        <div class="categorie-ligne"></div>
+      </div>
+
+      <div class="marques-grille">
+        <!-- Claviers -->
+        <a href="claviers.html" class="carte-marque">
+          <span class="marque-icone">⌨️</span>
+          <h3 class="marque-nom">Claviers</h3>
+          <p class="marque-desc">Filaires, sans fil, gaming, compacts</p>
+          <span class="marque-badge">Voir les claviers →</span>
+        </a>
+
+        <!-- Souris -->
+        <a href="souris.html" class="carte-marque">
+          <span class="marque-icone">🖱️</span>
+          <h3 class="marque-nom">Souris</h3>
+          <p class="marque-desc">Filaires, sans fil, ergonomiques</p>
+          <span class="marque-badge">Voir les souris →</span>
+        </a>
+
+        <!-- Écrans -->
+        <a href="ecrans.html" class="carte-marque">
+          <span class="marque-icone">🖥️</span>
+          <h3 class="marque-nom">Écrans</h3>
+          <p class="marque-desc">Moniteurs Full HD, 4K, gaming</p>
+          <span class="marque-badge">Voir les écrans →</span>
+        </a>
+
+        <!-- Casques PC -->
+        <a href="casques-pc.html" class="carte-marque">
+          <span class="marque-icone">🎧</span>
+          <h3 class="marque-nom">Casques PC</h3>
+          <p class="marque-desc">Gaming, bureau, avec micro</p>
+          <span class="marque-badge">Voir les casques →</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ============================================================
+       SECTION 4 : COQUES DE PROTECTION
+       ============================================================ -->
+    <div class="categorie-section" id="coques">
+      <div class="categorie-entete">
+        <span class="categorie-icone">🛡️</span>
+        <h2 class="categorie-titre">Coques de Protection</h2>
+        <div class="categorie-ligne"></div>
+      </div>
+
+      <div class="marques-grille">
+        <a href="coques-iphone.html" class="carte-marque">
+          <span class="marque-icone">🍎</span>
+          <h3 class="marque-nom">Coques iPhone</h3>
+          <p class="marque-desc">Pour tous les modèles iPhone</p>
+          <span class="marque-badge">Voir les coques →</span>
+        </a>
+
+        <a href="coques-samsung.html" class="carte-marque">
+          <span class="marque-icone">🔵</span>
+          <h3 class="marque-nom">Coques Samsung</h3>
+          <p class="marque-desc">Galaxy A, S Series</p>
+          <span class="marque-badge">Voir les coques →</span>
+        </a>
+
+        <a href="coques-xiaomi.html" class="carte-marque">
+          <span class="marque-icone">🟠</span>
+          <h3 class="marque-nom">Coques Xiaomi</h3>
+          <p class="marque-desc">Redmi, Note Series</p>
+          <span class="marque-badge">Voir les coques →</span>
+        </a>
+
+        <a href="coques-huawei.html" class="carte-marque">
+          <span class="marque-icone">🌸</span>
+          <h3 class="marque-nom">Coques Huawei</h3>
+          <p class="marque-desc">P Series, Mate Series</p>
+          <span class="marque-badge">Voir les coques →</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ============================================================
+       SECTION 5 : CHARGEURS
+       ============================================================ -->
+    <div class="categorie-section" id="chargeurs">
+      <div class="categorie-entete">
+        <span class="categorie-icone">🔌</span>
+        <h2 class="categorie-titre">Chargeurs</h2>
+        <div class="categorie-ligne"></div>
+      </div>
+
+      <div class="marques-grille">
+        <a href="chargeurs-iphone.html" class="carte-marque">
+          <span class="marque-icone">🍎</span>
+          <h3 class="marque-nom">Chargeurs iPhone</h3>
+          <p class="marque-desc">Lightning & USB-C</p>
+          <span class="marque-badge">Voir les chargeurs →</span>
+        </a>
+
+        <a href="chargeurs-samsung.html" class="carte-marque">
+          <span class="marque-icone">🔵</span>
+          <h3 class="marque-nom">Chargeurs Samsung</h3>
+          <p class="marque-desc">USB-C, charge rapide</p>
+          <span class="marque-badge">Voir les chargeurs →</span>
+        </a>
+
+        <a href="chargeurs-universels.html" class="carte-marque">
+          <span class="marque-icone">⚡</span>
+          <h3 class="marque-nom">Chargeurs Universels</h3>
+          <p class="marque-desc">Compatible toutes marques</p>
+          <span class="marque-badge">Voir les chargeurs →</span>
+        </a>
+
+        <a href="chargeurs-sans-fil.html" class="carte-marque">
+          <span class="marque-icone">🔋</span>
+          <h3 class="marque-nom">Chargeurs Sans Fil</h3>
+          <p class="marque-desc">Qi, MagSafe compatible</p>
+          <span class="marque-badge">Voir les chargeurs →</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ============================================================
+       SECTION 6 : POWER BANKS
+       ============================================================ -->
+    <div class="categorie-section" id="powerbanks">
+      <div class="categorie-entete">
+        <span class="categorie-icone">🔋</span>
+        <h2 class="categorie-titre">Power Banks</h2>
+        <div class="categorie-ligne"></div>
+      </div>
+
+      <div class="marques-grille">
+        <!-- Petite capacité -->
+        <a href="powerbank-small.html" class="carte-marque">
+          <span class="marque-icone">🔋</span>
+          <h3 class="marque-nom">Petite Capacité</h3>
+          <p class="marque-desc">5 000 — 10 000 mAh — compact et léger</p>
+          <span class="marque-badge">Voir les modèles →</span>
+        </a>
+
+        <!-- Grande capacité -->
+        <a href="powerbank-large.html" class="carte-marque">
+          <span class="marque-icone">⚡</span>
+          <h3 class="marque-nom">Grande Capacité</h3>
+          <p class="marque-desc">20 000 mAh et plus — longue autonomie</p>
+          <span class="marque-badge">Voir les modèles →</span>
+        </a>
+
+        <!-- Charge rapide -->
+        <a href="powerbank-rapide.html" class="carte-marque">
+          <span class="marque-icone">🚀</span>
+          <h3 class="marque-nom">Charge Rapide</h3>
+          <p class="marque-desc">Power Delivery, Quick Charge 3.0</p>
+          <span class="marque-badge">Voir les modèles →</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ============================================================
+       SECTION 7 : CLÉS USB
+       ============================================================ -->
+    <div class="categorie-section" id="cles-usb">
+      <div class="categorie-entete">
+        <span class="categorie-icone">💾</span>
+        <h2 class="categorie-titre">Clés USB</h2>
+        <div class="categorie-ligne"></div>
+      </div>
+
+      <div class="marques-grille">
+        <!-- USB-A classique -->
+        <a href="cles-usba.html" class="carte-marque">
+          <span class="marque-icone">💾</span>
+          <h3 class="marque-nom">Clés USB-A</h3>
+          <p class="marque-desc">Format classique — 16Go à 256Go</p>
+          <span class="marque-badge">Voir les clés →</span>
+        </a>
+
+        <!-- USB-C -->
+        <a href="cles-usbc.html" class="carte-marque">
+          <span class="marque-icone">🔵</span>
+          <h3 class="marque-nom">Clés USB-C</h3>
+          <p class="marque-desc">Pour smartphones et ordinateurs récents</p>
+          <span class="marque-badge">Voir les clés →</span>
+        </a>
+
+        <!-- Double connecteur -->
+        <a href="cles-double.html" class="carte-marque">
+          <span class="marque-icone">🔗</span>
+          <h3 class="marque-nom">Double Connecteur</h3>
+          <p class="marque-desc">USB-A + USB-C — universel</p>
+          <span class="marque-badge">Voir les clés →</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ============================================================
+       SECTION 8 : ÉCOUTEURS
+       ============================================================ -->
+    <div class="categorie-section" id="ecouteurs">
+      <div class="categorie-entete">
+        <span class="categorie-icone">🎧</span>
+        <h2 class="categorie-titre">Écouteurs</h2>
+        <div class="categorie-ligne"></div>
+      </div>
+
+      <div class="marques-grille">
+        <a href="ecouteurs-apple.html" class="carte-marque">
+          <span class="marque-icone">🍎</span>
+          <h3 class="marque-nom">Apple AirPods</h3>
+          <p class="marque-desc">AirPods 2, 3, Pro, Max</p>
+          <span class="marque-badge">Voir les modèles →</span>
+        </a>
+
+        <a href="ecouteurs-samsung.html" class="carte-marque">
+          <span class="marque-icone">🔵</span>
+          <h3 class="marque-nom">Samsung Galaxy Buds</h3>
+          <p class="marque-desc">Buds 2, Pro, Live</p>
+          <span class="marque-badge">Voir les modèles →</span>
+        </a>
+
+        <a href="ecouteurs-bluetooth.html" class="carte-marque">
+          <span class="marque-icone">📶</span>
+          <h3 class="marque-nom">Bluetooth Universels</h3>
+          <p class="marque-desc">Toutes marques, tous prix</p>
+          <span class="marque-badge">Voir les modèles →</span>
+        </a>
+
+        <a href="ecouteurs-filaires.html" class="carte-marque">
+          <span class="marque-icone">🎵</span>
+          <h3 class="marque-nom">Écouteurs Filaires</h3>
+          <p class="marque-desc">Jack 3.5mm, USB-C</p>
+          <span class="marque-badge">Voir les modèles →</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ============================================================
+       SECTION 9 : CÂBLES
+       ============================================================ -->
+    <div class="categorie-section" id="cables">
+      <div class="categorie-entete">
+        <span class="categorie-icone">🔗</span>
+        <h2 class="categorie-titre">Câbles</h2>
+        <div class="categorie-ligne"></div>
+      </div>
+
+      <div class="marques-grille">
+        <a href="cables-lightning.html" class="carte-marque">
+          <span class="marque-icone">🍎</span>
+          <h3 class="marque-nom">Câbles Lightning</h3>
+          <p class="marque-desc">Pour iPhone & iPad</p>
+          <span class="marque-badge">Voir les câbles →</span>
+        </a>
+
+        <a href="cables-usbc.html" class="carte-marque">
+          <span class="marque-icone">🔵</span>
+          <h3 class="marque-nom">Câbles USB-C</h3>
+          <p class="marque-desc">Samsung, Xiaomi, Huawei</p>
+          <span class="marque-badge">Voir les câbles →</span>
+        </a>
+
+        <a href="cables-microusb.html" class="carte-marque">
+          <span class="marque-icone">🔌</span>
+          <h3 class="marque-nom">Câbles Micro-USB</h3>
+          <p class="marque-desc">Anciens modèles</p>
+          <span class="marque-badge">Voir les câbles →</span>
+        </a>
+
+        <a href="cables-multi.html" class="carte-marque">
+          <span class="marque-icone">🔗</span>
+          <h3 class="marque-nom">Câbles Multi-embouts</h3>
+          <p class="marque-desc">3 en 1 — universel</p>
+          <span class="marque-badge">Voir les câbles →</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+    <footer>
+      <div class="footer-bas">
+        <p class="footer-copyright">
+          &copy; 2026 MYG Connect SNC — Tous droits réservés
+        </p>
+        <div class="footer-legal">
+          <a href="mentions-legales.html">Mentions légales</a>
+          <a href="cgv.html">CGV</a>
+          <a href="confidentialite.html">Confidentialité</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ============================================================
+       JAVASCRIPT
+       ============================================================ -->
+    <script>
+      /* ── Menu hamburger mobile ── */
+      function ouvrirMenu() {
+        document.getElementById("menu-nav").classList.toggle("ouvert");
+      }
+
+      /* ── Google Translate ── */
+      function traduire(langue) {
+        const selectLangue = document.querySelector(".goog-te-combo");
+        if (selectLangue) {
+          selectLangue.value = langue;
+          selectLangue.dispatchEvent(new Event("change"));
+        }
+        document
+          .querySelectorAll(".langue-btn")
+          .forEach((btn) => btn.classList.remove("actif"));
+        document.getElementById("btn-" + langue).classList.add("actif");
+      }
+
+      /* ============================================================
+       POPUP PROMO
+       S'ouvre automatiquement après 2 secondes
+       Ne se réaffiche pas pendant la même session
+       ============================================================ */
+      setTimeout(function () {
+        /*
+        sessionStorage = mémoire temporaire du navigateur
+        Effacée quand l'utilisateur ferme son navigateur
+        Si "popup-vue" existe → popup déjà vue → on n'affiche pas
+      */
+        if (!sessionStorage.getItem("popup-vue")) {
+          document.getElementById("popup-promo").classList.add("active");
+        }
+      }, 2000); /* 2000 = 2 secondes d'attente */
+
+      /* Ferme la popup et mémorise qu'elle a été vue */
+      function fermerPopup() {
+        document.getElementById("popup-promo").classList.remove("active");
+        sessionStorage.setItem("popup-vue", "true");
+      }
+
+      /* Ferme la popup si on clique sur le fond sombre */
+      document
+        .getElementById("popup-promo")
+        .addEventListener("click", function (e) {
+          if (e.target === this) fermerPopup();
+        });
+    </script>
+  </body>
+</html>
