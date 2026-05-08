@@ -731,10 +731,220 @@
           text-align: center;
         }
       }
+      /* ============================================================
+       BARRE DE TRADUCTION — Style de la barre en haut du site
+       ============================================================ */
+      /* ============================================================
+       BARRE DE TRADUCTION PERSONNALISÉE
+       ============================================================ */
+      #barre-traduction {
+        background-color: #060d1a;
+        border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+        padding: 5px 40px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 12px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1001;
+        height: 35px;
+      }
+
+      /* Texte "Langue :" */
+      .traduction-texte {
+        font-size: 11px;
+        color: var(--bleu-clair);
+        letter-spacing: 1px;
+      }
+
+      /* Conteneur des boutons de langue */
+      .langue-boutons {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+      }
+
+      /* Bouton de langue individuel */
+      .langue-btn {
+        background: transparent;
+        border: 1px solid rgba(201, 168, 76, 0.3);
+        border-radius: 4px;
+        color: var(--bleu-clair);
+        font-family: "Raleway", sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        padding: 2px 8px;
+        cursor: pointer;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+      }
+
+      /* Survol bouton langue */
+      .langue-btn:hover {
+        border-color: var(--or);
+        color: var(--or);
+      }
+
+      /* Bouton langue actif — langue actuellement sélectionnée */
+      .langue-btn.actif {
+        background-color: var(--or);
+        border-color: var(--or);
+        color: var(--bleu-nuit);
+        font-weight: 700;
+      }
+
+      /* Cache la barre Google Translate */
+      .goog-te-banner-frame {
+        display: none !important;
+      }
+      .goog-logo-link {
+        display: none !important;
+      }
+      .goog-te-gadget {
+        display: none !important;
+      }
+      body {
+        top: 0 !important;
+      }
+
+      /* Header poussé sous la barre de traduction */
+      header {
+        top: 35px !important;
+      }
+
+      /* Hero poussée vers le bas */
+      .hero {
+        padding-top: 115px !important;
+      }
+
+      /* Responsive mobile */
+      @media (max-width: 768px) {
+        #barre-traduction {
+          padding: 5px 20px;
+          justify-content: center;
+        }
+
+        .traduction-texte {
+          display: none;
+        }
+
+        header {
+          top: 35px !important;
+        }
+        .hero {
+          padding-top: 135px !important;
+        }
+      }
     </style>
+    <!-- ============================================================
+       GOOGLE TRANSLATE — Traduction automatique du site
+       Ce script charge le widget de traduction de Google
+       Il permet aux visiteurs de traduire le site en 1 clic
+       dans plus de 100 langues (français, néerlandais, anglais...)
+       ============================================================ -->
+    <script type="text/javascript">
+      /*
+      Cette fonction est appelée automatiquement par Google
+      quand le script est chargé.
+      Elle configure le widget de traduction.
+    */
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          {
+            /*
+          pageLanguage = langue originale du site
+          On dit à Google que le site est en français
+        */
+            pageLanguage: "fr",
+
+            /*
+          includedLanguages = langues proposées aux visiteurs
+          fr = Français
+          nl = Néerlandais (Flamand)
+          en = Anglais
+          de = Allemand
+          ar = Arabe
+          On peut en ajouter autant qu'on veut !
+        */
+            includedLanguages: "fr,nl,en,de,ar",
+
+            /*
+          layout = style du widget
+          SIMPLE = liste déroulante simple et discrète
+        */
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+
+            /*
+          autoDisplay = false = le widget ne s'affiche pas
+          automatiquement au chargement — on le contrôle nous-mêmes
+        */
+            autoDisplay: false,
+          },
+          "google_translate_element",
+        );
+        /*
+        'google_translate_element' = l'ID du div dans le HTML
+        où le widget sera affiché
+      */
+      }
+    </script>
+
+    <!-- Script Google Translate — chargé depuis les serveurs Google -->
+    <script
+      type="text/javascript"
+      src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+    ></script>
   </head>
 
   <body>
+    <!-- ============================================================
+      <!-- ============================================================
+       BARRE DE TRADUCTION PERSONNALISÉE
+       Nos propres boutons de langue — beaux et professionnels
+       Le widget Google est caché mais actif en arrière-plan
+       ============================================================ -->
+    <div id="barre-traduction">
+      <!-- Texte indicatif -->
+      <span class="traduction-texte">🌍 Langue :</span>
+
+      <!-- Nos boutons de langue personnalisés -->
+      <div class="langue-boutons">
+        <!--
+        onclick="traduire('fr')" = appelle notre fonction JavaScript
+        qui déclenche la traduction Google en arrière-plan
+        class="actif" = langue active surlignée
+      -->
+        <button onclick="traduire('fr')" class="langue-btn actif" id="btn-fr">
+          🇫🇷 FR
+        </button>
+
+        <button onclick="traduire('nl')" class="langue-btn" id="btn-nl">
+          🇳🇱 NL
+        </button>
+
+        <button onclick="traduire('en')" class="langue-btn" id="btn-en">
+          🇬🇧 EN
+        </button>
+
+        <button onclick="traduire('de')" class="langue-btn" id="btn-de">
+          🇩🇪 DE
+        </button>
+
+        <button onclick="traduire('ar')" class="langue-btn" id="btn-ar">
+          🇲🇦 AR
+        </button>
+      </div>
+
+      <!--
+      Le vrai widget Google — caché visuellement mais actif
+      C'est lui qui fait vraiment la traduction
+      visibility: hidden = invisible mais présent dans la page
+    -->
+      <div id="google_translate_element" style="display: none"></div>
+    </div>
     <!-- ============================================================
        HEADER — Barre de navigation fixe en haut de page
        ============================================================ -->
@@ -786,6 +996,43 @@
       Si le menu a la classe "ouvert" → il s'affiche
       Si non → il reste caché
     */
+      /* ============================================================
+       FONCTION DE TRADUCTION PERSONNALISÉE
+       Cette fonction est appelée quand on clique sur un bouton
+       de langue (FR, NL, EN, DE, AR)
+       ============================================================ */
+      function traduire(langue) {
+        /*
+        On récupère la liste déroulante cachée de Google Translate
+        C'est elle qui déclenche vraiment la traduction
+        .goog-te-combo = classe du select de Google
+      */
+        const selectLangue = document.querySelector(".goog-te-combo");
+
+        if (selectLangue) {
+          /* Change la valeur du select vers la langue choisie */
+          selectLangue.value = langue;
+
+          /*
+          Déclenche l'événement "change" sur le select
+          C'est comme si l'utilisateur avait changé la langue
+          manuellement dans le widget Google
+        */
+          selectLangue.dispatchEvent(new Event("change"));
+        }
+
+        /*
+        Met à jour l'apparence des boutons —
+        enlève la classe "actif" de tous les boutons
+        et l'ajoute uniquement sur le bouton cliqué
+      */
+        document.querySelectorAll(".langue-btn").forEach((btn) => {
+          btn.classList.remove("actif");
+        });
+
+        /* Ajoute la classe "actif" sur le bouton de la langue choisie */
+        document.getElementById("btn-" + langue).classList.add("actif");
+      }
       function ouvrirMenu() {
         const menu = document.getElementById("menu-nav");
         /*

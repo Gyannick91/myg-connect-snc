@@ -555,10 +555,140 @@
           text-align: center;
         }
       }
+
+      /* Barre de traduction */
+      #barre-traduction {
+        background-color: #060d1a;
+        border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+        padding: 5px 40px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 12px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1001;
+        height: 35px;
+      }
+
+      .traduction-texte {
+        font-size: 11px;
+        color: var(--bleu-clair);
+        letter-spacing: 1px;
+      }
+
+      .langue-boutons {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+      }
+
+      .langue-btn {
+        background: transparent;
+        border: 1px solid rgba(201, 168, 76, 0.3);
+        border-radius: 4px;
+        color: var(--bleu-clair);
+        font-family: "Raleway", sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        padding: 2px 8px;
+        cursor: pointer;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+      }
+
+      .langue-btn:hover {
+        border-color: var(--or);
+        color: var(--or);
+      }
+
+      .langue-btn.actif {
+        background-color: var(--or);
+        border-color: var(--or);
+        color: var(--bleu-nuit);
+        font-weight: 700;
+      }
+
+      .goog-te-banner-frame {
+        display: none !important;
+      }
+      .goog-logo-link {
+        display: none !important;
+      }
+      .goog-te-gadget {
+        display: none !important;
+      }
+      body {
+        top: 0 !important;
+      }
+      header {
+        top: 35px !important;
+      }
+      .contact-hero {
+        padding-top: 115px !important;
+      }
+
+      @media (max-width: 768px) {
+        #barre-traduction {
+          padding: 5px 20px;
+          justify-content: center;
+        }
+        .traduction-texte {
+          display: none;
+        }
+        header {
+          top: 35px !important;
+        }
+        .contact-hero {
+          padding-top: 115px !important;
+        }
+      }
     </style>
+    <!-- Google Translate Script -->
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: "fr",
+            includedLanguages: "fr,nl,en,de,ar",
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false,
+          },
+          "google_translate_element",
+        );
+      }
+    </script>
+    <script
+      type="text/javascript"
+      src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+    ></script>
   </head>
 
   <body>
+    <!-- Barre de traduction -->
+    <div id="barre-traduction">
+      <span class="traduction-texte">🌍 Langue :</span>
+      <div class="langue-boutons">
+        <button onclick="traduire('fr')" class="langue-btn actif" id="btn-fr">
+          🇫🇷 FR
+        </button>
+        <button onclick="traduire('nl')" class="langue-btn" id="btn-nl">
+          🇳🇱 NL
+        </button>
+        <button onclick="traduire('en')" class="langue-btn" id="btn-en">
+          🇬🇧 EN
+        </button>
+        <button onclick="traduire('de')" class="langue-btn" id="btn-de">
+          🇩🇪 DE
+        </button>
+        <button onclick="traduire('ar')" class="langue-btn" id="btn-ar">
+          🇲🇦 AR
+        </button>
+      </div>
+      <div id="google_translate_element" style="display: none"></div>
+    </div>
     <!-- ============================================================
        HEADER — Même navigation que l'accueil
        ============================================================ -->
@@ -892,6 +1022,19 @@
             alert("Erreur de connexion. Vérifiez votre internet et réessayez.");
           }
         });
+
+      /* Fonction de traduction */
+      function traduire(langue) {
+        const selectLangue = document.querySelector(".goog-te-combo");
+        if (selectLangue) {
+          selectLangue.value = langue;
+          selectLangue.dispatchEvent(new Event("change"));
+        }
+        document.querySelectorAll(".langue-btn").forEach((btn) => {
+          btn.classList.remove("actif");
+        });
+        document.getElementById("btn-" + langue).classList.add("actif");
+      }
       function ouvrirMenu() {
         const menu = document.getElementById("menu-nav");
         menu.classList.toggle("ouvert");
