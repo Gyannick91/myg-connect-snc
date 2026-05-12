@@ -1,0 +1,959 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nos Services — MYG Connect SNC</title>
+    <meta
+      name="description"
+      content="Découvrez tous les services de MYG Connect SNC — CyberCafé, impression, transfert d'argent, point relais et plus."
+    />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Raleway:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ============================================================
+       GOOGLE TRANSLATE
+       Permet de traduire la page en NL, EN, DE, AR
+       Le widget Google est caché — on utilise nos propres boutons
+       ============================================================ -->
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: "fr",
+            includedLanguages: "fr,nl,en,de,ar",
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false,
+          },
+          "google_translate_element",
+        );
+      }
+    </script>
+    <script
+      type="text/javascript"
+      src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+    ></script>
+
+    <style>
+      /* ============================================================
+       VARIABLES CSS — Palette MYG Connect SNC
+       Toutes les couleurs définies ici — modifier ici = modifier partout
+       ============================================================ */
+      :root {
+        --bleu-nuit: #0a1628; /* Fond principal de toutes les pages */
+        --bleu-royal: #1e4d8c; /* Couleur des fonds de cartes */
+        --or: #c9a84c; /* Couleur signature — titres, bordures, boutons */
+        --bleu-clair: #b8cce4; /* Textes secondaires et descriptions */
+        --blanc: #ffffff; /* Texte principal */
+        --vert: #2ecc71; /* Badges "En stock" */
+        --orange: #e67e22; /* Badges "Sur commande" */
+        --rouge: #e24b4a; /* Badges "Rupture" */
+      }
+
+      /* ============================================================
+       RESET CSS
+       Supprime les marges et paddings par défaut du navigateur
+       box-sizing: border-box = le padding ne gonfle pas la taille
+       ============================================================ */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Raleway", sans-serif;
+        background-color: var(--bleu-nuit);
+        color: var(--blanc);
+        overflow-x: hidden; /* Empêche le scroll horizontal */
+        top: 0 !important; /* Corrige le décalage causé par Google Translate */
+      }
+
+      /* ============================================================
+       BARRE DE TRADUCTION
+       Fixée en haut de page — z-index 1001 pour passer au-dessus du header
+       ============================================================ */
+      #barre-traduction {
+        background-color: #060d1a;
+        border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+        padding: 5px 40px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 12px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1001; /* Au-dessus du header (1000) */
+        height: 35px;
+      }
+
+      .traduction-texte {
+        font-size: 11px;
+        color: var(--bleu-clair);
+        letter-spacing: 1px;
+      }
+      .langue-boutons {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+      }
+
+      /* Bouton de langue — devient doré quand actif */
+      .langue-btn {
+        background: transparent;
+        border: 1px solid rgba(201, 168, 76, 0.3);
+        border-radius: 4px;
+        color: var(--bleu-clair);
+        font-family: "Raleway", sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        padding: 2px 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .langue-btn:hover {
+        border-color: var(--or);
+        color: var(--or);
+      }
+      /* Classe .actif ajoutée par JavaScript sur le bouton sélectionné */
+      .langue-btn.actif {
+        background-color: var(--or);
+        border-color: var(--or);
+        color: var(--bleu-nuit);
+        font-weight: 700;
+      }
+
+      /* Cache les éléments visuels de Google Translate qu'on ne veut pas afficher */
+      .goog-te-banner-frame {
+        display: none !important;
+      }
+      .goog-logo-link {
+        display: none !important;
+      }
+      .goog-te-gadget {
+        display: none !important;
+      }
+
+      /* ============================================================
+       HEADER — Navigation principale
+       position: fixed = reste visible en scrollant
+       top: 35px = juste en dessous de la barre de traduction
+       ============================================================ */
+      header {
+        position: fixed;
+        top: 35px;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        background-color: rgba(10, 22, 40, 0.95); /* Légèrement transparent */
+        border-bottom: 1px solid var(--or);
+        padding: 0 40px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .header-logo img {
+        height: 55px;
+        width: auto;
+      }
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 35px;
+      }
+
+      /* Liens de navigation */
+      nav ul li a {
+        color: var(--blanc);
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding-bottom: 4px;
+        border-bottom: 2px solid transparent;
+        transition:
+          color 0.3s ease,
+          border-bottom-color 0.3s ease;
+      }
+
+      /* Survol et page active = soulignement doré */
+      nav ul li a:hover {
+        color: var(--or);
+        border-bottom-color: var(--or);
+      }
+      nav ul li a.actif {
+        color: var(--or);
+        border-bottom-color: var(--or);
+      }
+
+      /* Bouton Commander — fond doré dans le menu */
+      .btn-commander {
+        background-color: var(--or);
+        color: var(--bleu-nuit) !important;
+        padding: 10px 20px !important;
+        border-radius: 4px;
+        border-bottom: none !important;
+      }
+
+      .btn-commander:hover {
+        background-color: var(--blanc);
+      }
+
+      /* Menu hamburger — caché sur desktop, visible sur mobile */
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 5px;
+      }
+      .hamburger span {
+        display: block;
+        width: 25px;
+        height: 2px;
+        background-color: var(--or);
+        border-radius: 2px;
+      }
+
+      /* ============================================================
+       FIL D'ARIANE — Accueil › Nos Services
+       padding-top important : compense header (80px) + barre traduction (35px)
+       ============================================================ */
+      .fil-ariane {
+        padding: 130px 80px 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+        color: var(--bleu-clair);
+      }
+
+      .fil-ariane a {
+        color: var(--bleu-clair);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+      .fil-ariane a:hover {
+        color: var(--or);
+      }
+      .fil-ariane-sep {
+        color: var(--or);
+        opacity: 0.5;
+      }
+      /* Page actuelle — non cliquable, en doré */
+      .fil-ariane-actuel {
+        color: var(--or);
+        font-weight: 600;
+      }
+
+      /* ============================================================
+       HERO SECTION — Bannière de bienvenue de la page
+       Texte centré avec titre et sous-titre
+       ============================================================ */
+      .page-hero {
+        padding: 20px 80px 60px;
+        text-align: center;
+        border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+      }
+
+      .page-hero h1 {
+        font-family: "Cinzel", serif;
+        /* clamp(min, idéal, max) = taille responsive entre 32px et 60px */
+        font-size: clamp(32px, 5vw, 60px);
+        font-weight: 700;
+        color: var(--blanc);
+        margin-bottom: 15px;
+      }
+
+      .page-hero p {
+        font-size: 16px;
+        color: var(--bleu-clair);
+        line-height: 1.8;
+        max-width: 700px;
+        margin: 0 auto; /* Centre le paragraphe */
+      }
+
+      /* ============================================================
+       GRILLE DES SERVICES
+       auto-fit + minmax = nombre de colonnes automatique selon l'écran
+       ============================================================ */
+      .services-section {
+        padding: 60px 80px 80px;
+      }
+
+      .services-grille {
+        display: grid;
+        /* Minimum 320px par carte, maximum 1fr (espace disponible) */
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 30px;
+      }
+
+      /* ============================================================
+       CARTE DE SERVICE
+       flex-direction: column = contenu empilé verticalement
+       gap: 15px = espace entre chaque élément de la carte
+       ============================================================ */
+      .service-carte {
+        background-color: rgba(30, 77, 140, 0.15);
+        border: 1px solid rgba(201, 168, 76, 0.2);
+        border-radius: 20px;
+        padding: 35px 30px;
+        transition:
+          transform 0.3s ease,
+          border-color 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      /* Effet de survol — remonte la carte et borde en doré */
+      .service-carte:hover {
+        transform: translateY(-8px);
+        border-color: var(--or);
+      }
+
+      .service-icone {
+        font-size: 50px;
+        margin-bottom: 5px;
+      }
+
+      .service-titre {
+        font-family: "Cinzel", serif;
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--blanc);
+      }
+
+      .service-desc {
+        font-size: 14px;
+        color: var(--bleu-clair);
+        line-height: 1.8;
+        flex: 1; /* Prend tout l'espace disponible pour aligner les prix */
+      }
+
+      /* ============================================================
+       LISTE DES DÉTAILS DU SERVICE
+       Chaque item a une flèche dorée devant lui via ::before
+       ============================================================ */
+      .service-details {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .service-details li {
+        font-size: 13px;
+        color: var(--bleu-clair);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      /* Pseudo-élément ::before = flèche dorée générée par CSS */
+      .service-details li::before {
+        content: "→";
+        color: var(--or);
+        font-weight: 700;
+        flex-shrink: 0; /* La flèche ne rétrécit pas */
+      }
+
+      /* Prix affiché en bas de carte avec séparateur */
+      .service-prix {
+        font-family: "Cinzel", serif;
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--or);
+        padding-top: 10px;
+        border-top: 1px solid rgba(201, 168, 76, 0.2);
+      }
+
+      /* Bouton d'action — style pilule avec bordure dorée */
+      .service-btn {
+        display: inline-block;
+        background-color: transparent;
+        border: 1px solid var(--or);
+        color: var(--or);
+        padding: 10px 20px;
+        border-radius: 25px;
+        font-family: "Raleway", sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        text-decoration: none;
+        letter-spacing: 1px;
+        text-align: center;
+        transition: all 0.3s ease;
+      }
+
+      /* Au survol — fond doré, texte sombre */
+      .service-btn:hover {
+        background-color: var(--or);
+        color: var(--bleu-nuit);
+      }
+
+      /* ============================================================
+       SECTION POURQUOI NOUS CHOISIR
+       6 arguments affichés en grille automatique
+       ============================================================ */
+      .pourquoi-section {
+        padding: 0 80px 80px;
+      }
+
+      .pourquoi-titre {
+        font-family: "Cinzel", serif;
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--blanc);
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .pourquoi-grille {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+      }
+
+      .pourquoi-carte {
+        background-color: rgba(30, 77, 140, 0.1);
+        border: 1px solid rgba(201, 168, 76, 0.15);
+        border-radius: 12px;
+        padding: 25px 20px;
+        text-align: center;
+      }
+
+      .pourquoi-icone {
+        font-size: 35px;
+        margin-bottom: 12px;
+      }
+
+      .pourquoi-titre-carte {
+        font-family: "Cinzel", serif;
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--or);
+        margin-bottom: 8px;
+      }
+
+      .pourquoi-desc {
+        font-size: 13px;
+        color: var(--bleu-clair);
+        line-height: 1.6;
+      }
+
+      /* ============================================================
+       SECTION CTA — Appel à l'action final
+       Dégradé de fond pour attirer l'attention
+       ============================================================ */
+      .cta-section {
+        background: linear-gradient(
+          135deg,
+          rgba(30, 77, 140, 0.3),
+          rgba(201, 168, 76, 0.1)
+        );
+        border-top: 1px solid rgba(201, 168, 76, 0.3);
+        border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+        padding: 60px 80px;
+        text-align: center;
+      }
+
+      .cta-section h2 {
+        font-family: "Cinzel", serif;
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--blanc);
+        margin-bottom: 15px;
+      }
+
+      .cta-section p {
+        font-size: 15px;
+        color: var(--bleu-clair);
+        margin-bottom: 30px;
+      }
+
+      /* Conteneur des 2 boutons côte à côte */
+      .cta-boutons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      /* Bouton principal — fond doré */
+      .btn-cta-principal {
+        background-color: var(--or);
+        color: var(--bleu-nuit);
+        padding: 15px 35px;
+        border-radius: 8px;
+        font-family: "Raleway", sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        text-decoration: none;
+        letter-spacing: 1px;
+        transition:
+          background-color 0.3s ease,
+          transform 0.2s ease;
+      }
+
+      .btn-cta-principal:hover {
+        background-color: var(--blanc);
+        transform: scale(1.05);
+      }
+
+      /* Bouton secondaire — transparent avec bordure dorée */
+      .btn-cta-secondaire {
+        background-color: transparent;
+        border: 2px solid var(--or);
+        color: var(--or);
+        padding: 15px 35px;
+        border-radius: 8px;
+        font-family: "Raleway", sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        text-decoration: none;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+      }
+
+      .btn-cta-secondaire:hover {
+        background-color: var(--or);
+        color: var(--bleu-nuit);
+      }
+
+      /* ============================================================
+       FOOTER — Pied de page
+       ============================================================ */
+      footer {
+        background-color: #060d1a;
+        border-top: 1px solid var(--or);
+        padding: 30px 80px;
+      }
+      .footer-bas {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+      .footer-copyright {
+        font-size: 14px;
+        color: var(--bleu-clair);
+      }
+      .footer-legal {
+        display: flex;
+        gap: 20px;
+      }
+      .footer-legal a {
+        font-size: 14px;
+        color: var(--bleu-clair);
+        text-decoration: none;
+      }
+      .footer-legal a:hover {
+        color: var(--or);
+      }
+
+      /* ============================================================
+       RESPONSIVE MOBILE — @media max-width: 768px
+       S'applique uniquement sur écrans de moins de 768px
+       ============================================================ */
+      @media (max-width: 768px) {
+        header {
+          padding: 0 20px;
+        }
+        /* Menu hamburger visible sur mobile */
+        .hamburger {
+          display: flex;
+        }
+        /* Menu nav caché par défaut sur mobile */
+        nav {
+          display: none;
+          position: fixed;
+          top: 115px;
+          left: 0;
+          width: 100%;
+          background-color: var(--bleu-nuit);
+          border-top: 1px solid var(--or);
+          padding: 20px 0;
+          z-index: 999;
+        }
+        /* Classe .ouvert ajoutée par JavaScript au clic hamburger */
+        nav.ouvert {
+          display: block;
+        }
+        nav ul {
+          flex-direction: column;
+          align-items: center;
+          gap: 20px;
+        }
+        .fil-ariane {
+          padding: 130px 20px 15px;
+          font-size: 12px;
+        }
+        .page-hero {
+          padding: 15px 20px 40px;
+        }
+        .services-section {
+          padding: 40px 20px 60px;
+        }
+        /* 1 seule colonne sur mobile */
+        .services-grille {
+          grid-template-columns: 1fr;
+        }
+        .pourquoi-section {
+          padding: 0 20px 60px;
+        }
+        .cta-section {
+          padding: 40px 20px;
+        }
+        footer {
+          padding: 30px 25px;
+        }
+        .footer-bas {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ============================================================
+       BARRE DE TRADUCTION — FR / NL / EN / DE / AR
+       Les boutons appellent la fonction traduire() en JavaScript
+       ============================================================ -->
+    <div id="barre-traduction">
+      <span class="traduction-texte">🌍 Langue :</span>
+      <div class="langue-boutons">
+        <button onclick="traduire('fr')" class="langue-btn actif" id="btn-fr">
+          🇫🇷 FR
+        </button>
+        <button onclick="traduire('nl')" class="langue-btn" id="btn-nl">
+          🇳🇱 NL
+        </button>
+        <button onclick="traduire('en')" class="langue-btn" id="btn-en">
+          🇬🇧 EN
+        </button>
+        <button onclick="traduire('de')" class="langue-btn" id="btn-de">
+          🇩🇪 DE
+        </button>
+        <button onclick="traduire('ar')" class="langue-btn" id="btn-ar">
+          🇲🇦 AR
+        </button>
+      </div>
+      <!-- Widget Google Translate caché — on utilise nos propres boutons -->
+      <div id="google_translate_element" style="display: none"></div>
+    </div>
+
+    <!-- ============================================================
+       HEADER — Navigation principale
+       class="actif" sur "Nos Services" = soulignement doré actif
+       ============================================================ -->
+    <header>
+      <a href="index.html" class="header-logo">
+        <img src="images/logo/logo-myg-connect.svg" alt="MYG Connect SNC" />
+      </a>
+      <!-- Bouton hamburger — visible sur mobile, déclenche ouvrirMenu() -->
+      <button
+        class="hamburger"
+        onclick="ouvrirMenu()"
+        aria-label="Ouvrir le menu"
+      >
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="menu-nav">
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="services.html" class="actif">Nos Services</a></li>
+          <li><a href="boutique.html">Boutique</a></li>
+          <li><a href="reservation.html">Réserver</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="commande.html" class="btn-commander">Commander</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- ============================================================
+       FIL D'ARIANE — Accueil › Nos Services
+       ============================================================ -->
+    <div class="fil-ariane">
+      <a href="index.html">🏠 Accueil</a>
+      <span class="fil-ariane-sep">›</span>
+      <span class="fil-ariane-actuel">Nos Services</span>
+    </div>
+
+    <!-- ============================================================
+       HERO SECTION — Titre et introduction de la page
+       ============================================================ -->
+    <div class="page-hero">
+      <h1>Nos Services</h1>
+      <p>
+        MYG Connect SNC vous propose une gamme complète de services pour
+        répondre à tous vos besoins numériques et quotidiens. Tout sous un même
+        toit à Gosselies !
+      </p>
+    </div>
+
+    <!-- ============================================================
+       GRILLE DES 6 SERVICES
+       Chaque carte = 1 service avec icône, titre, description,
+       liste de détails, prix et bouton d'action
+       ============================================================ -->
+    <div class="services-section">
+      <div class="services-grille">
+        <!-- ── Service 1 : Téléphones & Accessoires ── -->
+        <div class="service-carte">
+          <div class="service-icone">📱</div>
+          <div class="service-titre">Téléphones & Accessoires</div>
+          <p class="service-desc">
+            Découvrez notre large gamme de téléphones neufs et reconditionnés de
+            toutes les grandes marques, ainsi que tous leurs accessoires.
+          </p>
+          <!-- Liste des points forts du service -->
+          <ul class="service-details">
+            <li>iPhone, Samsung, Xiaomi, Huawei et plus</li>
+            <li>Téléphones neufs et reconditionnés Grade A</li>
+            <li>Coques, chargeurs, câbles, écouteurs</li>
+            <li>Garantie sur tous les produits</li>
+            <li>Conseil personnalisé en magasin</li>
+          </ul>
+          <div class="service-prix">À partir de 99€</div>
+          <a href="boutique.html" class="service-btn">Voir la boutique →</a>
+        </div>
+
+        <!-- ── Service 2 : CyberCafé ── -->
+        <div class="service-carte">
+          <div class="service-icone">🖥️</div>
+          <div class="service-titre">CyberCafé</div>
+          <p class="service-desc">
+            Profitez de nos ordinateurs haute performance avec une connexion
+            internet rapide pour naviguer, travailler ou vous divertir.
+          </p>
+          <ul class="service-details">
+            <li>4 postes informatiques disponibles</li>
+            <li>Connexion internet haut débit fibre</li>
+            <li>Impression et scan disponibles</li>
+            <li>Environnement calme et confortable</li>
+            <li>Réservation possible en avance</li>
+          </ul>
+          <div class="service-prix">4€ / heure</div>
+          <!-- Lien vers la page de réservation -->
+          <a href="reservation.html" class="service-btn"
+            >Réserver une session →</a
+          >
+        </div>
+
+        <!-- ── Service 3 : Impression & Scan ── -->
+        <div class="service-carte">
+          <div class="service-icone">🖨️</div>
+          <div class="service-titre">Impression & Photocopie</div>
+          <p class="service-desc">
+            Besoin d'imprimer un document urgent ? Notre service d'impression
+            rapide est disponible sans rendez-vous, en noir et blanc ou couleur.
+          </p>
+          <ul class="service-details">
+            <li>Impression noir & blanc et couleur</li>
+            <li>Photocopie de documents</li>
+            <li>Scan vers email ou clé USB</li>
+            <li>Formats A4 et A3 disponibles</li>
+            <li>Service rapide sans attente</li>
+          </ul>
+          <div class="service-prix">À partir de 0,10€ / page</div>
+          <a href="contact.html" class="service-btn">Nous contacter →</a>
+        </div>
+
+        <!-- ── Service 4 : Transfert d'argent ── -->
+        <div class="service-carte">
+          <div class="service-icone">💸</div>
+          <div class="service-titre">Transfert d'Argent</div>
+          <p class="service-desc">
+            Envoyez de l'argent à vos proches partout dans le monde en toute
+            sécurité grâce à nos partenaires internationaux agréés.
+          </p>
+          <ul class="service-details">
+            <li>Ria Money Transfer</li>
+            <li>Western Union</li>
+            <li>Orange Money</li>
+            <li>Envoi vers plus de 190 pays</li>
+            <li>Transfert rapide — Disponible en minutes</li>
+          </ul>
+          <div class="service-prix">Frais selon destination</div>
+          <a href="contact.html" class="service-btn">En savoir plus →</a>
+        </div>
+
+        <!-- ── Service 5 : Point Relais ── -->
+        <div class="service-carte">
+          <div class="service-icone">📦</div>
+          <div class="service-titre">Point Relais Colis</div>
+          <p class="service-desc">
+            MYG Connect SNC est un point relais agréé pour la réception et
+            l'envoi de colis. Pratique, proche et disponible 6j/7.
+          </p>
+          <ul class="service-details">
+            <li>Réception de colis pour vous</li>
+            <li>Envoi de colis vers toute la Belgique</li>
+            <li>Notification par SMS ou email</li>
+            <li>Stockage sécurisé jusqu'à 7 jours</li>
+            <li>Ouvert 6 jours sur 7</li>
+          </ul>
+          <div class="service-prix">Service gratuit à la réception</div>
+          <a href="contact.html" class="service-btn">Nous trouver →</a>
+        </div>
+
+        <!-- ── Service 6 : Conseil & Assistance ── -->
+        <div class="service-carte">
+          <div class="service-icone">🔧</div>
+          <div class="service-titre">Conseil & Assistance</div>
+          <p class="service-desc">
+            Notre équipe est à votre disposition pour vous conseiller sur le
+            choix de vos appareils et vous aider à les configurer.
+          </p>
+          <ul class="service-details">
+            <li>Conseil personnalisé gratuit</li>
+            <li>Configuration de votre téléphone</li>
+            <li>Transfert de données entre appareils</li>
+            <li>Installation d'applications</li>
+            <li>Assistance téléphonique disponible</li>
+          </ul>
+          <div class="service-prix">Conseil gratuit en magasin</div>
+          <a href="reservation.html" class="service-btn"
+            >Prendre rendez-vous →</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+       SECTION POURQUOI NOUS CHOISIR
+       6 arguments clés affichés en petites cartes
+       ============================================================ -->
+    <div class="pourquoi-section">
+      <h2 class="pourquoi-titre">Pourquoi Choisir MYG Connect SNC ?</h2>
+      <div class="pourquoi-grille">
+        <div class="pourquoi-carte">
+          <div class="pourquoi-icone">⭐</div>
+          <div class="pourquoi-titre-carte">Qualité Garantie</div>
+          <p class="pourquoi-desc">
+            Tous nos produits sont testés et garantis avant vente
+          </p>
+        </div>
+
+        <div class="pourquoi-carte">
+          <div class="pourquoi-icone">💰</div>
+          <div class="pourquoi-titre-carte">Prix Compétitifs</div>
+          <p class="pourquoi-desc">
+            Les meilleurs prix du marché pour tous les budgets
+          </p>
+        </div>
+
+        <div class="pourquoi-carte">
+          <div class="pourquoi-icone">🚀</div>
+          <div class="pourquoi-titre-carte">Service Rapide</div>
+          <p class="pourquoi-desc">
+            Disponible sans rendez-vous pour la plupart des services
+          </p>
+        </div>
+
+        <div class="pourquoi-carte">
+          <div class="pourquoi-icone">🌍</div>
+          <div class="pourquoi-titre-carte">Multilingue</div>
+          <p class="pourquoi-desc">
+            Nous parlons FR, NL, EN, AR — Pour tous nos clients
+          </p>
+        </div>
+
+        <div class="pourquoi-carte">
+          <div class="pourquoi-icone">📍</div>
+          <div class="pourquoi-titre-carte">Bien Situé</div>
+          <p class="pourquoi-desc">
+            En plein cœur de Gosselies — Facile d'accès
+          </p>
+        </div>
+
+        <div class="pourquoi-carte">
+          <div class="pourquoi-icone">🤝</div>
+          <div class="pourquoi-titre-carte">Équipe Disponible</div>
+          <p class="pourquoi-desc">Une équipe à votre écoute 6 jours sur 7</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+       SECTION CTA — Appel à l'action final
+       Deux boutons : Réserver et Contacter
+       ============================================================ -->
+    <div class="cta-section">
+      <h2>Prêt à nous rendre visite ?</h2>
+      <p>
+        Venez découvrir tous nos services en magasin à Gosselies ou réservez en
+        ligne !
+      </p>
+      <div class="cta-boutons">
+        <!-- Bouton principal — mène à la réservation -->
+        <a href="reservation.html" class="btn-cta-principal"
+          >📅 Réserver maintenant</a
+        >
+        <!-- Bouton secondaire — mène au contact -->
+        <a href="contact.html" class="btn-cta-secondaire">📞 Nous contacter</a>
+      </div>
+    </div>
+
+    <!-- ============================================================
+       FOOTER — Pied de page avec copyright et liens légaux
+       ============================================================ -->
+    <footer>
+      <div class="footer-bas">
+        <p class="footer-copyright">
+          &copy; 2026 MYG Connect SNC — Tous droits réservés
+        </p>
+        <div class="footer-legal">
+          <a href="mentions-legales.html">Mentions légales</a>
+          <a href="cgv.html">CGV</a>
+          <a href="confidentialite.html">Confidentialité</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ============================================================
+       JAVASCRIPT
+       ============================================================ -->
+    <script>
+      /* ── Menu hamburger mobile ──
+       toggle('ouvert') = ajoute la classe si absente, la retire si présente
+    */
+      function ouvrirMenu() {
+        document.getElementById("menu-nav").classList.toggle("ouvert");
+      }
+
+      /* ── Google Translate ──
+       1. Trouve le select caché de Google Translate
+       2. Change sa valeur vers la langue choisie
+       3. Déclenche un événement 'change' pour activer la traduction
+       4. Met à jour visuellement le bouton actif
+    */
+      function traduire(langue) {
+        const sel = document.querySelector(".goog-te-combo");
+        if (sel) {
+          sel.value = langue;
+          sel.dispatchEvent(new Event("change"));
+        }
+        /* Retire la classe .actif de tous les boutons */
+        document
+          .querySelectorAll(".langue-btn")
+          .forEach((b) => b.classList.remove("actif"));
+        /* Ajoute .actif au bouton de la langue choisie */
+        document.getElementById("btn-" + langue).classList.add("actif");
+      }
+    </script>
+  </body>
+</html>
