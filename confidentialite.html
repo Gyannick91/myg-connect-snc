@@ -477,7 +477,9 @@
           <p><strong>Siège :</strong> Gosselies, Région Wallonne, Belgique</p>
           <p>
             <strong>Email :</strong>
-            <a href="mailto:contact@mygconnectsnc.be">contact@mygconnectsnc.be</a>
+            <a href="mailto:contact@mygconnectsnc.be"
+              >contact@mygconnectsnc.be</a
+            >
           </p>
         </div>
 
@@ -690,7 +692,9 @@
         <div class="legal-encadre">
           <p>
             <strong>Email :</strong>
-            <a href="mailto:contact@mygconnectsnc.be">contact@mygconnectsnc.be</a>
+            <a href="mailto:contact@mygconnectsnc.be"
+              >contact@mygconnectsnc.be</a
+            >
           </p>
           <p>
             <strong>Formulaire :</strong>
@@ -702,11 +706,20 @@
     </div>
 
     <!-- Footer -->
+
     <footer>
       <div class="footer-bas">
-        class="footer-copyright" ondblclick="window.location='admin.html'" style="cursor:default;">
-          &copy; 2026 MYG Connect SNC — Tous droits réservés<a href="admin.html" style="opacity:0;font-size:1px;color:transparent;</p>
+        <!-- Copyright
+             Double clic sur le texte = accès secret à l'admin -->
+        <p
+          class="footer-copyright"
+          ondblclick="window.location = 'admin.html'"
+          style="cursor: default"
+        >
+          &copy; 2026 MYG Connect SNC — Tous droits réservés
         </p>
+
+        <!-- Liens légaux obligatoires en Belgique -->
         <div class="footer-legal">
           <a href="mentions-legales.html">Mentions légales</a>
           <a href="cgv.html">CGV</a>
@@ -714,7 +727,6 @@
         </div>
       </div>
     </footer>
-
     <script>
       function ouvrirMenu() {
         document.getElementById("menu-nav").classList.toggle("ouvert");
