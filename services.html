@@ -909,13 +909,21 @@
     </div>
 
     <!-- ============================================================
-       FOOTER — Pied de page avec copyright et liens légaux
-       ============================================================ -->
+         FOOTER — Pied de page avec copyright et liens légaux
+         ============================================================ -->
     <footer>
       <div class="footer-bas">
-        class="footer-copyright" ondblclick="window.location='admin.html'" style="cursor:default;">
-          &copy; 2026 MYG Connect SNC — Tous droits réservés<a href="admin.html" style="opacity:0;font-size:1px;color:transparent;</p>
+        <!-- Copyright
+             Double clic sur le texte = accès secret à l'admin -->
+        <p
+          class="footer-copyright"
+          ondblclick="window.location = 'admin.html'"
+          style="cursor: default"
+        >
+          &copy; 2026 MYG Connect SNC — Tous droits réservés
         </p>
+
+        <!-- Liens légaux obligatoires en Belgique -->
         <div class="footer-legal">
           <a href="mentions-legales.html">Mentions légales</a>
           <a href="cgv.html">CGV</a>
