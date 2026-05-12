@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conditions Générales de Vente — MYG Connect SNC</title>
+    <meta
+      name="description"
+      content="Conditions générales de vente de MYG Connect SNC — Vos droits en tant que client."
+    />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Raleway:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ============================================================
+       GOOGLE TRANSLATE
+       ============================================================ -->
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: "fr",
+            includedLanguages: "fr,nl,en,de,ar",
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false,
+          },
+          "google_translate_element",
+        );
+      }
+    </script>
+    <script
+      type="text/javascript"
+      src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+    ></script>
+
+    <style>
+      /* ============================================================
+       VARIABLES CSS
+       ============================================================ */
+      :root {
+        --bleu-nuit: #0a1628;
+        --bleu-royal: #1e4d8c;
+        --or: #c9a84c;
+        --bleu-clair: #b8cce4;
+        --blanc: #ffffff;
+        --vert: #2ecc71;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Raleway", sans-serif;
+        background-color: var(--bleu-nuit);
+        color: var(--blanc);
+        overflow-x: hidden;
+        top: 0 !important;
+      }
+
+      /* ============================================================
+       BARRE DE TRADUCTION
+       ============================================================ */
+      #barre-traduction {
+        background-color: #060d1a;
+        border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+        padding: 5px 40px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 12px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1001;
+        height: 35px;
+      }
+
+      .traduction-texte {
+        font-size: 11px;
+        color: var(--bleu-clair);
+        letter-spacing: 1px;
+      }
+      .langue-boutons {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+      }
+
+      .langue-btn {
+        background: transparent;
+        border: 1px solid rgba(201, 168, 76, 0.3);
+        border-radius: 4px;
+        color: var(--bleu-clair);
+        font-family: "Raleway", sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        padding: 2px 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .langue-btn:hover {
+        border-color: var(--or);
+        color: var(--or);
+      }
+      .langue-btn.actif {
+        background-color: var(--or);
+        border-color: var(--or);
+        color: var(--bleu-nuit);
+        font-weight: 700;
+      }
+      .goog-te-banner-frame {
+        display: none !important;
+      }
+      .goog-logo-link {
+        display: none !important;
+      }
+      .goog-te-gadget {
+        display: none !important;
+      }
+
+      /* ============================================================
+       HEADER
+       ============================================================ */
+      header {
+        position: fixed;
+        top: 35px;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        background-color: rgba(10, 22, 40, 0.95);
+        border-bottom: 1px solid var(--or);
+        padding: 0 40px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .header-logo img {
+        height: 55px;
+        width: auto;
+      }
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 35px;
+      }
+
+      nav ul li a {
+        color: var(--blanc);
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding-bottom: 4px;
+        border-bottom: 2px solid transparent;
+        transition:
+          color 0.3s ease,
+          border-bottom-color 0.3s ease;
+      }
+
+      nav ul li a:hover {
+        color: var(--or);
+        border-bottom-color: var(--or);
+      }
+      .btn-commander {
+        background-color: var(--or);
+        color: var(--bleu-nuit) !important;
+        padding: 10px 20px !important;
+        border-radius: 4px;
+        border-bottom: none !important;
+      }
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 5px;
+      }
+      .hamburger span {
+        display: block;
+        width: 25px;
+        height: 2px;
+        background-color: var(--or);
+        border-radius: 2px;
+      }
+
+      /* ============================================================
+       FIL D'ARIANE
+       ============================================================ */
+      .fil-ariane {
+        padding: 130px 80px 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+        color: var(--bleu-clair);
+      }
+
+      .fil-ariane a {
+        color: var(--bleu-clair);
+        text-decoration: none;
+      }
+      .fil-ariane a:hover {
+        color: var(--or);
+      }
+      .fil-ariane-sep {
+        color: var(--or);
+        opacity: 0.5;
+      }
+      .fil-ariane-actuel {
+        color: var(--or);
+        font-weight: 600;
+      }
+
+      /* ============================================================
+       CONTENU LÉGAL
+       ============================================================ */
+      .legal-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px 120px 80px;
+      }
+
+      .legal-titre {
+        font-family: "Cinzel", serif;
+        font-size: clamp(28px, 4vw, 42px);
+        font-weight: 700;
+        color: var(--blanc);
+        margin-bottom: 10px;
+      }
+
+      .legal-date {
+        font-size: 13px;
+        color: var(--bleu-clair);
+        margin-bottom: 40px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+      }
+
+      /* ============================================================
+       SECTIONS CGV
+       ============================================================ */
+      .legal-section {
+        margin-bottom: 40px;
+      }
+
+      .legal-section h2 {
+        font-family: "Cinzel", serif;
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--or);
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+      }
+
+      .legal-section h3 {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--blanc);
+        margin: 15px 0 8px;
+      }
+
+      .legal-section p {
+        font-size: 14px;
+        color: var(--bleu-clair);
+        line-height: 1.9;
+        margin-bottom: 12px;
+      }
+
+      .legal-section a {
+        color: var(--or);
+        text-decoration: none;
+      }
+      .legal-section a:hover {
+        text-decoration: underline;
+      }
+
+      /* Encadré informatif */
+      .legal-encadre {
+        background-color: rgba(201, 168, 76, 0.1);
+        border: 1px solid rgba(201, 168, 76, 0.3);
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px 0;
+      }
+
+      .legal-encadre p {
+        margin-bottom: 5px;
+        font-size: 14px;
+        color: var(--bleu-clair);
+      }
+
+      .legal-encadre strong {
+        color: var(--or);
+      }
+
+      /* Encadré vert pour droits client */
+      .legal-encadre-vert {
+        background-color: rgba(46, 204, 113, 0.1);
+        border: 1px solid rgba(46, 204, 113, 0.3);
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px 0;
+      }
+
+      .legal-encadre-vert p {
+        margin-bottom: 5px;
+        font-size: 14px;
+        color: var(--bleu-clair);
+      }
+
+      .legal-encadre-vert strong {
+        color: var(--vert);
+      }
+
+      /* ============================================================
+       FOOTER
+       ============================================================ */
+      footer {
+        background-color: #060d1a;
+        border-top: 1px solid var(--or);
+        padding: 30px 80px;
+      }
+      .footer-bas {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+      .footer-copyright {
+        font-size: 14px;
+        color: var(--bleu-clair);
+      }
+      .footer-legal {
+        display: flex;
+        gap: 20px;
+      }
+      .footer-legal a {
+        font-size: 14px;
+        color: var(--bleu-clair);
+        text-decoration: none;
+      }
+      .footer-legal a:hover {
+        color: var(--or);
+      }
+
+      /* ============================================================
+       RESPONSIVE MOBILE
+       ============================================================ */
+      @media (max-width: 768px) {
+        header {
+          padding: 0 20px;
+        }
+        .hamburger {
+          display: flex;
+        }
+        nav {
+          display: none;
+          position: fixed;
+          top: 115px;
+          left: 0;
+          width: 100%;
+          background-color: var(--bleu-nuit);
+          border-top: 1px solid var(--or);
+          padding: 20px 0;
+          z-index: 999;
+        }
+        nav.ouvert {
+          display: block;
+        }
+        nav ul {
+          flex-direction: column;
+          align-items: center;
+          gap: 20px;
+        }
+        .fil-ariane {
+          padding: 130px 20px 15px;
+          font-size: 12px;
+        }
+        .legal-container {
+          padding: 20px 30px 60px;
+        }
+        footer {
+          padding: 30px 25px;
+        }
+        .footer-bas {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Barre de traduction -->
+    <div id="barre-traduction">
+      <span class="traduction-texte">🌍 Langue :</span>
+      <div class="langue-boutons">
+        <button onclick="traduire('fr')" class="langue-btn actif" id="btn-fr">
+          🇫🇷 FR
+        </button>
+        <button onclick="traduire('nl')" class="langue-btn" id="btn-nl">
+          🇳🇱 NL
+        </button>
+        <button onclick="traduire('en')" class="langue-btn" id="btn-en">
+          🇬🇧 EN
+        </button>
+        <button onclick="traduire('de')" class="langue-btn" id="btn-de">
+          🇩🇪 DE
+        </button>
+        <button onclick="traduire('ar')" class="langue-btn" id="btn-ar">
+          🇲🇦 AR
+        </button>
+      </div>
+      <div id="google_translate_element" style="display: none"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+      <a href="index.html" class="header-logo">
+        <img src="images/logo/logo-myg-connect.svg" alt="MYG Connect SNC" />
+      </a>
+      <button
+        class="hamburger"
+        onclick="ouvrirMenu()"
+        aria-label="Ouvrir le menu"
+      >
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="menu-nav">
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="services.html">Nos Services</a></li>
+          <li><a href="boutique.html">Boutique</a></li>
+          <li><a href="reservation.html">Réserver</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="commande.html" class="btn-commander">Commander</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Fil d'ariane -->
+    <div class="fil-ariane">
+      <a href="index.html">🏠 Accueil</a>
+      <span class="fil-ariane-sep">›</span>
+      <span class="fil-ariane-actuel">Conditions Générales de Vente</span>
+    </div>
+
+    <!-- ============================================================
+       CONTENU PRINCIPAL — CGV
+       ============================================================ -->
+    <div class="legal-container">
+      <h1 class="legal-titre">Conditions Générales de Vente</h1>
+      <p class="legal-date">Dernière mise à jour : Mai 2026</p>
+
+      <!-- Article 1 : Objet -->
+      <div class="legal-section">
+        <h2>Article 1 — Objet et Champ d'Application</h2>
+        <p>
+          Les présentes Conditions Générales de Vente (CGV) régissent les
+          relations contractuelles entre MYG Connect SNC (ci-après « le Vendeur
+          ») et toute personne physique ou morale (ci-après « le Client »)
+          souhaitant effectuer un achat via le site web ou en magasin.
+        </p>
+        <p>
+          Tout achat implique l'acceptation pleine et entière des présentes CGV.
+          MYG Connect SNC se réserve le droit de modifier ses CGV à tout moment.
+        </p>
+      </div>
+
+      <!-- Article 2 : Produits -->
+      <div class="legal-section">
+        <h2>Article 2 — Produits et Services</h2>
+
+        <h3>2.1 Produits vendus</h3>
+        <p>
+          MYG Connect SNC propose à la vente des téléphones mobiles neufs et
+          reconditionnés, des accessoires informatiques, des câbles, chargeurs,
+          écouteurs et autres accessoires électroniques.
+        </p>
+
+        <h3>2.2 Produits reconditionnés</h3>
+        <p>
+          Les produits reconditionnés sont des appareils remis en état de
+          fonctionnement. Ils sont vendus avec la mention « Grade A » indiquant
+          un excellent état général, avec de légères traces d'utilisation non
+          visibles à l'utilisation normale.
+        </p>
+
+        <h3>2.3 Disponibilité</h3>
+        <p>
+          Les offres de produits sont valables dans la limite des stocks
+          disponibles. En cas d'indisponibilité après commande, le Client sera
+          informé dans les 24 heures et pourra choisir entre un remboursement
+          complet ou un produit de remplacement équivalent.
+        </p>
+      </div>
+
+      <!-- Article 3 : Prix -->
+      <div class="legal-section">
+        <h2>Article 3 — Prix</h2>
+        <p>
+          Les prix sont indiqués en euros (€) toutes taxes comprises (TTC). MYG
+          Connect SNC se réserve le droit de modifier ses prix à tout moment.
+          Les produits seront facturés au tarif en vigueur au moment de la
+          validation de la commande.
+        </p>
+        <p>
+          Les frais de livraison sont indiqués séparément lors de la
+          finalisation de la commande et sont à la charge du Client, sauf
+          mention contraire.
+        </p>
+      </div>
+
+      <!-- Article 4 : Commande -->
+      <div class="legal-section">
+        <h2>Article 4 — Commande et Validation</h2>
+        <p>
+          La commande est réputée ferme et définitive après validation par le
+          Client et confirmation par MYG Connect SNC. Un email de confirmation
+          est envoyé dans les 2 heures suivant la réception de la commande.
+        </p>
+        <p>
+          MYG Connect SNC se réserve le droit d'annuler toute commande en cas de
+          problème de disponibilité, d'erreur manifeste sur le prix ou
+          d'information incorrecte fournie par le Client.
+        </p>
+      </div>
+
+      <!-- Article 5 : Paiement -->
+      <div class="legal-section">
+        <h2>Article 5 — Modalités de Paiement</h2>
+        <p>Les modes de paiement acceptés sont :</p>
+        <p>
+          — Espèces (en magasin uniquement)<br />
+          — Virement bancaire<br />
+          — Paiement par carte bancaire (en magasin)<br />
+          — Bancontact (en magasin)
+        </p>
+        <p>
+          Le paiement intégral est exigé avant la remise du produit ou
+          l'expédition de la commande, sauf accord préalable écrit entre les
+          parties.
+        </p>
+      </div>
+
+      <!-- Article 6 : Livraison -->
+      <div class="legal-section">
+        <h2>Article 6 — Livraison</h2>
+
+        <h3>6.1 Modes de livraison</h3>
+        <p>
+          — <strong style="color: var(--or)">Retrait en magasin</strong> :
+          Gratuit — disponible sous 24h à Gosselies<br />
+          — <strong style="color: var(--or)">Livraison Belgique</strong> : 5€ —
+          2 à 3 jours ouvrables via Bpost<br />
+          — <strong style="color: var(--or)">Livraison Express</strong> : 12€ —
+          lendemain avant 12h via DHL
+        </p>
+
+        <h3>6.2 Délais</h3>
+        <p>
+          Les délais de livraison indiqués sont donnés à titre indicatif. Tout
+          retard raisonnable ne pourra pas donner lieu à des dommages et
+          intérêts ni à l'annulation de la commande.
+        </p>
+      </div>
+
+      <!-- Article 7 : Garantie -->
+      <div class="legal-section">
+        <h2>Article 7 — Garantie</h2>
+
+        <div class="legal-encadre-vert">
+          <p>
+            <strong>Produits neufs :</strong> Garantie légale de conformité de 2
+            ans
+          </p>
+          <p>
+            <strong>Produits reconditionnés Grade A :</strong> Garantie de 6
+            mois
+          </p>
+          <p>
+            <strong>Accessoires :</strong> Garantie de 6 mois contre les défauts
+            de fabrication
+          </p>
+        </div>
+
+        <p>
+          La garantie couvre les défauts de conformité et les vices cachés. Elle
+          ne couvre pas les dommages résultant d'une utilisation anormale, d'une
+          chute, d'une exposition à l'eau (sauf appareils certifiés waterproof)
+          ou d'une modification non autorisée du produit.
+        </p>
+      </div>
+
+      <!-- Article 8 : Droit de rétractation -->
+      <div class="legal-section">
+        <h2>Article 8 — Droit de Rétractation</h2>
+
+        <div class="legal-encadre-vert">
+          <p>
+            <strong>✅ Délai de rétractation :</strong> 14 jours calendriers à
+            compter de la réception
+          </p>
+          <p>
+            <strong>✅ Remboursement :</strong> Dans les 14 jours suivant la
+            réception du retour
+          </p>
+          <p><strong>✅ Frais de retour :</strong> À la charge du Client</p>
+        </div>
+
+        <p>
+          Conformément à la législation belge et européenne sur la protection
+          des consommateurs, le Client dispose d'un délai de 14 jours
+          calendriers pour exercer son droit de rétractation, sans avoir à
+          justifier de motifs ni à payer de pénalités.
+        </p>
+        <p>
+          Le produit doit être retourné dans son emballage d'origine, complet et
+          non utilisé. Les produits descellés ou utilisés ne peuvent pas être
+          retournés pour des raisons d'hygiène.
+        </p>
+      </div>
+
+      <!-- Article 9 : Protection des données -->
+      <div class="legal-section">
+        <h2>Article 9 — Protection des Données Personnelles</h2>
+        <p>
+          Les données personnelles collectées lors de la commande sont traitées
+          conformément au Règlement Général sur la Protection des Données (RGPD)
+          et à la politique de confidentialité de MYG Connect SNC.
+        </p>
+        <p>
+          Pour en savoir plus :
+          <a href="confidentialite.html">Politique de Confidentialité →</a>
+        </p>
+      </div>
+
+      <!-- Article 10 : Droit applicable -->
+      <div class="legal-section">
+        <h2>Article 10 — Droit Applicable et Litiges</h2>
+        <p>
+          Les présentes CGV sont soumises au droit belge. En cas de litige, le
+          Client peut recourir au service de médiation de la consommation ou
+          saisir les tribunaux compétents de l'arrondissement judiciaire de
+          Charleroi.
+        </p>
+        <p>
+          Pour tout litige, nous vous invitons d'abord à nous contacter
+          directement :
+          <a href="contact.html">Page Contact</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-bas">
+        <p class="footer-copyright">
+          &copy; 2026 MYG Connect SNC — Tous droits réservés
+        </p>
+        <div class="footer-legal">
+          <a href="mentions-legales.html">Mentions légales</a>
+          <a href="cgv.html">CGV</a>
+          <a href="confidentialite.html">Confidentialité</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      function ouvrirMenu() {
+        document.getElementById("menu-nav").classList.toggle("ouvert");
+      }
+      function traduire(langue) {
+        const sel = document.querySelector(".goog-te-combo");
+        if (sel) {
+          sel.value = langue;
+          sel.dispatchEvent(new Event("change"));
+        }
+        document
+          .querySelectorAll(".langue-btn")
+          .forEach((b) => b.classList.remove("actif"));
+        document.getElementById("btn-" + langue).classList.add("actif");
+      }
+    </script>
+  </body>
+</html>

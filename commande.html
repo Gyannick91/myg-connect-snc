@@ -1,0 +1,1039 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Commander — MYG Connect SNC</title>
+    <meta
+      name="description"
+      content="Finalisez votre commande chez MYG Connect SNC — Livraison ou retrait en magasin."
+    />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Raleway:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ============================================================
+       GOOGLE TRANSLATE — Script de traduction multilingue
+       Permet de traduire la page en NL, EN, DE, AR
+       ============================================================ -->
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: "fr",
+            includedLanguages: "fr,nl,en,de,ar",
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false,
+          },
+          "google_translate_element",
+        );
+      }
+    </script>
+    <script
+      type="text/javascript"
+      src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+    ></script>
+
+    <style>
+      /* ============================================================
+       VARIABLES CSS — Palette MYG Connect SNC
+       Toutes les couleurs du site définies ici en un seul endroit
+       ============================================================ */
+      :root {
+        --bleu-nuit: #0a1628; /* Fond principal */
+        --bleu-royal: #1e4d8c; /* Accents bleus */
+        --or: #c9a84c; /* Couleur dorée — titres, bordures */
+        --bleu-clair: #b8cce4; /* Textes secondaires */
+        --blanc: #ffffff; /* Texte principal */
+        --vert: #2ecc71; /* Succès */
+        --orange: #e67e22; /* Avertissement */
+        --rouge: #e24b4a; /* Erreur */
+      }
+
+      /* ============================================================
+       RESET CSS — Supprime les styles par défaut du navigateur
+       ============================================================ */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Raleway", sans-serif;
+        background-color: var(--bleu-nuit);
+        color: var(--blanc);
+        overflow-x: hidden;
+        top: 0 !important;
+      }
+
+      /* ============================================================
+       BARRE DE TRADUCTION — Fixée en haut de page
+       ============================================================ */
+      #barre-traduction {
+        background-color: #060d1a;
+        border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+        padding: 5px 40px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 12px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1001;
+        height: 35px;
+      }
+
+      .traduction-texte {
+        font-size: 11px;
+        color: var(--bleu-clair);
+        letter-spacing: 1px;
+      }
+      .langue-boutons {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+      }
+
+      .langue-btn {
+        background: transparent;
+        border: 1px solid rgba(201, 168, 76, 0.3);
+        border-radius: 4px;
+        color: var(--bleu-clair);
+        font-family: "Raleway", sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        padding: 2px 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .langue-btn:hover {
+        border-color: var(--or);
+        color: var(--or);
+      }
+      .langue-btn.actif {
+        background-color: var(--or);
+        border-color: var(--or);
+        color: var(--bleu-nuit);
+        font-weight: 700;
+      }
+      .goog-te-banner-frame {
+        display: none !important;
+      }
+      .goog-logo-link {
+        display: none !important;
+      }
+      .goog-te-gadget {
+        display: none !important;
+      }
+
+      /* ============================================================
+       HEADER — Navigation principale fixée en haut
+       ============================================================ */
+      header {
+        position: fixed;
+        top: 35px;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        background-color: rgba(10, 22, 40, 0.95);
+        border-bottom: 1px solid var(--or);
+        padding: 0 40px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .header-logo img {
+        height: 55px;
+        width: auto;
+      }
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 35px;
+      }
+
+      nav ul li a {
+        color: var(--blanc);
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding-bottom: 4px;
+        border-bottom: 2px solid transparent;
+        transition:
+          color 0.3s ease,
+          border-bottom-color 0.3s ease;
+      }
+
+      nav ul li a:hover {
+        color: var(--or);
+        border-bottom-color: var(--or);
+      }
+      nav ul li a.actif {
+        color: var(--or);
+        border-bottom-color: var(--or);
+      }
+
+      .btn-commander {
+        background-color: var(--or);
+        color: var(--bleu-nuit) !important;
+        padding: 10px 20px !important;
+        border-radius: 4px;
+        border-bottom: none !important;
+      }
+
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 5px;
+      }
+      .hamburger span {
+        display: block;
+        width: 25px;
+        height: 2px;
+        background-color: var(--or);
+        border-radius: 2px;
+      }
+
+      /* ============================================================
+       FIL D'ARIANE — Navigation hiérarchique
+       ============================================================ */
+      .fil-ariane {
+        padding: 130px 80px 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+        color: var(--bleu-clair);
+      }
+
+      .fil-ariane a {
+        color: var(--bleu-clair);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+      .fil-ariane a:hover {
+        color: var(--or);
+      }
+      .fil-ariane-sep {
+        color: var(--or);
+        opacity: 0.5;
+      }
+      .fil-ariane-actuel {
+        color: var(--or);
+        font-weight: 600;
+      }
+
+      /* ============================================================
+       CONTENU PRINCIPAL — Layout en 2 colonnes
+       Gauche : formulaire de commande
+       Droite : récapitulatif du panier
+       ============================================================ */
+      .commande-container {
+        padding: 20px 80px 80px;
+        display: grid;
+        grid-template-columns: 1fr 400px;
+        gap: 40px;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      /* ============================================================
+       TITRE DE SECTION
+       ============================================================ */
+      .section-titre {
+        font-family: "Cinzel", serif;
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--or);
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+      }
+
+      /* ============================================================
+       FORMULAIRE DE COMMANDE — Styles des champs
+       ============================================================ */
+      .formulaire-carte {
+        background-color: rgba(30, 77, 140, 0.15);
+        border: 1px solid rgba(201, 168, 76, 0.2);
+        border-radius: 16px;
+        padding: 35px;
+        margin-bottom: 25px;
+      }
+
+      /* Groupe de champs côte à côte */
+      .champ-groupe {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+
+      .champ {
+        margin-bottom: 20px;
+      }
+
+      /* Label au-dessus de chaque champ */
+      .champ label {
+        display: block;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--or);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+
+      /* Champs de saisie */
+      .champ input,
+      .champ select,
+      .champ textarea {
+        width: 100%;
+        padding: 13px 16px;
+        background-color: rgba(10, 22, 40, 0.6);
+        border: 1px solid rgba(201, 168, 76, 0.3);
+        border-radius: 8px;
+        color: var(--blanc);
+        font-family: "Raleway", sans-serif;
+        font-size: 14px;
+        transition: border-color 0.3s ease;
+      }
+
+      .champ input:focus,
+      .champ select:focus,
+      .champ textarea:focus {
+        outline: none;
+        border-color: var(--or);
+      }
+
+      /* Options du select en sombre */
+      .champ select option {
+        background-color: var(--bleu-nuit);
+      }
+
+      /* ============================================================
+       OPTIONS DE LIVRAISON — Boutons radio stylisés
+       ============================================================ */
+      .livraison-options {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .livraison-option {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 18px 20px;
+        background-color: rgba(10, 22, 40, 0.4);
+        border: 1px solid rgba(201, 168, 76, 0.2);
+        border-radius: 10px;
+        cursor: pointer;
+        transition:
+          border-color 0.3s ease,
+          background-color 0.3s ease;
+      }
+
+      .livraison-option:hover {
+        border-color: var(--or);
+      }
+
+      /* Option sélectionnée */
+      .livraison-option.selectionnee {
+        border-color: var(--or);
+        background-color: rgba(201, 168, 76, 0.1);
+      }
+
+      .livraison-option input[type="radio"] {
+        display: none;
+      }
+
+      /* Cercle radio personnalisé */
+      .radio-cercle {
+        width: 20px;
+        height: 20px;
+        border: 2px solid rgba(201, 168, 76, 0.5);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .livraison-option.selectionnee .radio-cercle {
+        border-color: var(--or);
+      }
+
+      /* Point central du radio sélectionné */
+      .radio-point {
+        width: 10px;
+        height: 10px;
+        background-color: var(--or);
+        border-radius: 50%;
+        display: none;
+      }
+
+      .livraison-option.selectionnee .radio-point {
+        display: block;
+      }
+
+      .livraison-info {
+        flex: 1;
+      }
+      .livraison-nom {
+        font-weight: 600;
+        color: var(--blanc);
+        font-size: 15px;
+        margin-bottom: 4px;
+      }
+      .livraison-desc {
+        font-size: 12px;
+        color: var(--bleu-clair);
+      }
+      .livraison-prix {
+        font-family: "Cinzel", serif;
+        font-size: 16px;
+        color: var(--or);
+        font-weight: 700;
+      }
+
+      /* ============================================================
+       RÉCAPITULATIF PANIER — Colonne droite
+       ============================================================ */
+      .recap-carte {
+        background-color: rgba(30, 77, 140, 0.15);
+        border: 1px solid rgba(201, 168, 76, 0.2);
+        border-radius: 16px;
+        padding: 30px;
+        position: sticky;
+        top: 130px; /* Reste visible en scrollant */
+      }
+
+      /* Liste des articles */
+      .recap-article {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+      }
+
+      .recap-article-nom {
+        font-size: 14px;
+        color: var(--blanc);
+        flex: 1;
+      }
+      .recap-article-qte {
+        font-size: 12px;
+        color: var(--bleu-clair);
+        margin: 0 15px;
+      }
+      .recap-article-prix {
+        font-family: "Cinzel", serif;
+        font-size: 15px;
+        color: var(--or);
+        font-weight: 700;
+      }
+
+      /* Ligne de total */
+      .recap-ligne {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+        font-size: 14px;
+        color: var(--bleu-clair);
+      }
+
+      .recap-ligne.total {
+        border-top: 2px solid rgba(201, 168, 76, 0.3);
+        margin-top: 10px;
+        padding-top: 15px;
+      }
+
+      .recap-ligne.total span:first-child {
+        font-family: "Cinzel", serif;
+        font-size: 18px;
+        color: var(--blanc);
+        font-weight: 700;
+      }
+
+      .recap-ligne.total span:last-child {
+        font-family: "Cinzel", serif;
+        font-size: 24px;
+        color: var(--or);
+        font-weight: 700;
+      }
+
+      /* Panier vide */
+      .panier-vide-msg {
+        text-align: center;
+        color: var(--bleu-clair);
+        padding: 30px 0;
+        font-size: 14px;
+      }
+
+      /* ============================================================
+       BOUTON CONFIRMER LA COMMANDE
+       ============================================================ */
+      .btn-confirmer {
+        width: 100%;
+        padding: 18px;
+        background-color: var(--or);
+        color: var(--bleu-nuit);
+        border: none;
+        border-radius: 10px;
+        font-family: "Raleway", sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        cursor: pointer;
+        margin-top: 25px;
+        transition:
+          background-color 0.3s ease,
+          transform 0.2s ease;
+      }
+
+      .btn-confirmer:hover {
+        background-color: var(--blanc);
+        transform: scale(1.02);
+      }
+
+      /* ============================================================
+       MESSAGE DE CONFIRMATION — Affiché après envoi
+       ============================================================ */
+      #message-confirmation {
+        display: none;
+        background-color: rgba(46, 204, 113, 0.15);
+        border: 1px solid var(--vert);
+        border-radius: 12px;
+        padding: 25px;
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      #message-confirmation .confirmation-icone {
+        font-size: 50px;
+        margin-bottom: 15px;
+      }
+      #message-confirmation h3 {
+        font-family: "Cinzel", serif;
+        color: var(--vert);
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+      #message-confirmation p {
+        color: var(--bleu-clair);
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+      /* ============================================================
+       FOOTER
+       ============================================================ */
+      footer {
+        background-color: #060d1a;
+        border-top: 1px solid var(--or);
+        padding: 30px 80px;
+      }
+      .footer-bas {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+      .footer-copyright {
+        font-size: 14px;
+        color: var(--bleu-clair);
+      }
+      .footer-legal {
+        display: flex;
+        gap: 20px;
+      }
+      .footer-legal a {
+        font-size: 14px;
+        color: var(--bleu-clair);
+        text-decoration: none;
+      }
+      .footer-legal a:hover {
+        color: var(--or);
+      }
+
+      /* ============================================================
+       RESPONSIVE MOBILE
+       ============================================================ */
+      @media (max-width: 768px) {
+        header {
+          padding: 0 20px;
+        }
+        .hamburger {
+          display: flex;
+        }
+        nav {
+          display: none;
+          position: fixed;
+          top: 115px;
+          left: 0;
+          width: 100%;
+          background-color: var(--bleu-nuit);
+          border-top: 1px solid var(--or);
+          padding: 20px 0;
+          z-index: 999;
+        }
+        nav.ouvert {
+          display: block;
+        }
+        nav ul {
+          flex-direction: column;
+          align-items: center;
+          gap: 20px;
+        }
+        .fil-ariane {
+          padding: 130px 20px 15px;
+          font-size: 12px;
+        }
+        .commande-container {
+          grid-template-columns: 1fr;
+          padding: 20px 20px 60px;
+        }
+        .champ-groupe {
+          grid-template-columns: 1fr;
+        }
+        footer {
+          padding: 30px 25px;
+        }
+        .footer-bas {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ============================================================
+       BARRE DE TRADUCTION
+       ============================================================ -->
+    <div id="barre-traduction">
+      <span class="traduction-texte">🌍 Langue :</span>
+      <div class="langue-boutons">
+        <button onclick="traduire('fr')" class="langue-btn actif" id="btn-fr">
+          🇫🇷 FR
+        </button>
+        <button onclick="traduire('nl')" class="langue-btn" id="btn-nl">
+          🇳🇱 NL
+        </button>
+        <button onclick="traduire('en')" class="langue-btn" id="btn-en">
+          🇬🇧 EN
+        </button>
+        <button onclick="traduire('de')" class="langue-btn" id="btn-de">
+          🇩🇪 DE
+        </button>
+        <button onclick="traduire('ar')" class="langue-btn" id="btn-ar">
+          🇲🇦 AR
+        </button>
+      </div>
+      <div id="google_translate_element" style="display: none"></div>
+    </div>
+
+    <!-- ============================================================
+       HEADER — Navigation principale
+       ============================================================ -->
+    <header>
+      <a href="index.html" class="header-logo">
+        <img src="images/logo/logo-myg-connect.svg" alt="MYG Connect SNC" />
+      </a>
+      <button
+        class="hamburger"
+        onclick="ouvrirMenu()"
+        aria-label="Ouvrir le menu"
+      >
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="menu-nav">
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="services.html">Nos Services</a></li>
+          <li><a href="boutique.html">Boutique</a></li>
+          <li><a href="reservation.html">Réserver</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li>
+            <a href="commande.html" class="btn-commander actif">Commander</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- ============================================================
+       FIL D'ARIANE
+       ============================================================ -->
+    <div class="fil-ariane">
+      <a href="index.html">🏠 Accueil</a>
+      <span class="fil-ariane-sep">›</span>
+      <span class="fil-ariane-actuel">Commander</span>
+    </div>
+
+    <!-- ============================================================
+       CONTENU PRINCIPAL — Formulaire + Récapitulatif
+       ============================================================ -->
+    <div class="commande-container">
+      <!-- ── COLONNE GAUCHE : Formulaire ── -->
+      <div class="colonne-formulaire">
+        <!-- Informations personnelles -->
+        <div class="formulaire-carte">
+          <h2 class="section-titre">📋 Vos informations</h2>
+
+          <div class="champ-groupe">
+            <!-- Prénom -->
+            <div class="champ">
+              <label for="prenom">Prénom *</label>
+              <input
+                type="text"
+                id="prenom"
+                placeholder="Jean"
+                required
+                autocomplete="given-name"
+              />
+            </div>
+            <!-- Nom -->
+            <div class="champ">
+              <label for="nom">Nom *</label>
+              <input
+                type="text"
+                id="nom"
+                placeholder="Dupont"
+                required
+                autocomplete="family-name"
+              />
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="champ">
+            <label for="email">Email *</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="jean.dupont@email.com"
+              required
+              autocomplete="email"
+            />
+          </div>
+
+          <!-- Téléphone -->
+          <div class="champ">
+            <label for="telephone">Téléphone *</label>
+            <input
+              type="tel"
+              id="telephone"
+              placeholder="+32 XXX XX XX XX"
+              required
+              autocomplete="tel"
+            />
+          </div>
+
+          <!-- Message optionnel -->
+          <div class="champ">
+            <label for="message">Message (optionnel)</label>
+            <textarea
+              id="message"
+              rows="3"
+              placeholder="Précisions sur votre commande..."
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- Options de livraison -->
+        <div class="formulaire-carte">
+          <h2 class="section-titre">🚚 Mode de réception</h2>
+
+          <div class="livraison-options">
+            <!-- Option 1 : Retrait en magasin -->
+            <div
+              class="livraison-option selectionnee"
+              onclick="selectionnerLivraison(this, 'retrait', 0)"
+            >
+              <input type="radio" name="livraison" value="retrait" checked />
+              <div class="radio-cercle"><div class="radio-point"></div></div>
+              <div class="livraison-info">
+                <div class="livraison-nom">🏪 Retrait en magasin</div>
+                <div class="livraison-desc">
+                  Gosselies — Disponible sous 24h — Rue du Centre
+                </div>
+              </div>
+              <div class="livraison-prix">Gratuit</div>
+            </div>
+
+            <!-- Option 2 : Livraison Belgique -->
+            <div
+              class="livraison-option"
+              onclick="selectionnerLivraison(this, 'livraison-be', 5)"
+            >
+              <input type="radio" name="livraison" value="livraison-be" />
+              <div class="radio-cercle"><div class="radio-point"></div></div>
+              <div class="livraison-info">
+                <div class="livraison-nom">📦 Livraison Belgique</div>
+                <div class="livraison-desc">Bpost — 2 à 3 jours ouvrables</div>
+              </div>
+              <div class="livraison-prix">5€</div>
+            </div>
+
+            <!-- Option 3 : Livraison Express -->
+            <div
+              class="livraison-option"
+              onclick="selectionnerLivraison(this, 'express', 12)"
+            >
+              <input type="radio" name="livraison" value="express" />
+              <div class="radio-cercle"><div class="radio-point"></div></div>
+              <div class="livraison-info">
+                <div class="livraison-nom">⚡ Livraison Express</div>
+                <div class="livraison-desc">
+                  DHL — Livraison le lendemain avant 12h
+                </div>
+              </div>
+              <div class="livraison-prix">12€</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Message de confirmation affiché après envoi -->
+        <div id="message-confirmation">
+          <div class="confirmation-icone">✅</div>
+          <h3>Commande confirmée !</h3>
+          <p>
+            Merci pour votre commande.<br />
+            Vous recevrez un email de confirmation sous peu.<br />
+            Notre équipe vous contactera pour finaliser les détails.
+          </p>
+        </div>
+      </div>
+      <!-- Fin colonne gauche -->
+
+      <!-- ── COLONNE DROITE : Récapitulatif panier ── -->
+      <div class="colonne-recap">
+        <div class="recap-carte">
+          <h2 class="section-titre">🛒 Votre commande</h2>
+
+          <!-- Liste des articles — remplie par JavaScript -->
+          <div id="recap-articles">
+            <p class="panier-vide-msg">Votre panier est vide 🛒</p>
+          </div>
+
+          <!-- Totaux -->
+          <div id="recap-totaux" style="display: none">
+            <div class="recap-ligne">
+              <span>Sous-total</span>
+              <span id="recap-sous-total">0€</span>
+            </div>
+            <div class="recap-ligne">
+              <span>Livraison</span>
+              <span id="recap-livraison">Gratuit</span>
+            </div>
+            <div class="recap-ligne total">
+              <span>Total</span>
+              <span id="recap-total">0€</span>
+            </div>
+
+            <!-- Bouton confirmer -->
+            <button class="btn-confirmer" onclick="confirmerCommande()">
+              ✅ Confirmer la commande
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Fin colonne droite -->
+    </div>
+
+    <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+    <footer>
+      <div class="footer-bas">
+        <p class="footer-copyright">
+          &copy; 2026 MYG Connect SNC — Tous droits réservés
+        </p>
+        <div class="footer-legal">
+          <a href="mentions-legales.html">Mentions légales</a>
+          <a href="cgv.html">CGV</a>
+          <a href="confidentialite.html">Confidentialité</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ============================================================
+       JAVASCRIPT
+       ============================================================ -->
+    <script>
+      /* ── Menu hamburger mobile ── */
+      function ouvrirMenu() {
+        document.getElementById("menu-nav").classList.toggle("ouvert");
+      }
+
+      /* ── Google Translate ── */
+      function traduire(langue) {
+        const sel = document.querySelector(".goog-te-combo");
+        if (sel) {
+          sel.value = langue;
+          sel.dispatchEvent(new Event("change"));
+        }
+        document
+          .querySelectorAll(".langue-btn")
+          .forEach((b) => b.classList.remove("actif"));
+        document.getElementById("btn-" + langue).classList.add("actif");
+      }
+
+      /* ============================================================
+       FRAIS DE LIVRAISON
+       Variable globale modifiée quand on change l'option
+       ============================================================ */
+      let fraisLivraison = 0;
+
+      /* ============================================================
+       CHARGEMENT DU PANIER
+       On lit le panier sauvegardé dans localStorage
+       par les pages produits lors du clic "Passer la commande"
+       ============================================================ */
+      function chargerPanier() {
+        /* Récupère le panier sauvegardé */
+        const panierSauvegarde = localStorage.getItem("panier-myg");
+        const panier = panierSauvegarde ? JSON.parse(panierSauvegarde) : [];
+
+        const zone = document.getElementById("recap-articles");
+        const totaux = document.getElementById("recap-totaux");
+
+        /* Si panier vide — affiche message */
+        if (panier.length === 0) {
+          zone.innerHTML =
+            '<p class="panier-vide-msg">Votre panier est vide 🛒<br><a href="boutique.html" style="color:var(--or);">Retourner à la boutique</a></p>';
+          totaux.style.display = "none";
+          return;
+        }
+
+        /* Calcule le sous-total */
+        let sousTotal = 0;
+        let html = "";
+
+        panier.forEach((article) => {
+          const st = article.prix * article.quantite;
+          sousTotal += st;
+          html += `
+          <div class="recap-article">
+            <span class="recap-article-nom">${article.nom}</span>
+            <span class="recap-article-qte">x${article.quantite}</span>
+            <span class="recap-article-prix">${st}€</span>
+          </div>
+        `;
+        });
+
+        /* Affiche les articles et les totaux */
+        zone.innerHTML = html;
+        totaux.style.display = "block";
+
+        /* Met à jour les montants affichés */
+        mettreAJourTotaux(sousTotal);
+      }
+
+      /* ============================================================
+       MISE À JOUR DES TOTAUX
+       Appelée quand le panier se charge ou quand on change la livraison
+       ============================================================ */
+      function mettreAJourTotaux(sousTotal) {
+        /* Calcule le total avec les frais de livraison */
+        const total = sousTotal + fraisLivraison;
+
+        document.getElementById("recap-sous-total").textContent =
+          sousTotal + "€";
+        document.getElementById("recap-livraison").textContent =
+          fraisLivraison === 0 ? "Gratuit" : fraisLivraison + "€";
+        document.getElementById("recap-total").textContent = total + "€";
+      }
+
+      /* ============================================================
+       SÉLECTION DU MODE DE LIVRAISON
+       Paramètres :
+       - element = l'option cliquée
+       - mode = identifiant du mode choisi
+       - prix = frais de livraison en euros
+       ============================================================ */
+      function selectionnerLivraison(element, mode, prix) {
+        /* Retire la sélection de toutes les options */
+        document.querySelectorAll(".livraison-option").forEach((opt) => {
+          opt.classList.remove("selectionnee");
+        });
+
+        /* Active l'option cliquée */
+        element.classList.add("selectionnee");
+        element.querySelector("input").checked = true;
+
+        /* Met à jour les frais et recalcule */
+        fraisLivraison = prix;
+
+        /* Relit le sous-total depuis le DOM */
+        const sousTotal =
+          parseInt(document.getElementById("recap-sous-total").textContent) ||
+          0;
+        mettreAJourTotaux(sousTotal);
+      }
+
+      /* ============================================================
+       CONFIRMATION DE COMMANDE
+       Valide les champs et affiche le message de confirmation
+       ============================================================ */
+      function confirmerCommande() {
+        /* Récupère les valeurs des champs */
+        const prenom = document.getElementById("prenom").value.trim();
+        const nom = document.getElementById("nom").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const telephone = document.getElementById("telephone").value.trim();
+
+        /* Validation basique — tous les champs requis */
+        if (!prenom || !nom || !email || !telephone) {
+          alert("⚠️ Veuillez remplir tous les champs obligatoires (*)");
+          return;
+        }
+
+        /* Validation format email */
+        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!regexEmail.test(email)) {
+          alert("⚠️ Veuillez entrer une adresse email valide.");
+          return;
+        }
+
+        /* ── Commande validée ── */
+
+        /* Cache le formulaire */
+        document.querySelector(".colonne-formulaire").style.display = "none";
+
+        /* Affiche le message de confirmation */
+        document.getElementById("message-confirmation").style.display = "block";
+
+        /* Vide le panier localStorage */
+        localStorage.removeItem("panier-myg");
+
+        /* Fait défiler vers le message de confirmation */
+        document
+          .getElementById("message-confirmation")
+          .scrollIntoView({ behavior: "smooth" });
+      }
+
+      /* ── Chargement au démarrage ── */
+      chargerPanier();
+    </script>
+  </body>
+</html>

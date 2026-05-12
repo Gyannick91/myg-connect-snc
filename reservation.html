@@ -1,0 +1,1161 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Réserver — MYG Connect SNC</title>
+    <meta
+      name="description"
+      content="Réservez votre session cybercafé ou un produit chez MYG Connect SNC à Gosselies."
+    />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Raleway:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ============================================================
+       GOOGLE TRANSLATE
+       ============================================================ -->
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: "fr",
+            includedLanguages: "fr,nl,en,de,ar",
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false,
+          },
+          "google_translate_element",
+        );
+      }
+    </script>
+    <script
+      type="text/javascript"
+      src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+    ></script>
+
+    <style>
+      /* ============================================================
+       VARIABLES CSS — Palette MYG Connect SNC
+       ============================================================ */
+      :root {
+        --bleu-nuit: #0a1628;
+        --bleu-royal: #1e4d8c;
+        --or: #c9a84c;
+        --bleu-clair: #b8cce4;
+        --blanc: #ffffff;
+        --vert: #2ecc71;
+        --orange: #e67e22;
+        --rouge: #e24b4a;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Raleway", sans-serif;
+        background-color: var(--bleu-nuit);
+        color: var(--blanc);
+        overflow-x: hidden;
+        top: 0 !important;
+      }
+
+      /* ============================================================
+       BARRE DE TRADUCTION
+       ============================================================ */
+      #barre-traduction {
+        background-color: #060d1a;
+        border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+        padding: 5px 40px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 12px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1001;
+        height: 35px;
+      }
+
+      .traduction-texte {
+        font-size: 11px;
+        color: var(--bleu-clair);
+        letter-spacing: 1px;
+      }
+      .langue-boutons {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+      }
+
+      .langue-btn {
+        background: transparent;
+        border: 1px solid rgba(201, 168, 76, 0.3);
+        border-radius: 4px;
+        color: var(--bleu-clair);
+        font-family: "Raleway", sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        padding: 2px 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .langue-btn:hover {
+        border-color: var(--or);
+        color: var(--or);
+      }
+      .langue-btn.actif {
+        background-color: var(--or);
+        border-color: var(--or);
+        color: var(--bleu-nuit);
+        font-weight: 700;
+      }
+      .goog-te-banner-frame {
+        display: none !important;
+      }
+      .goog-logo-link {
+        display: none !important;
+      }
+      .goog-te-gadget {
+        display: none !important;
+      }
+
+      /* ============================================================
+       HEADER
+       ============================================================ */
+      header {
+        position: fixed;
+        top: 35px;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        background-color: rgba(10, 22, 40, 0.95);
+        border-bottom: 1px solid var(--or);
+        padding: 0 40px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .header-logo img {
+        height: 55px;
+        width: auto;
+      }
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 35px;
+      }
+
+      nav ul li a {
+        color: var(--blanc);
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding-bottom: 4px;
+        border-bottom: 2px solid transparent;
+        transition:
+          color 0.3s ease,
+          border-bottom-color 0.3s ease;
+      }
+
+      nav ul li a:hover {
+        color: var(--or);
+        border-bottom-color: var(--or);
+      }
+      nav ul li a.actif {
+        color: var(--or);
+        border-bottom-color: var(--or);
+      }
+
+      .btn-commander {
+        background-color: var(--or);
+        color: var(--bleu-nuit) !important;
+        padding: 10px 20px !important;
+        border-radius: 4px;
+        border-bottom: none !important;
+      }
+
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 5px;
+      }
+      .hamburger span {
+        display: block;
+        width: 25px;
+        height: 2px;
+        background-color: var(--or);
+        border-radius: 2px;
+      }
+
+      /* ============================================================
+       FIL D'ARIANE
+       ============================================================ */
+      .fil-ariane {
+        padding: 130px 80px 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+        color: var(--bleu-clair);
+      }
+
+      .fil-ariane a {
+        color: var(--bleu-clair);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+      .fil-ariane a:hover {
+        color: var(--or);
+      }
+      .fil-ariane-sep {
+        color: var(--or);
+        opacity: 0.5;
+      }
+      .fil-ariane-actuel {
+        color: var(--or);
+        font-weight: 600;
+      }
+
+      /* ============================================================
+   HERO SECTION — Bannière de la page
+   ============================================================ */
+      .page-hero {
+        padding: 30px 80px 40px; /* espace respirant, pas collé */
+        border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+      }
+
+      /* Conteneur interne : icône + texte alignés */
+      .page-hero-inner {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        background-color: rgba(30, 77, 140, 0.1); /* légère teinte bleue */
+        border: 1px solid rgba(201, 168, 76, 0.15);
+        border-radius: 14px;
+        padding: 30px 35px;
+      }
+
+      .page-hero-icone {
+        font-size: 64px;
+        flex-shrink: 0;
+      }
+
+      .page-hero-texte h1 {
+        font-family: "Cinzel", serif;
+        font-size: clamp(26px, 3.5vw, 46px);
+        font-weight: 700;
+        color: var(--blanc);
+        margin-bottom: 10px;
+      }
+
+      /* Petit séparateur doré sous le titre */
+      .page-hero-separateur {
+        width: 60px;
+        height: 2px;
+        background: linear-gradient(to right, var(--or), transparent);
+        margin-bottom: 12px;
+        border-radius: 2px;
+      }
+
+      .page-hero-texte p {
+        font-size: 15px;
+        color: var(--bleu-clair);
+        line-height: 1.7;
+      }
+
+      /* Mobile */
+      @media (max-width: 768px) {
+        .page-hero {
+          padding: 15px 20px 25px;
+        }
+        .page-hero-inner {
+          flex-direction: column;
+          text-align: center;
+          padding: 20px;
+          gap: 15px;
+        }
+        .page-hero-separateur {
+          margin: 0 auto 12px;
+        }
+      }
+      /* ============================================================
+       ONGLETS DE RÉSERVATION
+       Permet de basculer entre Cybercafé et Produit
+       ============================================================ */
+      .onglets-container {
+        padding: 30px 80px 0;
+        display: flex;
+        gap: 15px;
+      }
+
+      .onglet-btn {
+        background: transparent;
+        border: 1px solid rgba(201, 168, 76, 0.3);
+        border-radius: 30px;
+        color: var(--bleu-clair);
+        font-family: "Raleway", sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 12px 25px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        letter-spacing: 1px;
+      }
+
+      .onglet-btn:hover {
+        border-color: var(--or);
+        color: var(--or);
+      }
+
+      /* Onglet actif = doré */
+      .onglet-btn.actif {
+        background-color: var(--or);
+        border-color: var(--or);
+        color: var(--bleu-nuit);
+        font-weight: 700;
+      }
+
+      /* ============================================================
+       CONTENU DES ONGLETS
+       ============================================================ */
+      .onglet-contenu {
+        display: none;
+      } /* Caché par défaut */
+      .onglet-contenu.actif {
+        display: block;
+      } /* Affiché si actif */
+
+      /* ============================================================
+       CONTENEUR PRINCIPAL
+       ============================================================ */
+      .reservation-container {
+        padding: 30px 80px 80px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      /* ============================================================
+       CARTE DE FORMULAIRE
+       ============================================================ */
+      .formulaire-carte {
+        background-color: rgba(30, 77, 140, 0.15);
+        border: 1px solid rgba(201, 168, 76, 0.2);
+        border-radius: 16px;
+        padding: 35px;
+        margin-bottom: 25px;
+      }
+
+      .section-titre {
+        font-family: "Cinzel", serif;
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--or);
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+      }
+
+      /* ============================================================
+       TARIFS CYBERCAFÉ — Cartes affichées en grille
+       ============================================================ */
+      .tarifs-grille {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 15px;
+        margin-bottom: 25px;
+      }
+
+      .tarif-carte {
+        background-color: rgba(10, 22, 40, 0.5);
+        border: 1px solid rgba(201, 168, 76, 0.2);
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .tarif-carte:hover {
+        border-color: var(--or);
+        transform: translateY(-3px);
+      }
+
+      /* Carte sélectionnée */
+      .tarif-carte.selectionnee {
+        border-color: var(--or);
+        background-color: rgba(201, 168, 76, 0.1);
+      }
+
+      .tarif-duree {
+        font-family: "Cinzel", serif;
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--blanc);
+        margin-bottom: 5px;
+      }
+
+      .tarif-prix {
+        font-family: "Cinzel", serif;
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--or);
+        margin-bottom: 5px;
+      }
+
+      .tarif-desc {
+        font-size: 12px;
+        color: var(--bleu-clair);
+      }
+
+      /* ============================================================
+       CHAMPS DE FORMULAIRE
+       ============================================================ */
+      .champ-groupe {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+
+      .champ {
+        margin-bottom: 20px;
+      }
+
+      .champ label {
+        display: block;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--or);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+
+      .champ input,
+      .champ select,
+      .champ textarea {
+        width: 100%;
+        padding: 13px 16px;
+        background-color: rgba(10, 22, 40, 0.6);
+        border: 1px solid rgba(201, 168, 76, 0.3);
+        border-radius: 8px;
+        color: var(--blanc);
+        font-family: "Raleway", sans-serif;
+        font-size: 14px;
+        transition: border-color 0.3s ease;
+      }
+
+      .champ input:focus,
+      .champ select:focus,
+      .champ textarea:focus {
+        outline: none;
+        border-color: var(--or);
+      }
+
+      .champ select option {
+        background-color: var(--bleu-nuit);
+      }
+
+      /* ============================================================
+       BOUTON DE RÉSERVATION
+       ============================================================ */
+      .btn-reserver {
+        width: 100%;
+        padding: 18px;
+        background-color: var(--or);
+        color: var(--bleu-nuit);
+        border: none;
+        border-radius: 10px;
+        font-family: "Raleway", sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition:
+          background-color 0.3s ease,
+          transform 0.2s ease;
+        margin-top: 10px;
+      }
+
+      .btn-reserver:hover {
+        background-color: var(--blanc);
+        transform: scale(1.02);
+      }
+
+      /* ============================================================
+       MESSAGE DE CONFIRMATION
+       ============================================================ */
+      .message-confirmation {
+        display: none;
+        background-color: rgba(46, 204, 113, 0.15);
+        border: 1px solid var(--vert);
+        border-radius: 12px;
+        padding: 30px;
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .confirmation-icone {
+        font-size: 50px;
+        margin-bottom: 15px;
+      }
+
+      .message-confirmation h3 {
+        font-family: "Cinzel", serif;
+        color: var(--vert);
+        font-size: 22px;
+        margin-bottom: 10px;
+      }
+
+      .message-confirmation p {
+        color: var(--bleu-clair);
+        font-size: 14px;
+        line-height: 1.8;
+      }
+
+      /* ============================================================
+       INFOS PRATIQUES — Horaires et contact
+       ============================================================ */
+      .infos-grille {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 30px;
+      }
+
+      .info-carte {
+        background-color: rgba(30, 77, 140, 0.15);
+        border: 1px solid rgba(201, 168, 76, 0.2);
+        border-radius: 12px;
+        padding: 25px;
+      }
+
+      .info-carte h3 {
+        font-family: "Cinzel", serif;
+        font-size: 16px;
+        color: var(--or);
+        margin-bottom: 15px;
+      }
+
+      .info-carte p {
+        font-size: 14px;
+        color: var(--bleu-clair);
+        line-height: 1.8;
+      }
+
+      .info-carte a {
+        color: var(--or);
+        text-decoration: none;
+      }
+      .info-carte a:hover {
+        text-decoration: underline;
+      }
+
+      /* ============================================================
+       FOOTER
+       ============================================================ */
+      footer {
+        background-color: #060d1a;
+        border-top: 1px solid var(--or);
+        padding: 30px 80px;
+      }
+      .footer-bas {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+      .footer-copyright {
+        font-size: 14px;
+        color: var(--bleu-clair);
+      }
+      .footer-legal {
+        display: flex;
+        gap: 20px;
+      }
+      .footer-legal a {
+        font-size: 14px;
+        color: var(--bleu-clair);
+        text-decoration: none;
+      }
+      .footer-legal a:hover {
+        color: var(--or);
+      }
+
+      /* ============================================================
+       RESPONSIVE MOBILE
+       ============================================================ */
+      @media (max-width: 768px) {
+        header {
+          padding: 0 20px;
+        }
+        .hamburger {
+          display: flex;
+        }
+        nav {
+          display: none;
+          position: fixed;
+          top: 115px;
+          left: 0;
+          width: 100%;
+          background-color: var(--bleu-nuit);
+          border-top: 1px solid var(--or);
+          padding: 20px 0;
+          z-index: 999;
+        }
+        nav.ouvert {
+          display: block;
+        }
+        nav ul {
+          flex-direction: column;
+          align-items: center;
+          gap: 20px;
+        }
+        .fil-ariane {
+          padding: 130px 20px 15px;
+          font-size: 12px;
+        }
+        .page-hero {
+          padding: 15px 20px 30px;
+          flex-direction: column;
+          text-align: center;
+        }
+        .onglets-container {
+          padding: 20px 20px 0;
+          flex-wrap: wrap;
+        }
+        .reservation-container {
+          padding: 20px 20px 60px;
+        }
+        .champ-groupe {
+          grid-template-columns: 1fr;
+        }
+        .tarifs-grille {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        footer {
+          padding: 30px 25px;
+        }
+        .footer-bas {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Barre de traduction -->
+    <div id="barre-traduction">
+      <span class="traduction-texte">🌍 Langue :</span>
+      <div class="langue-boutons">
+        <button onclick="traduire('fr')" class="langue-btn actif" id="btn-fr">
+          🇫🇷 FR
+        </button>
+        <button onclick="traduire('nl')" class="langue-btn" id="btn-nl">
+          🇳🇱 NL
+        </button>
+        <button onclick="traduire('en')" class="langue-btn" id="btn-en">
+          🇬🇧 EN
+        </button>
+        <button onclick="traduire('de')" class="langue-btn" id="btn-de">
+          🇩🇪 DE
+        </button>
+        <button onclick="traduire('ar')" class="langue-btn" id="btn-ar">
+          🇲🇦 AR
+        </button>
+      </div>
+      <div id="google_translate_element" style="display: none"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+      <a href="index.html" class="header-logo">
+        <img src="images/logo/logo-myg-connect.svg" alt="MYG Connect SNC" />
+      </a>
+      <button
+        class="hamburger"
+        onclick="ouvrirMenu()"
+        aria-label="Ouvrir le menu"
+      >
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="menu-nav">
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="services.html">Nos Services</a></li>
+          <li><a href="boutique.html">Boutique</a></li>
+          <li><a href="reservation.html" class="actif">Réserver</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="commande.html" class="btn-commander">Commander</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Fil d'ariane -->
+    <div class="fil-ariane">
+      <a href="index.html">🏠 Accueil</a>
+      <span class="fil-ariane-sep">›</span>
+      <span class="fil-ariane-actuel">Réserver</span>
+    </div>
+
+    <!-- ============================================================
+   HERO SECTION — Bannière structurée avec séparateur doré
+   ============================================================ -->
+    <div class="page-hero">
+      <div class="page-hero-inner">
+        <div class="page-hero-icone">📅</div>
+        <div class="page-hero-texte">
+          <h1>Réserver</h1>
+          <div class="page-hero-separateur"></div>
+          <p>
+            Réservez votre session CyberCafé ou un produit en avance.<br />
+            Réponse garantie sous 2 heures pendant les heures d'ouverture.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+       ONGLETS — Cybercafé / Produit
+       ============================================================ -->
+    <div class="onglets-container">
+      <button
+        class="onglet-btn actif"
+        onclick="changerOnglet('cybercafe', this)"
+      >
+        🖥️ Session CyberCafé
+      </button>
+      <button class="onglet-btn" onclick="changerOnglet('produit', this)">
+        📦 Réserver un Produit
+      </button>
+    </div>
+
+    <div class="reservation-container">
+      <!-- ============================================================
+         ONGLET 1 : CYBERCAFÉ
+         ============================================================ -->
+      <div id="onglet-cybercafe" class="onglet-contenu actif">
+        <div class="formulaire-carte">
+          <h2 class="section-titre">🖥️ Réserver une session CyberCafé</h2>
+
+          <!-- Tarifs disponibles — cliquer pour sélectionner -->
+          <p
+            style="
+              color: var(--bleu-clair);
+              font-size: 14px;
+              margin-bottom: 15px;
+            "
+          >
+            Sélectionnez votre durée :
+          </p>
+
+          <div class="tarifs-grille">
+            <!-- 1 heure -->
+            <div
+              class="tarif-carte selectionnee"
+              onclick="selectionnerTarif(this, '1h', 4)"
+            >
+              <div class="tarif-duree">1 heure</div>
+              <div class="tarif-prix">4€</div>
+              <div class="tarif-desc">Idéal pour une courte session</div>
+            </div>
+
+            <!-- 2 heures -->
+            <div class="tarif-carte" onclick="selectionnerTarif(this, '2h', 7)">
+              <div class="tarif-duree">2 heures</div>
+              <div class="tarif-prix">7€</div>
+              <div class="tarif-desc">Le plus populaire</div>
+            </div>
+
+            <!-- 3 heures -->
+            <div
+              class="tarif-carte"
+              onclick="selectionnerTarif(this, '3h', 10)"
+            >
+              <div class="tarif-duree">3 heures</div>
+              <div class="tarif-prix">10€</div>
+              <div class="tarif-desc">Pour une longue session</div>
+            </div>
+
+            <!-- Journée complète -->
+            <div
+              class="tarif-carte"
+              onclick="selectionnerTarif(this, 'journee', 25)"
+            >
+              <div class="tarif-duree">Journée</div>
+              <div class="tarif-prix">25€</div>
+              <div class="tarif-desc">Accès illimité toute la journée</div>
+            </div>
+          </div>
+
+          <!-- Formulaire de réservation cybercafé -->
+          <div class="champ-groupe">
+            <div class="champ">
+              <label for="cyber-prenom">Prénom *</label>
+              <input
+                type="text"
+                id="cyber-prenom"
+                placeholder="Jean"
+                required
+              />
+            </div>
+            <div class="champ">
+              <label for="cyber-nom">Nom *</label>
+              <input type="text" id="cyber-nom" placeholder="Dupont" required />
+            </div>
+          </div>
+
+          <div class="champ-groupe">
+            <div class="champ">
+              <label for="cyber-date">Date souhaitée *</label>
+              <input type="date" id="cyber-date" required />
+            </div>
+            <div class="champ">
+              <label for="cyber-heure">Heure de début *</label>
+              <select id="cyber-heure" required>
+                <option value="">Choisir une heure</option>
+                <option value="09:00">09:00</option>
+                <option value="10:00">10:00</option>
+                <option value="11:00">11:00</option>
+                <option value="12:00">12:00</option>
+                <option value="13:00">13:00</option>
+                <option value="14:00">14:00</option>
+                <option value="15:00">15:00</option>
+                <option value="16:00">16:00</option>
+                <option value="17:00">17:00</option>
+                <option value="18:00">18:00</option>
+                <option value="19:00">19:00</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="champ">
+            <label for="cyber-telephone">Téléphone *</label>
+            <input
+              type="tel"
+              id="cyber-telephone"
+              placeholder="+32 XXX XX XX XX"
+              required
+            />
+          </div>
+
+          <div class="champ">
+            <label for="cyber-remarques">Remarques (optionnel)</label>
+            <textarea
+              id="cyber-remarques"
+              rows="3"
+              placeholder="Besoin d'une imprimante, scanner..."
+            ></textarea>
+          </div>
+
+          <button class="btn-reserver" onclick="reserverCybercafe()">
+            📅 Confirmer la réservation
+          </button>
+        </div>
+
+        <!-- Message confirmation cybercafé -->
+        <div id="confirmation-cybercafe" class="message-confirmation">
+          <div class="confirmation-icone">✅</div>
+          <h3>Réservation confirmée !</h3>
+          <p>
+            Votre session CyberCafé est réservée.<br />
+            Nous vous contacterons pour confirmer votre créneau.<br />
+            À bientôt chez MYG Connect SNC !
+          </p>
+        </div>
+
+        <!-- Infos pratiques -->
+        <div class="infos-grille">
+          <div class="info-carte">
+            <h3>⏰ Horaires</h3>
+            <p>
+              Lundi — Vendredi : 9h — 20h<br />
+              Samedi : 10h — 18h<br />
+              Dimanche : Fermé
+            </p>
+          </div>
+          <div class="info-carte">
+            <h3>📍 Adresse</h3>
+            <p>
+              MYG Connect SNC<br />
+              Gosselies, Belgique<br />
+              <a href="contact.html">Voir sur la carte →</a>
+            </p>
+          </div>
+          <div class="info-carte">
+            <h3>💡 Services inclus</h3>
+            <p>
+              PC haute performance<br />
+              WiFi haut débit<br />
+              Impression & scan disponibles
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Fin onglet cybercafé -->
+
+      <!-- ============================================================
+         ONGLET 2 : RÉSERVER UN PRODUIT
+         ============================================================ -->
+      <div id="onglet-produit" class="onglet-contenu">
+        <div class="formulaire-carte">
+          <h2 class="section-titre">📦 Réserver un Produit</h2>
+
+          <p
+            style="
+              color: var(--bleu-clair);
+              font-size: 14px;
+              margin-bottom: 25px;
+            "
+          >
+            Réservez un produit pour le retirer en magasin. Nous le mettons de
+            côté pendant 48h.
+          </p>
+
+          <div class="champ-groupe">
+            <div class="champ">
+              <label for="prod-prenom">Prénom *</label>
+              <input type="text" id="prod-prenom" placeholder="Jean" required />
+            </div>
+            <div class="champ">
+              <label for="prod-nom">Nom *</label>
+              <input type="text" id="prod-nom" placeholder="Dupont" required />
+            </div>
+          </div>
+
+          <div class="champ">
+            <label for="prod-telephone">Téléphone *</label>
+            <input
+              type="tel"
+              id="prod-telephone"
+              placeholder="+32 XXX XX XX XX"
+              required
+            />
+          </div>
+
+          <div class="champ">
+            <label for="prod-email">Email *</label>
+            <input
+              type="email"
+              id="prod-email"
+              placeholder="jean.dupont@email.com"
+              required
+            />
+          </div>
+
+          <div class="champ">
+            <label for="prod-produit">Produit souhaité *</label>
+            <input
+              type="text"
+              id="prod-produit"
+              placeholder="Ex: iPhone 15 Pro 256Go, Câble USB-C..."
+              required
+            />
+          </div>
+
+          <div class="champ">
+            <label for="prod-date">Date de retrait souhaitée *</label>
+            <input type="date" id="prod-date" required />
+          </div>
+
+          <div class="champ">
+            <label for="prod-remarques">Informations complémentaires</label>
+            <textarea
+              id="prod-remarques"
+              rows="3"
+              placeholder="Couleur, capacité, budget..."
+            ></textarea>
+          </div>
+
+          <button class="btn-reserver" onclick="reserverProduit()">
+            📦 Confirmer la réservation
+          </button>
+        </div>
+
+        <!-- Message confirmation produit -->
+        <div id="confirmation-produit" class="message-confirmation">
+          <div class="confirmation-icone">✅</div>
+          <h3>Réservation enregistrée !</h3>
+          <p>
+            Votre demande de réservation a bien été reçue.<br />
+            Nous vérifions la disponibilité et vous contactons sous 2h.<br />
+            Le produit sera mis de côté 48h pour vous.
+          </p>
+        </div>
+      </div>
+      <!-- Fin onglet produit -->
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-bas">
+        <p class="footer-copyright">
+          &copy; 2026 MYG Connect SNC — Tous droits réservés
+        </p>
+        <div class="footer-legal">
+          <a href="mentions-legales.html">Mentions légales</a>
+          <a href="cgv.html">CGV</a>
+          <a href="confidentialite.html">Confidentialité</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ============================================================
+       JAVASCRIPT
+       ============================================================ -->
+    <script>
+      /* ── Menu hamburger mobile ── */
+      function ouvrirMenu() {
+        document.getElementById("menu-nav").classList.toggle("ouvert");
+      }
+
+      /* ── Google Translate ── */
+      function traduire(langue) {
+        const sel = document.querySelector(".goog-te-combo");
+        if (sel) {
+          sel.value = langue;
+          sel.dispatchEvent(new Event("change"));
+        }
+        document
+          .querySelectorAll(".langue-btn")
+          .forEach((b) => b.classList.remove("actif"));
+        document.getElementById("btn-" + langue).classList.add("actif");
+      }
+
+      /* ============================================================
+       GESTION DES ONGLETS
+       Paramètres :
+       - onglet = 'cybercafe' ou 'produit'
+       - btnClique = le bouton sur lequel on a cliqué
+       ============================================================ */
+      function changerOnglet(onglet, btnClique) {
+        /* Cache tous les onglets */
+        document
+          .querySelectorAll(".onglet-contenu")
+          .forEach((o) => o.classList.remove("actif"));
+        /* Désactive tous les boutons */
+        document
+          .querySelectorAll(".onglet-btn")
+          .forEach((b) => b.classList.remove("actif"));
+        /* Active l'onglet et le bouton choisis */
+        document.getElementById("onglet-" + onglet).classList.add("actif");
+        btnClique.classList.add("actif");
+      }
+
+      /* ============================================================
+       SÉLECTION D'UN TARIF CYBERCAFÉ
+       ============================================================ */
+      let tarifSelectionne = { duree: "1h", prix: 4 };
+
+      function selectionnerTarif(element, duree, prix) {
+        /* Désélectionne tous les tarifs */
+        document
+          .querySelectorAll(".tarif-carte")
+          .forEach((t) => t.classList.remove("selectionnee"));
+        /* Sélectionne le tarif cliqué */
+        element.classList.add("selectionnee");
+        /* Sauvegarde le tarif sélectionné */
+        tarifSelectionne = { duree, prix };
+      }
+
+      /* ============================================================
+       RÉSERVATION CYBERCAFÉ — Validation et confirmation
+       ============================================================ */
+      function reserverCybercafe() {
+        const prenom = document.getElementById("cyber-prenom").value.trim();
+        const nom = document.getElementById("cyber-nom").value.trim();
+        const date = document.getElementById("cyber-date").value;
+        const heure = document.getElementById("cyber-heure").value;
+        const telephone = document
+          .getElementById("cyber-telephone")
+          .value.trim();
+
+        /* Validation des champs obligatoires */
+        if (!prenom || !nom || !date || !heure || !telephone) {
+          alert("⚠️ Veuillez remplir tous les champs obligatoires (*)");
+          return;
+        }
+
+        /* Vérifie que la date n'est pas dans le passé */
+        const dateChoisie = new Date(date);
+        const aujourdhui = new Date();
+        aujourdhui.setHours(0, 0, 0, 0);
+
+        if (dateChoisie < aujourdhui) {
+          alert("⚠️ Veuillez choisir une date future.");
+          return;
+        }
+
+        /* Réservation validée — affiche la confirmation */
+        document.querySelector(
+          "#onglet-cybercafe .formulaire-carte",
+        ).style.display = "none";
+        document.getElementById("confirmation-cybercafe").style.display =
+          "block";
+        document
+          .getElementById("confirmation-cybercafe")
+          .scrollIntoView({ behavior: "smooth" });
+      }
+
+      /* ============================================================
+       RÉSERVATION PRODUIT — Validation et confirmation
+       ============================================================ */
+      function reserverProduit() {
+        const prenom = document.getElementById("prod-prenom").value.trim();
+        const nom = document.getElementById("prod-nom").value.trim();
+        const telephone = document
+          .getElementById("prod-telephone")
+          .value.trim();
+        const email = document.getElementById("prod-email").value.trim();
+        const produit = document.getElementById("prod-produit").value.trim();
+        const date = document.getElementById("prod-date").value;
+
+        /* Validation */
+        if (!prenom || !nom || !telephone || !email || !produit || !date) {
+          alert("⚠️ Veuillez remplir tous les champs obligatoires (*)");
+          return;
+        }
+
+        /* Validation email */
+        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!regexEmail.test(email)) {
+          alert("⚠️ Veuillez entrer une adresse email valide.");
+          return;
+        }
+
+        /* Confirmation */
+        document.querySelector(
+          "#onglet-produit .formulaire-carte",
+        ).style.display = "none";
+        document.getElementById("confirmation-produit").style.display = "block";
+        document
+          .getElementById("confirmation-produit")
+          .scrollIntoView({ behavior: "smooth" });
+      }
+
+      /* ── Définit la date minimum à aujourd'hui ── */
+      const aujourd = new Date().toISOString().split("T")[0];
+      document.getElementById("cyber-date").min = aujourd;
+      document.getElementById("prod-date").min = aujourd;
+    </script>
+  </body>
+</html>

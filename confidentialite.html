@@ -1,0 +1,735 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Politique de Confidentialité — MYG Connect SNC</title>
+    <meta
+      name="description"
+      content="Politique de confidentialité et RGPD de MYG Connect SNC — Protection de vos données personnelles."
+    />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Raleway:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ============================================================
+       GOOGLE TRANSLATE
+       ============================================================ -->
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: "fr",
+            includedLanguages: "fr,nl,en,de,ar",
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false,
+          },
+          "google_translate_element",
+        );
+      }
+    </script>
+    <script
+      type="text/javascript"
+      src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+    ></script>
+
+    <style>
+      /* ============================================================
+       VARIABLES CSS
+       ============================================================ */
+      :root {
+        --bleu-nuit: #0a1628;
+        --bleu-royal: #1e4d8c;
+        --or: #c9a84c;
+        --bleu-clair: #b8cce4;
+        --blanc: #ffffff;
+        --vert: #2ecc71;
+        --rouge: #e24b4a;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Raleway", sans-serif;
+        background-color: var(--bleu-nuit);
+        color: var(--blanc);
+        overflow-x: hidden;
+        top: 0 !important;
+      }
+
+      /* ============================================================
+       BARRE DE TRADUCTION
+       ============================================================ */
+      #barre-traduction {
+        background-color: #060d1a;
+        border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+        padding: 5px 40px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 12px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1001;
+        height: 35px;
+      }
+
+      .traduction-texte {
+        font-size: 11px;
+        color: var(--bleu-clair);
+        letter-spacing: 1px;
+      }
+      .langue-boutons {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+      }
+
+      .langue-btn {
+        background: transparent;
+        border: 1px solid rgba(201, 168, 76, 0.3);
+        border-radius: 4px;
+        color: var(--bleu-clair);
+        font-family: "Raleway", sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        padding: 2px 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .langue-btn:hover {
+        border-color: var(--or);
+        color: var(--or);
+      }
+      .langue-btn.actif {
+        background-color: var(--or);
+        border-color: var(--or);
+        color: var(--bleu-nuit);
+        font-weight: 700;
+      }
+      .goog-te-banner-frame {
+        display: none !important;
+      }
+      .goog-logo-link {
+        display: none !important;
+      }
+      .goog-te-gadget {
+        display: none !important;
+      }
+
+      /* ============================================================
+       HEADER
+       ============================================================ */
+      header {
+        position: fixed;
+        top: 35px;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        background-color: rgba(10, 22, 40, 0.95);
+        border-bottom: 1px solid var(--or);
+        padding: 0 40px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .header-logo img {
+        height: 55px;
+        width: auto;
+      }
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 35px;
+      }
+
+      nav ul li a {
+        color: var(--blanc);
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding-bottom: 4px;
+        border-bottom: 2px solid transparent;
+        transition:
+          color 0.3s ease,
+          border-bottom-color 0.3s ease;
+      }
+
+      nav ul li a:hover {
+        color: var(--or);
+        border-bottom-color: var(--or);
+      }
+      .btn-commander {
+        background-color: var(--or);
+        color: var(--bleu-nuit) !important;
+        padding: 10px 20px !important;
+        border-radius: 4px;
+        border-bottom: none !important;
+      }
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 5px;
+      }
+      .hamburger span {
+        display: block;
+        width: 25px;
+        height: 2px;
+        background-color: var(--or);
+        border-radius: 2px;
+      }
+
+      /* ============================================================
+       FIL D'ARIANE
+       ============================================================ */
+      .fil-ariane {
+        padding: 130px 80px 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+        color: var(--bleu-clair);
+      }
+
+      .fil-ariane a {
+        color: var(--bleu-clair);
+        text-decoration: none;
+      }
+      .fil-ariane a:hover {
+        color: var(--or);
+      }
+      .fil-ariane-sep {
+        color: var(--or);
+        opacity: 0.5;
+      }
+      .fil-ariane-actuel {
+        color: var(--or);
+        font-weight: 600;
+      }
+
+      /* ============================================================
+       CONTENU LÉGAL
+       ============================================================ */
+      .legal-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px 120px 80px;
+      }
+
+      .legal-titre {
+        font-family: "Cinzel", serif;
+        font-size: clamp(28px, 4vw, 42px);
+        font-weight: 700;
+        color: var(--blanc);
+        margin-bottom: 10px;
+      }
+
+      .legal-date {
+        font-size: 13px;
+        color: var(--bleu-clair);
+        margin-bottom: 40px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+      }
+
+      /* ============================================================
+       SECTIONS
+       ============================================================ */
+      .legal-section {
+        margin-bottom: 40px;
+      }
+
+      .legal-section h2 {
+        font-family: "Cinzel", serif;
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--or);
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+      }
+
+      .legal-section h3 {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--blanc);
+        margin: 15px 0 8px;
+      }
+
+      .legal-section p {
+        font-size: 14px;
+        color: var(--bleu-clair);
+        line-height: 1.9;
+        margin-bottom: 12px;
+      }
+
+      .legal-section a {
+        color: var(--or);
+        text-decoration: none;
+      }
+      .legal-section a:hover {
+        text-decoration: underline;
+      }
+
+      /* Encadré doré */
+      .legal-encadre {
+        background-color: rgba(201, 168, 76, 0.1);
+        border: 1px solid rgba(201, 168, 76, 0.3);
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px 0;
+      }
+
+      .legal-encadre p {
+        margin-bottom: 5px;
+        font-size: 14px;
+        color: var(--bleu-clair);
+      }
+      .legal-encadre strong {
+        color: var(--or);
+      }
+
+      /* Encadré vert — droits positifs */
+      .legal-encadre-vert {
+        background-color: rgba(46, 204, 113, 0.1);
+        border: 1px solid rgba(46, 204, 113, 0.3);
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px 0;
+      }
+
+      .legal-encadre-vert p {
+        margin-bottom: 8px;
+        font-size: 14px;
+        color: var(--bleu-clair);
+      }
+      .legal-encadre-vert strong {
+        color: var(--vert);
+      }
+
+      /* ============================================================
+       FOOTER
+       ============================================================ */
+      footer {
+        background-color: #060d1a;
+        border-top: 1px solid var(--or);
+        padding: 30px 80px;
+      }
+      .footer-bas {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+      .footer-copyright {
+        font-size: 14px;
+        color: var(--bleu-clair);
+      }
+      .footer-legal {
+        display: flex;
+        gap: 20px;
+      }
+      .footer-legal a {
+        font-size: 14px;
+        color: var(--bleu-clair);
+        text-decoration: none;
+      }
+      .footer-legal a:hover {
+        color: var(--or);
+      }
+
+      /* ============================================================
+       RESPONSIVE MOBILE
+       ============================================================ */
+      @media (max-width: 768px) {
+        header {
+          padding: 0 20px;
+        }
+        .hamburger {
+          display: flex;
+        }
+        nav {
+          display: none;
+          position: fixed;
+          top: 115px;
+          left: 0;
+          width: 100%;
+          background-color: var(--bleu-nuit);
+          border-top: 1px solid var(--or);
+          padding: 20px 0;
+          z-index: 999;
+        }
+        nav.ouvert {
+          display: block;
+        }
+        nav ul {
+          flex-direction: column;
+          align-items: center;
+          gap: 20px;
+        }
+        .fil-ariane {
+          padding: 130px 20px 15px;
+          font-size: 12px;
+        }
+        .legal-container {
+          padding: 20px 30px 60px;
+        }
+        footer {
+          padding: 30px 25px;
+        }
+        .footer-bas {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Barre de traduction -->
+    <div id="barre-traduction">
+      <span class="traduction-texte">🌍 Langue :</span>
+      <div class="langue-boutons">
+        <button onclick="traduire('fr')" class="langue-btn actif" id="btn-fr">
+          🇫🇷 FR
+        </button>
+        <button onclick="traduire('nl')" class="langue-btn" id="btn-nl">
+          🇳🇱 NL
+        </button>
+        <button onclick="traduire('en')" class="langue-btn" id="btn-en">
+          🇬🇧 EN
+        </button>
+        <button onclick="traduire('de')" class="langue-btn" id="btn-de">
+          🇩🇪 DE
+        </button>
+        <button onclick="traduire('ar')" class="langue-btn" id="btn-ar">
+          🇲🇦 AR
+        </button>
+      </div>
+      <div id="google_translate_element" style="display: none"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+      <a href="index.html" class="header-logo">
+        <img src="images/logo/logo-myg-connect.svg" alt="MYG Connect SNC" />
+      </a>
+      <button
+        class="hamburger"
+        onclick="ouvrirMenu()"
+        aria-label="Ouvrir le menu"
+      >
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="menu-nav">
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="services.html">Nos Services</a></li>
+          <li><a href="boutique.html">Boutique</a></li>
+          <li><a href="reservation.html">Réserver</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="commande.html" class="btn-commander">Commander</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Fil d'ariane -->
+    <div class="fil-ariane">
+      <a href="index.html">🏠 Accueil</a>
+      <span class="fil-ariane-sep">›</span>
+      <span class="fil-ariane-actuel">Politique de Confidentialité</span>
+    </div>
+
+    <!-- ============================================================
+       CONTENU PRINCIPAL — Politique de Confidentialité RGPD
+       ============================================================ -->
+    <div class="legal-container">
+      <h1 class="legal-titre">Politique de Confidentialité</h1>
+      <p class="legal-date">
+        Dernière mise à jour : Mai 2026 — Conforme au Règlement Général sur la
+        Protection des Données (RGPD)
+      </p>
+
+      <!-- Responsable du traitement -->
+      <div class="legal-section">
+        <h2>1. Responsable du Traitement des Données</h2>
+
+        <div class="legal-encadre">
+          <p><strong>Société :</strong> MYG Connect SNC</p>
+          <p><strong>Siège :</strong> Gosselies, Région Wallonne, Belgique</p>
+          <p>
+            <strong>Email :</strong>
+            <a href="mailto:contact@mygconnect.be">contact@mygconnect.be</a>
+          </p>
+        </div>
+
+        <p>
+          MYG Connect SNC s'engage à protéger la vie privée de ses clients et
+          visiteurs conformément au RGPD (Règlement UE 2016/679) et à la loi
+          belge du 30 juillet 2018 relative à la protection des personnes
+          physiques à l'égard des traitements de données.
+        </p>
+      </div>
+
+      <!-- Données collectées -->
+      <div class="legal-section">
+        <h2>2. Données Personnelles Collectées</h2>
+
+        <h3>2.1 Données collectées via le formulaire de contact</h3>
+        <p>
+          — Prénom et nom<br />
+          — Adresse email<br />
+          — Numéro de téléphone (optionnel)<br />
+          — Contenu du message
+        </p>
+
+        <h3>2.2 Données collectées lors d'une commande</h3>
+        <p>
+          — Prénom et nom<br />
+          — Adresse email<br />
+          — Numéro de téléphone<br />
+          — Adresse de livraison<br />
+          — Détails de la commande
+        </p>
+
+        <h3>2.3 Données collectées automatiquement</h3>
+        <p>
+          — Adresse IP (anonymisée)<br />
+          — Type de navigateur et système d'exploitation<br />
+          — Pages visitées et durée de visite<br />
+          — Ces données sont collectées via des cookies techniques uniquement
+        </p>
+      </div>
+
+      <!-- Finalités du traitement -->
+      <div class="legal-section">
+        <h2>3. Finalités du Traitement</h2>
+        <p>Vos données personnelles sont utilisées pour :</p>
+        <p>
+          — Traiter et suivre vos commandes<br />
+          — Répondre à vos messages et demandes<br />
+          — Gérer vos réservations (cybercafé, produits)<br />
+          — Améliorer nos services et l'expérience utilisateur<br />
+          — Respecter nos obligations légales et comptables
+        </p>
+        <p>
+          Vos données ne sont
+          <strong style="color: var(--rouge)">jamais vendues</strong> à des
+          tiers et ne sont pas utilisées à des fins publicitaires sans votre
+          consentement.
+        </p>
+      </div>
+
+      <!-- Base légale -->
+      <div class="legal-section">
+        <h2>4. Base Légale du Traitement</h2>
+        <p>Le traitement de vos données repose sur :</p>
+        <p>
+          — <strong style="color: var(--or)">Exécution du contrat</strong> :
+          pour les commandes et réservations<br />
+          — <strong style="color: var(--or)">Consentement</strong> : pour les
+          communications marketing<br />
+          — <strong style="color: var(--or)">Intérêt légitime</strong> : pour
+          améliorer nos services<br />
+          — <strong style="color: var(--or)">Obligation légale</strong> : pour
+          la comptabilité et la fiscalité
+        </p>
+      </div>
+
+      <!-- Durée de conservation -->
+      <div class="legal-section">
+        <h2>5. Durée de Conservation</h2>
+
+        <div class="legal-encadre">
+          <p>
+            <strong>Données de commande :</strong> 7 ans (obligation légale
+            comptable)
+          </p>
+          <p>
+            <strong>Données de contact :</strong> 3 ans après le dernier contact
+          </p>
+          <p><strong>Cookies techniques :</strong> Maximum 13 mois</p>
+          <p><strong>Données de navigation :</strong> 6 mois maximum</p>
+        </div>
+      </div>
+
+      <!-- Vos droits RGPD -->
+      <div class="legal-section">
+        <h2>6. Vos Droits RGPD</h2>
+
+        <div class="legal-encadre-vert">
+          <p>
+            <strong>✅ Droit d'accès :</strong> Obtenir une copie de vos données
+          </p>
+          <p>
+            <strong>✅ Droit de rectification :</strong> Corriger vos données
+            inexactes
+          </p>
+          <p>
+            <strong>✅ Droit à l'effacement :</strong> Supprimer vos données
+            (droit à l'oubli)
+          </p>
+          <p>
+            <strong>✅ Droit d'opposition :</strong> Vous opposer au traitement
+            de vos données
+          </p>
+          <p>
+            <strong>✅ Droit à la portabilité :</strong> Recevoir vos données
+            dans un format lisible
+          </p>
+          <p>
+            <strong>✅ Droit de limitation :</strong> Limiter le traitement de
+            vos données
+          </p>
+        </div>
+
+        <p>
+          Pour exercer vos droits, contactez-nous par email :
+          <a href="mailto:contact@mygconnect.be">contact@mygconnect.be</a>
+          ou via notre <a href="contact.html">formulaire de contact</a>. Nous
+          répondrons dans un délai maximum de 30 jours.
+        </p>
+      </div>
+
+      <!-- Cookies -->
+      <div class="legal-section">
+        <h2>7. Cookies</h2>
+
+        <h3>7.1 Cookies techniques (obligatoires)</h3>
+        <p>
+          Ces cookies sont nécessaires au bon fonctionnement du site. Ils ne
+          collectent pas de données personnelles identifiables. Ils incluent
+          notamment le localStorage utilisé pour le panier d'achat.
+        </p>
+
+        <h3>7.2 Google Translate</h3>
+        <p>
+          Notre site utilise Google Translate pour la traduction multilingue. Ce
+          service peut déposer des cookies sur votre appareil. Pour en savoir
+          plus :
+          <a href="https://policies.google.com/privacy" target="_blank"
+            >Politique de confidentialité Google →</a
+          >
+        </p>
+
+        <h3>7.3 Gestion des cookies</h3>
+        <p>
+          Vous pouvez à tout moment désactiver les cookies via les paramètres de
+          votre navigateur. Cela peut affecter certaines fonctionnalités du
+          site.
+        </p>
+      </div>
+
+      <!-- Sécurité -->
+      <div class="legal-section">
+        <h2>8. Sécurité des Données</h2>
+        <p>
+          MYG Connect SNC met en œuvre des mesures techniques et
+          organisationnelles appropriées pour protéger vos données contre tout
+          accès non autorisé, modification, divulgation ou destruction.
+        </p>
+        <p>
+          Le site est hébergé sur GitHub Pages avec protocole HTTPS garantissant
+          le chiffrement des données en transit.
+        </p>
+      </div>
+
+      <!-- Transferts internationaux -->
+      <div class="legal-section">
+        <h2>9. Transferts Internationaux</h2>
+        <p>
+          Certains de nos prestataires (Google Translate, Formspree) peuvent
+          traiter vos données en dehors de l'Union Européenne. Ces transferts
+          sont encadrés par des garanties appropriées conformément au RGPD.
+        </p>
+      </div>
+
+      <!-- Réclamations -->
+      <div class="legal-section">
+        <h2>10. Droit de Réclamation</h2>
+        <p>
+          Si vous estimez que le traitement de vos données porte atteinte à vos
+          droits, vous pouvez introduire une réclamation auprès de l'Autorité de
+          Protection des Données (APD) belge :
+        </p>
+        <p>
+          — Site web :
+          <a href="https://www.autoriteprotectiondonnees.be" target="_blank"
+            >www.autoriteprotectiondonnees.be</a
+          ><br />
+          — Email : contact@apd-gba.be<br />
+          — Adresse : Rue de la Presse 35, 1000 Bruxelles
+        </p>
+      </div>
+
+      <!-- Contact DPO -->
+      <div class="legal-section">
+        <h2>11. Contact</h2>
+        <p>
+          Pour toute question relative à cette politique de confidentialité ou
+          pour exercer vos droits :
+        </p>
+        <div class="legal-encadre">
+          <p>
+            <strong>Email :</strong>
+            <a href="mailto:contact@mygconnect.be">contact@mygconnect.be</a>
+          </p>
+          <p>
+            <strong>Formulaire :</strong>
+            <a href="contact.html">Page Contact →</a>
+          </p>
+          <p><strong>En magasin :</strong> Gosselies, Belgique</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-bas">
+        <p class="footer-copyright">
+          &copy; 2026 MYG Connect SNC — Tous droits réservés
+        </p>
+        <div class="footer-legal">
+          <a href="mentions-legales.html">Mentions légales</a>
+          <a href="cgv.html">CGV</a>
+          <a href="confidentialite.html">Confidentialité</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      function ouvrirMenu() {
+        document.getElementById("menu-nav").classList.toggle("ouvert");
+      }
+      function traduire(langue) {
+        const sel = document.querySelector(".goog-te-combo");
+        if (sel) {
+          sel.value = langue;
+          sel.dispatchEvent(new Event("change"));
+        }
+        document
+          .querySelectorAll(".langue-btn")
+          .forEach((b) => b.classList.remove("actif"));
+        document.getElementById("btn-" + langue).classList.add("actif");
+      }
+    </script>
+  </body>
+</html>
