@@ -326,13 +326,17 @@
       }
 
       /* ============================================================
-       CARTE PRODUIT IPHONE
-       ============================================================ */
+   CARTE PRODUIT
+   display:flex + flex-direction:column = empile image et contenu
+   overflow:hidden = empêche l'image de déborder de la carte
+   ============================================================ */
       .carte-produit {
         background-color: rgba(30, 77, 140, 0.15);
         border: 1px solid rgba(201, 168, 76, 0.2);
         border-radius: 16px;
         overflow: hidden;
+        display: flex; /* Active le mode flex */
+        flex-direction: column; /* Empile image + contenu verticalement */
         transition:
           transform 0.3s ease,
           border-color 0.3s ease;
@@ -342,8 +346,11 @@
         transform: translateY(-5px);
         border-color: var(--or);
       }
-
-      /* Zone image du produit */
+      /* ============================================================
+   ZONE IMAGE DU PRODUIT
+   overflow:hidden = empêche l'image de déborder de la carte
+   position:relative = nécessaire pour le badge de stock
+   ============================================================ */
       .produit-image-zone {
         background-color: rgba(30, 77, 140, 0.2);
         height: 180px;
@@ -351,7 +358,57 @@
         align-items: center;
         justify-content: center;
         font-size: 80px;
-        position: relative; /* Pour le badge de stock */
+        position: relative;
+        overflow: hidden;
+        /* Taille fixe sur tous les écrans */
+        min-height: 180px;
+        max-height: 180px;
+        width: 100%;
+      }
+
+      /* ============================================================
+         IMAGE PRODUIT
+         object-fit:cover = remplit la zone sans déformation
+         object-position:center = image centrée
+         width/height 100% = remplit toute la zone
+         ============================================================ */
+      .produit-image-zone img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+        display: block;
+        /* Transition douce au survol */
+        transition: transform 0.3s ease;
+      }
+
+      /* Zoom léger au survol — effet professionnel */
+      .produit-image-zone img:hover {
+        transform: scale(1.05);
+      }
+
+      /* ============================================================
+         RESPONSIVE TABLETTE — 768px
+         La hauteur s'adapte légèrement
+         ============================================================ */
+      @media (max-width: 768px) {
+        .produit-image-zone {
+          height: 150px;
+          min-height: 150px;
+          max-height: 150px;
+        }
+      }
+
+      /* ============================================================
+         RESPONSIVE MOBILE — 480px
+         Hauteur réduite pour les petits écrans
+         ============================================================ */
+      @media (max-width: 480px) {
+        .produit-image-zone {
+          height: 130px;
+          min-height: 130px;
+          max-height: 130px;
+        }
       }
 
       /* ============================================================
@@ -394,9 +451,16 @@
         color: var(--rouge);
       }
 
-      /* Contenu texte de la carte */
+      /* ============================================================
+   CONTENU TEXTE DE LA CARTE
+   flex:1 = prend tout l'espace restant sous l'image
+   display:flex + flex-direction:column = organise le contenu
+   ============================================================ */
       .produit-contenu {
         padding: 20px;
+        display: flex;
+        flex-direction: column;
+        flex: 1; /* Prend tout l'espace disponible sous l'image */
       }
 
       /* Badge série (iPhone 14, iPhone 15...) */
@@ -1395,7 +1459,11 @@
         <!-- ── iPhone 17 ── -->
         <div class="carte-produit" data-serie="17">
           <div class="produit-image-zone">
-            📱
+            <!-- Image iPhone 17 -->
+            <img
+              src="images/produits/telephones/iPhone17.jpg"
+              alt="iPhone 17"
+            />
             <span class="badge-stock sur-commande" data-produit="iphone-17"
               >Sur commande</span
             >
@@ -1423,13 +1491,18 @@
         <!-- ── iPhone 17 Pro Max ── -->
         <div class="carte-produit" data-serie="17">
           <div class="produit-image-zone">
-            📱
+            <!-- Image iPhone 17 Pro Max -->
+            <img
+              src="images/produits/telephones/iphone.jpg"
+              alt="iPhone 17 Pro Max"
+            />
             <span
               class="badge-stock sur-commande"
               data-produit="iphone-17-pro-max"
               >Sur commande</span
             >
           </div>
+
           <div class="produit-contenu">
             <span class="produit-serie">iPhone 17 Pro Max</span>
             <h3 class="produit-nom">iPhone 17 Pro Max — 256Go</h3>
