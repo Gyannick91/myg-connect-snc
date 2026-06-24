@@ -276,11 +276,18 @@
         gap: 25px;
       }
 
+/* ============================================================
+         CARTE PRODUIT
+         display:flex + flex-direction:column = empile image et contenu
+         overflow:hidden = empêche l'image de déborder
+         ============================================================ */
       .carte-produit {
         background-color: rgba(30, 77, 140, 0.15);
         border: 1px solid rgba(201, 168, 76, 0.2);
         border-radius: 16px;
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
         transition:
           transform 0.3s ease,
           border-color 0.3s ease;
@@ -289,15 +296,41 @@
         transform: translateY(-5px);
         border-color: var(--or);
       }
-
+/* ============================================================
+         ZONE IMAGE
+         overflow:hidden = empêche l'image de déborder
+         min/max-height = taille fixe sur tous les écrans
+         ============================================================ */
       .produit-image-zone {
         background-color: rgba(30, 77, 140, 0.2);
         height: 180px;
+        min-height: 180px;
+        max-height: 180px;
+        width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 80px;
         position: relative;
+        overflow: hidden;
+      }
+
+      /* ============================================================
+         IMAGE PRODUIT
+         object-fit:cover = remplit sans déformation
+         ============================================================ */
+      .produit-image-zone img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+        display: block;
+        transition: transform 0.3s ease;
+      }
+
+      /* Zoom léger au survol */
+      .produit-image-zone img:hover {
+        transform: scale(1.05);
       }
 
       .badge-stock {
@@ -327,8 +360,15 @@
         color: var(--rouge);
       }
 
+/* ============================================================
+         CONTENU TEXTE
+         flex:1 = prend tout l'espace restant sous l'image
+         ============================================================ */
       .produit-contenu {
         padding: 20px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
       }
       .produit-serie {
         display: inline-block;
@@ -746,10 +786,14 @@
     <!-- Grille produits -->
     <div class="produits-section">
       <div class="produits-grille" id="grille-xiaomi">
+
         <!-- ── Redmi 12 ── -->
         <div class="carte-produit" data-serie="redmi">
           <div class="produit-image-zone">
-            📱
+            <!-- Image Redmi 12
+                 Chemin : images/produits/telephones/xiaomi/Redmi12.jpg -->
+            <img src="images/produits/telephones/xiaomi/Redmi12Bis.jpg"
+                 alt="Redmi 12">
             <span class="badge-stock en-stock" data-produit="redmi-12"
               >En stock</span
             >
@@ -774,10 +818,13 @@
           </div>
         </div>
 
-        <!-- ── Redmi 13C ── -->
+<!-- ── Redmi 13C ── -->
         <div class="carte-produit" data-serie="redmi">
           <div class="produit-image-zone">
-            📱
+            <!-- Image Redmi 13C
+                 Chemin : images/produits/telephones/xiaomi/Redmi13C.jpg -->
+            <img src="images/produits/telephones/xiaomi/Redmi13C.jpg"
+                 alt="Redmi 13C">
             <span class="badge-stock en-stock" data-produit="redmi-13c"
               >En stock</span
             >
@@ -802,10 +849,13 @@
           </div>
         </div>
 
-        <!-- ── Redmi Note 12 ── -->
+<!-- ── Redmi Note 12 ── -->
         <div class="carte-produit" data-serie="note">
           <div class="produit-image-zone">
-            📱
+            <!-- Image Redmi Note 12
+                 Chemin : images/produits/telephones/xiaomi/RedmiNote12.jpg -->
+            <img src="images/produits/telephones/xiaomi/RedmiNote12.jpg"
+                 alt="Redmi Note 12">
             <span class="badge-stock en-stock" data-produit="redmi-note-12"
               >En stock</span
             >
@@ -830,10 +880,13 @@
           </div>
         </div>
 
-        <!-- ── Redmi Note 12 Pro ── -->
+<!-- ── Redmi Note 12 Pro ── -->
         <div class="carte-produit" data-serie="note">
           <div class="produit-image-zone">
-            📱
+            <!-- Image Redmi Note 12 Pro
+                 Chemin : images/produits/telephones/xiaomi/RedmiNote12Pro.jpg -->
+            <img src="images/produits/telephones/xiaomi/RedmiNote12Pro.jpg"
+                 alt="Redmi Note 12 Pro">
             <span class="badge-stock en-stock" data-produit="redmi-note-12-pro"
               >En stock</span
             >
@@ -858,10 +911,13 @@
           </div>
         </div>
 
-        <!-- ── Redmi Note 13 ── -->
+<!-- ── Redmi Note 13 ── -->
         <div class="carte-produit" data-serie="note">
           <div class="produit-image-zone">
-            📱
+            <!-- Image Redmi Note 13
+                 Chemin : images/produits/telephones/xiaomi/RedmiNote13.jpg -->
+            <img src="images/produits/telephones/xiaomi/RedmiNote13.jpg"
+                 alt="Redmi Note 13">
             <span class="badge-stock en-stock" data-produit="redmi-note-13"
               >En stock</span
             >
@@ -886,10 +942,13 @@
           </div>
         </div>
 
-        <!-- ── Redmi Note 13 Pro ── -->
+<!-- ── Redmi Note 13 Pro ── -->
         <div class="carte-produit" data-serie="note">
           <div class="produit-image-zone">
-            📱
+            <!-- Image Redmi Note 13 Pro
+                 Chemin : images/produits/telephones/xiaomi/RedmiNote13Pro.jpg -->
+            <img src="images/produits/telephones/xiaomi/RedmiNote13Pro.jpg"
+                 alt="Redmi Note 13 Pro">
             <span class="badge-stock en-stock" data-produit="redmi-note-13-pro"
               >En stock</span
             >
@@ -914,10 +973,13 @@
           </div>
         </div>
 
-        <!-- ── Xiaomi 13 ── -->
+<!-- ── Xiaomi 13 ── -->
         <div class="carte-produit" data-serie="xiaomi-pro">
           <div class="produit-image-zone">
-            📱
+            <!-- Image Xiaomi 13
+                 Chemin : images/produits/telephones/xiaomi/xiaomi13.jpg -->
+            <img src="images/produits/telephones/xiaomi/xiaomi13.jpg"
+                 alt="Xiaomi 13">
             <span class="badge-stock sur-commande" data-produit="xiaomi-13"
               >Sur commande</span
             >
@@ -942,10 +1004,13 @@
           </div>
         </div>
 
-        <!-- ── Xiaomi 14 ── -->
+<!-- ── Xiaomi 14 ── -->
         <div class="carte-produit" data-serie="xiaomi-pro">
           <div class="produit-image-zone">
-            📱
+            <!-- Image Xiaomi 14
+                 Chemin : images/produits/telephones/xiaomi/xiaomi14.jpg -->
+            <img src="images/produits/telephones/xiaomi/xiaomi14.jpg"
+                 alt="Xiaomi 14">
             <span class="badge-stock sur-commande" data-produit="xiaomi-14"
               >Sur commande</span
             >
@@ -970,10 +1035,13 @@
           </div>
         </div>
 
-        <!-- ── Xiaomi 14 Ultra ── -->
+<!-- ── Xiaomi 14 Ultra ── -->
         <div class="carte-produit" data-serie="xiaomi-pro">
           <div class="produit-image-zone">
-            📱
+            <!-- Image Xiaomi 14 Ultra
+                 Chemin : images/produits/telephones/xiaomi/xiaomi14Ultra.jpg -->
+            <img src="images/produits/telephones/xiaomi/xiaomi14Ultra.jpg"
+                 alt="Xiaomi 14 Ultra">
             <span
               class="badge-stock sur-commande"
               data-produit="xiaomi-14-ultra"
